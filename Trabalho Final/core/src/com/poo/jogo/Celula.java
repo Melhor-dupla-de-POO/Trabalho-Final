@@ -6,7 +6,10 @@ import java.util.Random;
 public class Celula {
 	boolean comida;
 	
-	ArrayList<Especie> criaturas;
+	ArrayList<Especie> esp1;
+	ArrayList<Especie> esp2;
+	ArrayList<Especie> esp3;
+	ArrayList<Especie> esp4;
 	
 	void resetaComida() {
 		Random rand = new Random();
