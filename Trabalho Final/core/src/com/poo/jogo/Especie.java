@@ -4,6 +4,7 @@ import java.util.Random;
 
 public abstract class Especie {
 	private float velocidade, inteligencia, energia;
+	Cores cor;
 	
 	Especie(float velocidade, float inteligencia) {
 		this.velocidade = velocidade;
