@@ -22,7 +22,7 @@ public class Tabuleiro {
 		}
 	}
 	
-	public void mover() {
+	public void mover(Especie criatura) {
 		
 	}
 	

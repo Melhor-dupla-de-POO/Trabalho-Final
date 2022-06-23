@@ -6,8 +6,8 @@ public class Amarelo extends Especie {
 		super(pai);
 	}
 	
-	Amarelo(float velocidade, float inteligencia, Cores cor) {
-		super(velocidade, inteligencia);
+	Amarelo(int x, int y, float velocidade, float inteligencia, float tamanho, Tabuleiro tabuleiro) {
+		super(x, y, velocidade, inteligencia, tamanho, tabuleiro, Cores.AMARELO);
 	}
 
 }

@@ -5,9 +5,9 @@ public class Vermelho extends Especie {
 	Vermelho(Especie pai) {
 		super(pai);
 	}
-	
-	Vermelho(float velocidade, float inteligencia, Cores cor) {
-		super(velocidade, inteligencia);
+
+	Vermelho(int x, int y, float velocidade, float inteligencia, float tamanho, Tabuleiro tabuleiro) {
+		super(x, y, velocidade, inteligencia, tamanho, tabuleiro, Cores.VERMELHO);
 	}
 
 }
