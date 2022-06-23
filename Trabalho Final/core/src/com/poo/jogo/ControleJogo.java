@@ -8,18 +8,20 @@ public class ControleJogo {
 		ArrayList<Especie> criaturas = new ArrayList<Especie>();
 		
 		// Receber o input
-		float velocidadeEscolhida = 0, inteligenciaEscolhida = 0;
+		float velocidadeEscolhida = 0, inteligenciaEscolhida = 0, tamanhoEscolhido = 0;
 		Cores corEscolhida = Cores.AMARELO;
 		
-		float novaVelocidade, novaInteligencia, velocidadePadrao = 0, inteligenciaPadrao = 0;
+		float novaVelocidade, novaInteligencia, novoTamanho, velocidadePadrao = 0, inteligenciaPadrao = 0, tamanhoPadrao = 0;
 		for (Cores cor : Cores.values()) {
 			if (cor == corEscolhida) {
 				novaVelocidade = velocidadeEscolhida;
 				novaInteligencia = inteligenciaEscolhida;
+				novoTamanho = tamanhoEscolhido;
 			}
 			else {
 				novaVelocidade = velocidadePadrao;
 				novaInteligencia = inteligenciaPadrao;
+				novoTamanho = tamanhoPadrao;
 			}
 			switch (cor) {
 				case AMARELO:
