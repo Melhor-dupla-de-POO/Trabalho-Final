@@ -28,6 +28,7 @@ public class MainMenu implements Screen {
 		settingsActive = new Texture("settingsAtivo.png");
 		settingsInactive = new Texture("settingsInativo.png");
 		title = new Texture("extinction.png");
+		background = new Texture("MainMenuBackground.jpg");
 	}
 	
 	@Override
@@ -41,11 +42,16 @@ public class MainMenu implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.begin();
 		
+		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		game.batch.draw(title, (Jogo.WIDTH - titleWidth) / 2, 450, titleWidth, titleHeight);
 		if (Gdx.input.getX() >= playX && Gdx.input.getX() <= playX + playWidth 
 				&& Gdx.input.getY() >= Jogo.HEIGHT - playY - playHeight && 
 				Gdx.input.getY() <= Jogo.HEIGHT - playY) {
 			game.batch.draw(playActive, playX, playY, playWidth, playHeight);
+			if (Gdx.input.isTouched()) {
+				this.dispose();
+				game.setScreen(new GameScreen(game));
+			}
 		}
 		else {
 			game.batch.draw(playInactive, playX, playY, playWidth, playHeight);
@@ -54,6 +60,10 @@ public class MainMenu implements Screen {
 				&& Gdx.input.getY() >= Jogo.HEIGHT - tutorialY - tutorialHeight && 
 				Gdx.input.getY() <= Jogo.HEIGHT - tutorialY) {
 			game.batch.draw(tutorialActive, tutorialX, tutorialY, tutorialWidth, tutorialHeight);
+			if (Gdx.input.isTouched()) {
+				this.dispose();
+				game.setScreen(new Tutorial(game));
+			}
 		}
 		else {
 			game.batch.draw(tutorialInactive, tutorialX, tutorialY, tutorialWidth, tutorialHeight);
@@ -63,6 +73,7 @@ public class MainMenu implements Screen {
 				Gdx.input.getY() <= Jogo.HEIGHT - settingsY) {
 			game.batch.draw(settingsActive, settingsX, settingsY, settingsWidth, settingsHeight);
 			if (Gdx.input.isTouched()) {
+				this.dispose();
 				game.setScreen(new Settings(game));
 			}
 		}
