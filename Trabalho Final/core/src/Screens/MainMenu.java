@@ -50,6 +50,7 @@ public class MainMenu implements Screen {
 			game.batch.draw(playActive, playX, playY, playWidth, playHeight);
 			if (Gdx.input.isTouched()) {
 				this.dispose();
+				game.playSound();
 				game.setScreen(new GameScreen(game));
 			}
 		}
@@ -62,6 +63,7 @@ public class MainMenu implements Screen {
 			game.batch.draw(tutorialActive, tutorialX, tutorialY, tutorialWidth, tutorialHeight);
 			if (Gdx.input.isTouched()) {
 				this.dispose();
+				game.playSound();
 				game.setScreen(new Tutorial(game));
 			}
 		}
@@ -74,6 +76,7 @@ public class MainMenu implements Screen {
 			game.batch.draw(settingsActive, settingsX, settingsY, settingsWidth, settingsHeight);
 			if (Gdx.input.isTouched()) {
 				this.dispose();
+				game.playSound();
 				game.setScreen(new Settings(game));
 			}
 		}
