@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Celula {
-	boolean comida;
+	private boolean comida;
 	
-	ArrayList<Especie> criaturas;
+	private ArrayList<Especie> criaturas;
 	
 	void resetaComida() {
 		Random rand = new Random();
 		int rnumb = rand.nextInt(10);
 		if(rnumb == 0) this.comida = true;
 		else this.comida = false;
+	}
+	
+	public ArrayList<Especie> getList() {
+		return criaturas;
 	}
 	
 	public boolean getComida() {
