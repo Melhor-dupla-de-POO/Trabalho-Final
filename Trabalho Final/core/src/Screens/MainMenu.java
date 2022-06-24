@@ -51,7 +51,7 @@ public class MainMenu implements Screen {
 			if (Gdx.input.isTouched()) {
 				this.dispose();
 				game.playSound();
-				game.setScreen(new GameScreen(game));
+				game.setScreen(new PreGame(game));
 			}
 		}
 		else {

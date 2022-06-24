@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.poo.jogo.Jogo;
 
 public class Tutorial implements Screen {
@@ -13,11 +14,13 @@ public class Tutorial implements Screen {
 	private static final int nextX = Jogo.WIDTH - nextWidth - 20, nextY = 20;
 	Jogo game;
 	Texture nextActive, nextInactive;
+	private int lastClick;
 	
 	Tutorial(Jogo game) {
 		this.game = game;
 		nextActive = new Texture("nextAtivo.png");
 		nextInactive = new Texture("nextInativo.png");
+		lastClick = 10;
 	}
 	
 	@Override
@@ -37,23 +40,31 @@ public class Tutorial implements Screen {
 			Gdx.gl.glClearColor(0, 1, 0, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		}
-		else {
+		else if (this.tela == 2){
 			Gdx.gl.glClearColor(0, 0, 1, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		}
+		else {
+			this.dispose();
+			game.setScreen(new MainMenu(game));
 		}
 		
 		if (Gdx.input.getX() >= nextX && Gdx.input.getX() <= nextX + nextWidth 
 				&& Gdx.input.getY() >= Jogo.HEIGHT - nextY - nextHeight && 
 				Gdx.input.getY() <= Jogo.HEIGHT - nextY) {
 			game.batch.draw(nextActive, nextX, nextY, nextWidth, nextHeight);
-			if (Gdx.input.isTouched()) {
-				this.dispose();
+			if (Gdx.input.isTouched() && lastClick >= 10) {
+				lastClick = 0;
 				this.tela++;
+				game.playSound();
 			}
 		}
 		else {
 			game.batch.draw(nextInactive, nextX, nextY, nextWidth, nextHeight);
 		}
+		
+		lastClick++;
+		font.draw(game.batch, String.valueOf(lastClick), 100, 300);
 		
 		game.batch.end();
 	}
