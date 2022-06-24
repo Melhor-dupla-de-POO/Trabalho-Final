@@ -15,8 +15,10 @@ public class Settings implements Screen {
 	private static final int soundX = (Jogo.WIDTH - 2 * soundWidth) / 2, soundY = (Jogo.HEIGHT - soundHeight) / 2;
 	private static final int musicX = (Jogo.WIDTH + 2 * musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
 	private static final int backWidth = 80, backHeight = 80, backX = (Jogo.WIDTH - backWidth - 20), backY = 20;
+	private int lastClick;
 	
 	public Settings(Jogo game) {
+		lastClick = 10;
 		this.game = game;
 		soundActive = new Texture("volumeAtivo.png");
 		soundInactive = new Texture("volumeInativo.png");
@@ -35,9 +37,10 @@ public class Settings implements Screen {
 	@Override
 	public void render(float delta) {
 		game.batch.begin();
-		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		Gdx.gl.glClearColor(0, 0, 0, 0.5f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		
 		if (Gdx.input.getX() >= backX && Gdx.input.getX() <= backX + backWidth 
 				&& Gdx.input.getY() >= Jogo.HEIGHT - backY - backHeight && 
@@ -67,16 +70,20 @@ public class Settings implements Screen {
 		}
 		if (Gdx.input.getX() >= musicX && Gdx.input.getX() <= musicX + musicWidth 
 				&& Gdx.input.getY() >= Jogo.HEIGHT - musicY - musicHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - musicY && Gdx.input.isTouched()) {
+				Gdx.input.getY() <= Jogo.HEIGHT - musicY && Gdx.input.isTouched() && lastClick >= 10) {
 			game.invertMusic();
 			game.playSound();
+			lastClick = 0;
 		}
 		if (Gdx.input.getX() >= soundX && Gdx.input.getX() <= soundX + soundWidth 
 				&& Gdx.input.getY() >= Jogo.HEIGHT - soundY - soundHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - soundY && Gdx.input.isTouched()) {
+				Gdx.input.getY() <= Jogo.HEIGHT - soundY && Gdx.input.isTouched() && lastClick >= 10) {
 			game.invertSound();
 			game.playSound();
+			lastClick = 0;
 		}
+		
+		lastClick++;
 		
 		game.batch.end();
 		
