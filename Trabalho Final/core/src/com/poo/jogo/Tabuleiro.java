@@ -1,5 +1,8 @@
 package com.poo.jogo;
 
+import java.util.*;
+import java.lang.Integer;
+
 public class Tabuleiro {
 	int tam;
 	Celula[][] campo;
@@ -22,8 +25,12 @@ public class Tabuleiro {
 		}
 	}
 	
+	public boolean in_board(int x, int y) {
+		if(x < 0 || y < 0 || x >= tam || y >= tam) return false;
+		return true;
+	}
+	
 	public void mover(Especie criatura) {
-		int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
 		int xat = x;
 		float energia = criatura.getEnergia();
@@ -52,9 +59,34 @@ public class Tabuleiro {
 				yat++;
 			}
 		}
+		ArrayList<Integer> directions = new ArrayList<>();
 		if(cx != -1) {
-			
+			if(cx < x) directions.add(0);
+			if(cy < y) directions.add(1);
+			if(cx > x) directions.add(2);
+			if(cy > y) directions.add(3);
 		}
+		else {
+			directions.add(0);
+			directions.add(1);
+			directions.add(2);
+			directions.add(3);
+		}
+        Collections.shuffle(directions);
+        for(Integer random_d : directions) {
+        	int vx = x, vy = y;
+        	if(random_d == 0) vx--;
+        	if(random_d == 1) vy--;
+        	if(random_d == 2) vx++;
+        	if(random_d == 3) vy++;
+        	if(in_board(vx, vy)) {
+        		boolean ok = this.campo[vx][vy].adicionaCriatura(criatura);
+				if(ok) {
+					this.campo[x][y].removeCriatura(criatura);
+					break;
+				}
+        	}
+        }
 	}
 	
 }
