@@ -15,10 +15,8 @@ public class Settings implements Screen {
 	private static final int soundX = (Jogo.WIDTH - 2 * soundWidth) / 2, soundY = (Jogo.HEIGHT - soundHeight) / 2;
 	private static final int musicX = (Jogo.WIDTH + 2 * musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
 	private static final int backWidth = 80, backHeight = 80, backX = (Jogo.WIDTH - backWidth - 20), backY = 20;
-	private int lastClick;
 	
 	public Settings(Jogo game) {
-		lastClick = 10;
 		this.game = game;
 		soundActive = new Texture("volumeAtivo.png");
 		soundInactive = new Texture("volumeInativo.png");
@@ -42,11 +40,9 @@ public class Settings implements Screen {
 		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		
-		if (Gdx.input.getX() >= backX && Gdx.input.getX() <= backX + backWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - backY - backHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - backY) {
+		if (game.active(backX, backY, backWidth, backHeight)) {
 			game.batch.draw(backActive, backX, backY, backWidth, backHeight);
-			if (Gdx.input.isTouched()) {
+			if (game.mouseClick()) {
 				this.dispose();
 				game.playSound();
 				game.setScreen(new MainMenu(game));
@@ -68,22 +64,16 @@ public class Settings implements Screen {
 		else {
 			game.batch.draw(soundInactive, soundX, soundY, soundWidth, soundHeight);
 		}
-		if (Gdx.input.getX() >= musicX && Gdx.input.getX() <= musicX + musicWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - musicY - musicHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - musicY && Gdx.input.isTouched() && lastClick >= 10) {
+		if (game.active(musicX, musicY, musicWidth, musicHeight) && game.mouseClick()) {
 			game.invertMusic();
 			game.playSound();
-			lastClick = 0;
 		}
-		if (Gdx.input.getX() >= soundX && Gdx.input.getX() <= soundX + soundWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - soundY - soundHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - soundY && Gdx.input.isTouched() && lastClick >= 10) {
+		if (game.active(soundX, soundY, soundWidth, soundHeight) && game.mouseClick()) {
 			game.invertSound();
 			game.playSound();
-			lastClick = 0;
 		}
 		
-		lastClick++;
+		game.increaseClick();
 		
 		game.batch.end();
 		

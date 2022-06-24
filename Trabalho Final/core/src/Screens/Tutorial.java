@@ -14,13 +14,11 @@ public class Tutorial implements Screen {
 	private static final int nextX = Jogo.WIDTH - nextWidth - 20, nextY = 20;
 	Jogo game;
 	Texture nextActive, nextInactive;
-	private int lastClick;
 	
 	Tutorial(Jogo game) {
 		this.game = game;
 		nextActive = new Texture("nextAtivo.png");
 		nextInactive = new Texture("nextInativo.png");
-		lastClick = 10;
 	}
 	
 	@Override
@@ -53,8 +51,7 @@ public class Tutorial implements Screen {
 				&& Gdx.input.getY() >= Jogo.HEIGHT - nextY - nextHeight && 
 				Gdx.input.getY() <= Jogo.HEIGHT - nextY) {
 			game.batch.draw(nextActive, nextX, nextY, nextWidth, nextHeight);
-			if (Gdx.input.isTouched() && lastClick >= 10) {
-				lastClick = 0;
+			if (game.mouseClick()) {
 				this.tela++;
 				game.playSound();
 			}
@@ -63,8 +60,7 @@ public class Tutorial implements Screen {
 			game.batch.draw(nextInactive, nextX, nextY, nextWidth, nextHeight);
 		}
 		
-		lastClick++;
-		font.draw(game.batch, String.valueOf(lastClick), 100, 300);
+		game.increaseClick();
 		
 		game.batch.end();
 	}

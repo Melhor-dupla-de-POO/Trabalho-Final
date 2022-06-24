@@ -44,9 +44,7 @@ public class MainMenu implements Screen {
 		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		game.batch.draw(title, (Jogo.WIDTH - titleWidth) / 2, 450, titleWidth, titleHeight);
-		if (Gdx.input.getX() >= playX && Gdx.input.getX() <= playX + playWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - playY - playHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - playY) {
+		if (game.active(playX, playY, playWidth, playHeight)) {
 			game.batch.draw(playActive, playX, playY, playWidth, playHeight);
 			if (Gdx.input.isTouched()) {
 				this.dispose();
@@ -57,9 +55,7 @@ public class MainMenu implements Screen {
 		else {
 			game.batch.draw(playInactive, playX, playY, playWidth, playHeight);
 		}
-		if (Gdx.input.getX() >= tutorialX && Gdx.input.getX() <= tutorialX + tutorialWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - tutorialY - tutorialHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - tutorialY) {
+		if (game.active(tutorialX, tutorialY, tutorialWidth, tutorialHeight)) {
 			game.batch.draw(tutorialActive, tutorialX, tutorialY, tutorialWidth, tutorialHeight);
 			if (Gdx.input.isTouched()) {
 				this.dispose();
@@ -70,9 +66,7 @@ public class MainMenu implements Screen {
 		else {
 			game.batch.draw(tutorialInactive, tutorialX, tutorialY, tutorialWidth, tutorialHeight);
 		}
-		if (Gdx.input.getX() >= settingsX && Gdx.input.getX() <= settingsX + settingsWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - settingsY - settingsHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - settingsY) {
+		if (game.active(settingsX, settingsY, settingsWidth, settingsHeight)) {
 			game.batch.draw(settingsActive, settingsX, settingsY, settingsWidth, settingsHeight);
 			if (Gdx.input.isTouched()) {
 				this.dispose();
