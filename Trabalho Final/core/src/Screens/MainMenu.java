@@ -14,7 +14,7 @@ public class MainMenu implements Screen {
 	Texture title, background;
 	Texture settingsInactive, settingsActive;
 	private static final int settingsWidth = 80, settingsHeight = 80, tutorialWidth = 300, tutorialHeight = 50;
-	private static final int playWidth = 200, playHeight = 50, titleWidth = 450, titleHeight = 100;
+	private static final int playWidth = 180, playHeight = 50, titleWidth = 550, titleHeight = 100;
 	private static final int playX = (Jogo.WIDTH - playWidth) / 2, playY = 220;
 	private static final int settingsX = (Jogo.WIDTH - settingsWidth)/ 2, settingsY = 50;
 	private static final int tutorialX = (Jogo.WIDTH - tutorialWidth) / 2, tutorialY = 150;

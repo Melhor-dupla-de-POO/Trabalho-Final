@@ -9,8 +9,9 @@ import com.poo.jogo.Jogo;
 public class Settings implements Screen {
 	
 	Jogo game;
-	Texture soundActive, soundInactive, musicActive, musicInactive, background;
-	Texture backActive, backInactive;
+	Texture soundActive, soundInactive, musicActive, musicInactive;
+	Texture soundActiveTouch, soundInactiveTouch, musicActiveTouch, musicInactiveTouch;
+	Texture backActive, backInactive, background;
 	private static final int soundWidth = 80, soundHeight = 80, musicWidth = 80, musicHeight = 80;
 	private static final int soundX = (Jogo.WIDTH - 2 * soundWidth) / 2, soundY = (Jogo.HEIGHT - soundHeight) / 2;
 	private static final int musicX = (Jogo.WIDTH +  musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
@@ -22,9 +23,14 @@ public class Settings implements Screen {
 		soundInactive = new Texture("volumeInativo.png");
 		musicActive = new Texture("musicaAtivo.png");
 		musicInactive = new Texture("musicaInativo.png");
+		soundActiveTouch = new Texture("volumeAtivoTouch.png");
+		soundInactiveTouch = new Texture("volumeInativoTouch.png");
+		musicActiveTouch = new Texture("musicaAtivoTouch.png");
+		musicInactiveTouch = new Texture("musicaInativoTouch.png");
 		background = new Texture("blobBackground.png");
 		backActive = new Texture("backAtivo.png");
 		backInactive = new Texture("backInativo.png");
+		
 	}
 
 	@Override
@@ -53,24 +59,44 @@ public class Settings implements Screen {
 		}
 		
 		if (this.game.getMusic()) {
-			game.batch.draw(musicActive, musicX, musicY, musicWidth, musicHeight);
+			if (game.active(musicX, musicY, musicWidth, musicHeight)) {
+				game.batch.draw(musicActiveTouch, musicX, musicY, musicWidth, musicHeight);
+				if (game.mouseClick()) {
+					game.invertMusic();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(musicActive, musicX, musicY, musicWidth, musicHeight);
 		}
 		else {
-			game.batch.draw(musicInactive, musicX, musicY, musicWidth, musicHeight);
+			if (game.active(musicX, musicY, musicWidth, musicHeight)) {
+				game.batch.draw(musicInactiveTouch, musicX, musicY, musicWidth, musicHeight);
+				if (game.mouseClick()) {
+					game.invertMusic();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(musicInactive, musicX, musicY, musicWidth, musicHeight);
 		}
 		if (this.game.getSound()) {
-			game.batch.draw(soundActive, soundX, soundY, soundWidth, soundHeight);
+			if (game.active(soundX, soundY, soundWidth, soundHeight)) {
+				game.batch.draw(soundActiveTouch, soundX, soundY, soundWidth, soundHeight);
+				if (game.mouseClick()) {
+					game.invertSound();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(soundActive, soundX, soundY, soundWidth, soundHeight);
 		}
 		else {
-			game.batch.draw(soundInactive, soundX, soundY, soundWidth, soundHeight);
-		}
-		if (game.active(musicX, musicY, musicWidth, musicHeight) && game.mouseClick()) {
-			game.invertMusic();
-			game.playSound();
-		}
-		if (game.active(soundX, soundY, soundWidth, soundHeight) && game.mouseClick()) {
-			game.invertSound();
-			game.playSound();
+			if (game.active(soundX, soundY, soundWidth, soundHeight)) {
+				game.batch.draw(soundInactiveTouch, soundX, soundY, soundWidth, soundHeight);
+				if (game.mouseClick()) {
+					game.invertSound();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(soundInactive, soundX, soundY, soundWidth, soundHeight);
 		}
 		
 		game.increaseClick();
