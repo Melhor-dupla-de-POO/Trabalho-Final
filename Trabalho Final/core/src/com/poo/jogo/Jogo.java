@@ -15,6 +15,7 @@ public class Jogo extends Game {
 	private Sound sound;
 	private Music music;
 	private boolean isMusic, isSound;
+	private int lastClick = 0;
 	
 	@Override
 	public void create () {
@@ -65,5 +66,23 @@ public class Jogo extends Game {
 	public void playSound() {
 		if (this.isSound)
 			sound.play();
+	}
+	
+	public boolean mouseClick() {
+		if (lastClick >= 15 && Gdx.input.isTouched()) {;
+			lastClick = 0;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean active(int x, int y, int w, int h) {
+		return Gdx.input.getX() >= x && Gdx.input.getX() <= x + w
+				&& Gdx.input.getY() >= Jogo.HEIGHT - y - h && 
+				Gdx.input.getY() <= Jogo.HEIGHT - y;
+	}
+	
+	public void increaseClick() {
+		lastClick++;
 	}
 }

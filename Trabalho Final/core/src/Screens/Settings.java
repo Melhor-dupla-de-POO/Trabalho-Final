@@ -9,24 +9,28 @@ import com.poo.jogo.Jogo;
 public class Settings implements Screen {
 	
 	Jogo game;
-	Texture soundActive, soundInactive, musicActive, musicInactive, background;
-	Texture backActive, backInactive;
+	Texture soundActive, soundInactive, musicActive, musicInactive;
+	Texture soundActiveTouch, soundInactiveTouch, musicActiveTouch, musicInactiveTouch;
+	Texture backActive, backInactive, background;
 	private static final int soundWidth = 80, soundHeight = 80, musicWidth = 80, musicHeight = 80;
 	private static final int soundX = (Jogo.WIDTH - 2 * soundWidth) / 2, soundY = (Jogo.HEIGHT - soundHeight) / 2;
-	private static final int musicX = (Jogo.WIDTH + 2 * musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
+	private static final int musicX = (Jogo.WIDTH +  musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
 	private static final int backWidth = 80, backHeight = 80, backX = (Jogo.WIDTH - backWidth - 20), backY = 20;
-	private int lastClick;
 	
 	public Settings(Jogo game) {
-		lastClick = 10;
 		this.game = game;
 		soundActive = new Texture("volumeAtivo.png");
 		soundInactive = new Texture("volumeInativo.png");
 		musicActive = new Texture("musicaAtivo.png");
 		musicInactive = new Texture("musicaInativo.png");
-		background = new Texture("MainMenuBackground.jpg");
+		soundActiveTouch = new Texture("volumeAtivoTouch.png");
+		soundInactiveTouch = new Texture("volumeInativoTouch.png");
+		musicActiveTouch = new Texture("musicaAtivoTouch.png");
+		musicInactiveTouch = new Texture("musicaInativoTouch.png");
+		background = new Texture("blobBackground.png");
 		backActive = new Texture("backAtivo.png");
 		backInactive = new Texture("backInativo.png");
+		
 	}
 
 	@Override
@@ -42,11 +46,9 @@ public class Settings implements Screen {
 		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		
-		if (Gdx.input.getX() >= backX && Gdx.input.getX() <= backX + backWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - backY - backHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - backY) {
+		if (game.active(backX, backY, backWidth, backHeight)) {
 			game.batch.draw(backActive, backX, backY, backWidth, backHeight);
-			if (Gdx.input.isTouched()) {
+			if (game.mouseClick()) {
 				this.dispose();
 				game.playSound();
 				game.setScreen(new MainMenu(game));
@@ -57,33 +59,47 @@ public class Settings implements Screen {
 		}
 		
 		if (this.game.getMusic()) {
-			game.batch.draw(musicActive, musicX, musicY, musicWidth, musicHeight);
+			if (game.active(musicX, musicY, musicWidth, musicHeight)) {
+				game.batch.draw(musicActiveTouch, musicX, musicY, musicWidth, musicHeight);
+				if (game.mouseClick()) {
+					game.invertMusic();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(musicActive, musicX, musicY, musicWidth, musicHeight);
 		}
 		else {
-			game.batch.draw(musicInactive, musicX, musicY, musicWidth, musicHeight);
+			if (game.active(musicX, musicY, musicWidth, musicHeight)) {
+				game.batch.draw(musicInactiveTouch, musicX, musicY, musicWidth, musicHeight);
+				if (game.mouseClick()) {
+					game.invertMusic();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(musicInactive, musicX, musicY, musicWidth, musicHeight);
 		}
 		if (this.game.getSound()) {
-			game.batch.draw(soundActive, soundX, soundY, soundWidth, soundHeight);
+			if (game.active(soundX, soundY, soundWidth, soundHeight)) {
+				game.batch.draw(soundActiveTouch, soundX, soundY, soundWidth, soundHeight);
+				if (game.mouseClick()) {
+					game.invertSound();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(soundActive, soundX, soundY, soundWidth, soundHeight);
 		}
 		else {
-			game.batch.draw(soundInactive, soundX, soundY, soundWidth, soundHeight);
-		}
-		if (Gdx.input.getX() >= musicX && Gdx.input.getX() <= musicX + musicWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - musicY - musicHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - musicY && Gdx.input.isTouched() && lastClick >= 10) {
-			game.invertMusic();
-			game.playSound();
-			lastClick = 0;
-		}
-		if (Gdx.input.getX() >= soundX && Gdx.input.getX() <= soundX + soundWidth 
-				&& Gdx.input.getY() >= Jogo.HEIGHT - soundY - soundHeight && 
-				Gdx.input.getY() <= Jogo.HEIGHT - soundY && Gdx.input.isTouched() && lastClick >= 10) {
-			game.invertSound();
-			game.playSound();
-			lastClick = 0;
+			if (game.active(soundX, soundY, soundWidth, soundHeight)) {
+				game.batch.draw(soundInactiveTouch, soundX, soundY, soundWidth, soundHeight);
+				if (game.mouseClick()) {
+					game.invertSound();
+					game.playSound();
+				}
+			}
+			else game.batch.draw(soundInactive, soundX, soundY, soundWidth, soundHeight);
 		}
 		
-		lastClick++;
+		game.increaseClick();
 		
 		game.batch.end();
 		
