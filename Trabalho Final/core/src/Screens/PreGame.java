@@ -49,7 +49,7 @@ public class PreGame implements Screen {
 		speed = new Texture("speed.png");
 		brain = new Texture("brain.png");
 		biceps = new Texture("biceps.png");
-		background = new Texture("white.png");
+		background = new Texture("grassBackground.png");
 		font = new BitmapFont();
 		font.getData().setScale(2);
 		font.setColor(0, 0, 0, 1);
@@ -71,15 +71,15 @@ public class PreGame implements Screen {
 		
 		font.draw(game.batch, "Choose your species:   " + (species ? cor.toString() : ""), redX, blobY + blobWidth + 50);
 		if (species) {
-			font.draw(game.batch, String.valueOf(points) + " points to distribute", redX, blobY - 60);
-			font.draw(game.batch, "Speed: " + String.valueOf(speedPoints), X2 - 10, abilityY - 60);
+			font.draw(game.batch, String.valueOf(points) + " points to distribute:"
+					+ "       (Each attribute has a maximum of 10)", redX, blobY - 60);
+			font.draw(game.batch, "Speed: " + String.valueOf(speedPoints), X2 - 20, abilityY - 60);
 			font.draw(game.batch, "Intelligence: " + String.valueOf(intelligencePoints), X5 - 40, abilityY - 60);
 			font.draw(game.batch, "Strength: " + String.valueOf(strengthPoints), X8 - 25, abilityY - 60);
-			font.draw(game.batch, "Each attribute has a maximum of 10", 320, 80);
 			
 			
 			if (game.active(X1, abilityY, abilitySize, abilitySize) && speedPoints > 0) {
-				game.batch.draw(minusActive, X1, abilityY, abilitySize, abilitySize);
+				game.batch.draw(minusActive, X1 + 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
 					speedPoints--;
@@ -87,10 +87,10 @@ public class PreGame implements Screen {
 				}
 			}
 			else {
-				game.batch.draw(minusInactive, X1, abilityY, abilitySize, abilitySize);
+				game.batch.draw(minusInactive, X1 + 10, abilityY, abilitySize, abilitySize);
 			}
 			if (game.active(X3, abilityY, abilitySize, abilitySize) && speedPoints < 10 && points > 0) {
-				game.batch.draw(plusActive, X3, abilityY, abilitySize, abilitySize);
+				game.batch.draw(plusActive, X3 - 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
 					speedPoints++;
@@ -98,10 +98,10 @@ public class PreGame implements Screen {
 				}
 			}
 			else {
-				game.batch.draw(plusInactive, X3, abilityY, abilitySize, abilitySize);
+				game.batch.draw(plusInactive, X3 - 10, abilityY, abilitySize, abilitySize);
 			}
 			if (game.active(X4, abilityY, abilitySize, abilitySize) && intelligencePoints > 0) {
-				game.batch.draw(minusActive, X4, abilityY, abilitySize, abilitySize);
+				game.batch.draw(minusActive, X4 + 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
 					intelligencePoints--;
@@ -109,10 +109,10 @@ public class PreGame implements Screen {
 				}
 			}
 			else {
-				game.batch.draw(minusInactive, X4, abilityY, abilitySize, abilitySize);
+				game.batch.draw(minusInactive, X4 + 10, abilityY, abilitySize, abilitySize);
 			}
 			if (game.active(X6, abilityY, abilitySize, abilitySize) && intelligencePoints < 10 && points > 0) {
-				game.batch.draw(plusActive, X6, abilityY, abilitySize, abilitySize);
+				game.batch.draw(plusActive, X6 - 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
 					intelligencePoints++;
@@ -120,10 +120,10 @@ public class PreGame implements Screen {
 				}
 			}
 			else {
-				game.batch.draw(plusInactive, X6, abilityY, abilitySize, abilitySize);
+				game.batch.draw(plusInactive, X6 - 10, abilityY, abilitySize, abilitySize);
 			}
 			if (game.active(X7, abilityY, abilitySize, abilitySize) && strengthPoints > 0) {
-				game.batch.draw(minusActive, X7, abilityY, abilitySize, abilitySize);
+				game.batch.draw(minusActive, X7 + 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
 					strengthPoints--;
@@ -131,10 +131,10 @@ public class PreGame implements Screen {
 				}
 			}
 			else {
-				game.batch.draw(minusInactive, X7, abilityY, abilitySize, abilitySize);
+				game.batch.draw(minusInactive, X7 + 10, abilityY, abilitySize, abilitySize);
 			}
 			if (game.active(X9, abilityY, abilitySize, abilitySize) && strengthPoints < 10 && points > 0) {
-				game.batch.draw(plusActive, X9, abilityY, abilitySize, abilitySize);
+				game.batch.draw(plusActive, X9 - 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
 					strengthPoints++;
@@ -142,7 +142,7 @@ public class PreGame implements Screen {
 				}
 			}
 			else {
-				game.batch.draw(plusInactive, X9, abilityY, abilitySize, abilitySize);
+				game.batch.draw(plusInactive, X9 - 10, abilityY, abilitySize, abilitySize);
 			}
 			
 			game.batch.draw(speed, X2, abilityY, abilitySize, abilitySize);
@@ -201,7 +201,7 @@ public class PreGame implements Screen {
 				if (game.mouseClick()) {
 					this.dispose();
 					game.playSound();
-					game.setScreen(new GameScreen(game));
+					game.setScreen(new GameScreen(game, cor, speedPoints, intelligencePoints, strengthPoints));
 				}
 			}
 			else {

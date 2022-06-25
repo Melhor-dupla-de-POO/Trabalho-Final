@@ -1,14 +1,20 @@
 package Screens;
 
 import com.badlogic.gdx.Screen;
+import com.poo.jogo.Cores;
 import com.poo.jogo.Jogo;
 
 public class GameScreen implements Screen {
 	
 	Jogo game;
+	private Cores cor;
+	private int speed, intelligence, strength;
 	
-	GameScreen(Jogo game) {
+	GameScreen(Jogo game, Cores cor, int speed, int intelligence, int strength) {
 		this.game = game;
+		this.speed = speed;
+		this.intelligence = intelligence;
+		this.strength = strength;
 	}
 	
 	@Override

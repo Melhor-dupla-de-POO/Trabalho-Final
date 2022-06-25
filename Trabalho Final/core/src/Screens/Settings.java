@@ -13,7 +13,7 @@ public class Settings implements Screen {
 	Texture backActive, backInactive;
 	private static final int soundWidth = 80, soundHeight = 80, musicWidth = 80, musicHeight = 80;
 	private static final int soundX = (Jogo.WIDTH - 2 * soundWidth) / 2, soundY = (Jogo.HEIGHT - soundHeight) / 2;
-	private static final int musicX = (Jogo.WIDTH + 2 * musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
+	private static final int musicX = (Jogo.WIDTH +  musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
 	private static final int backWidth = 80, backHeight = 80, backX = (Jogo.WIDTH - backWidth - 20), backY = 20;
 	
 	public Settings(Jogo game) {
@@ -22,7 +22,7 @@ public class Settings implements Screen {
 		soundInactive = new Texture("volumeInativo.png");
 		musicActive = new Texture("musicaAtivo.png");
 		musicInactive = new Texture("musicaInativo.png");
-		background = new Texture("MainMenuBackground.jpg");
+		background = new Texture("blobBackground.png");
 		backActive = new Texture("backAtivo.png");
 		backInactive = new Texture("backInativo.png");
 	}

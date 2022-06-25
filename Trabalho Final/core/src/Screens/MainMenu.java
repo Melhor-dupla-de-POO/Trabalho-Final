@@ -28,7 +28,7 @@ public class MainMenu implements Screen {
 		settingsActive = new Texture("settingsAtivo.png");
 		settingsInactive = new Texture("settingsInativo.png");
 		title = new Texture("extinction.png");
-		background = new Texture("MainMenuBackground.jpg");
+		background = new Texture("blobBackground.png");
 	}
 	
 	@Override
