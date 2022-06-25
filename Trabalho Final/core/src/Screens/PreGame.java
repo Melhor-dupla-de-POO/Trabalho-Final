@@ -70,8 +70,7 @@ public class PreGame implements Screen {
 		
 		font.draw(game.batch, "Choose your species:   " + (species ? game.getCor().toString() : ""), redX, blobY + blobWidth + 50);
 		if (species) {
-			font.draw(game.batch, String.valueOf(points) + " points to distribute:"
-					+ "       (Each attribute has a maximum of 10)", redX, blobY - 60);
+			font.draw(game.batch, String.valueOf(points) + " points to distribute:", redX, blobY - 60);
 			font.draw(game.batch, "Speed: " + String.valueOf(game.getSpeed()), X2 - 20, abilityY - 60);
 			font.draw(game.batch, "Intelligence: " + String.valueOf(game.getIntelligence()), X5 - 40, abilityY - 60);
 			font.draw(game.batch, "Strength: " + String.valueOf(game.getStrength()), X8 - 25, abilityY - 60);

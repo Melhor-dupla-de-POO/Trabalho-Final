@@ -1,5 +1,7 @@
 package com.poo.jogo;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -117,5 +119,20 @@ public class Jogo extends Game {
 	
 	public void setCor(Cores cor) {
 		this.cor = cor;
+	}
+	
+	public int[][] matrix() {
+		Random rand = new Random();
+		int[][] ans = new int[50][50];
+		for (int i = 0; i < 50; i++) {
+			ans[i] = new int[50];
+			for (int j = 0; j < 50; j++) {
+				int nxt = rand.nextInt(50);
+				if (nxt >= 11) nxt = 0;
+				else if (nxt >= 10) nxt = 1;
+				ans[i][j] = nxt;
+			}
+		}
+		return ans;
 	}
 }

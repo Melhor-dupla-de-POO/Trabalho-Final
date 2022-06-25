@@ -12,10 +12,13 @@ public class GameScreen implements Screen {
 	
 	Jogo game;
 	Texture background, white, border, settingsInactive, settingsActive;
+	Texture[] board;
 	BitmapFont title;
 	BitmapFont[] cores;
+	int[][] matrix;
 	private int dist = 20;
-	private static final int settingsWidth = 80, settingsHeight = 80, borderWidth = 520, borderHeight = 520;
+	private static final int boardSize = 10;
+	private static final int settingsWidth = 80, settingsHeight = 80, borderWidth = 540, borderHeight = 540;
 	private static final int settingsX = (Jogo.WIDTH - settingsWidth - 20), settingsY = 20;
 	private static final int borderX = (Jogo.WIDTH - 40 - settingsWidth - borderWidth), borderY = 55;
 	private static final int whiteWidth = 365, whiteHeight = Jogo.HEIGHT, textX = 20;
@@ -27,6 +30,17 @@ public class GameScreen implements Screen {
 		border = new Texture("border.png");
 		settingsActive = new Texture("settingsAtivo.png");
 		settingsInactive = new Texture("settingsInativo.png");
+		board = new Texture[10];
+		board[0] = new Texture("empty.png");
+		board[1] = new Texture("food.png");
+		board[2] = new Texture("singleYellow.png");
+		board[3] = new Texture("doubleYellow.png");
+		board[4] = new Texture("singleRed.png");
+		board[5] = new Texture("doubleRed.png");
+		board[6] = new Texture("singleGreen.png");
+		board[7] = new Texture("doubleGreen.png");
+		board[8] = new Texture("singleBlue.png");
+		board[9] = new Texture("doubleBlue.png");
 		
 		title = new BitmapFont();
 		title.setColor(Color.BLACK);
@@ -66,6 +80,10 @@ public class GameScreen implements Screen {
 				cores[0].setColor(Color.YELLOW);
 				break;
 		}
+		
+		/////
+		matrix = game.matrix();
+		/////
 	}
 	
 	@Override
@@ -83,6 +101,13 @@ public class GameScreen implements Screen {
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		game.batch.draw(white, 0, 0, whiteWidth, whiteHeight);
 		game.batch.draw(border, borderX, borderY, borderWidth, borderHeight);
+		// game.batch.draw(white, borderX + 20, borderY + 20, borderWidth - 40, borderHeight - 40);
+		for (int i = 0; i < 50; i++) {
+			for (int j = 0; j < 50; j++) {
+				game.batch.draw(board[matrix[i][j]], borderX + 20 + 10 * j, 
+						borderY + 510 - 10 * i, boardSize, boardSize);
+			}
+		}
 		
 		dist = 20;
 		title.draw(game.batch, "Round ", textX, Jogo.HEIGHT - dist);
