@@ -25,9 +25,41 @@ public class Tabuleiro {
 		}
 	}
 	
+	public ArrayList<Especie> getCriaturas() {
+		ArrayList<Especie> total = new ArrayList<Especie>();
+		for(int i = 0; i < tam; i++) {
+			for(int j = 0; j < tam; j++) {
+				total.addAll(this.campo[i][j].getList());
+			}
+		}
+		return total;
+	}
+	
+	public void resetaCriaturas() {
+		for(int i = 0; i < tam; i++) {
+			for(int j = 0; j < tam; j++) {
+				this.campo[i][j].resetaEspecies();
+			}
+		}
+	}
+	
+	public void jogaRodada(int round) {
+		this.resetaCriaturas();
+		for(int i = 0; i < tam; i++) {
+			for(int j = 0; j < tam; j++) {
+				this.campo[i][j].joga(this, round);
+			}
+		}
+	}
+	
 	public boolean in_board(int x, int y) {
 		if(x < 0 || y < 0 || x >= tam || y >= tam) return false;
 		return true;
+	}
+	
+	public void adicionaCriatura(Especie criatura) {
+		int x = criatura.getPos()[0], y = criatura.getPos()[1];
+		this.campo[x][y].adicionaCriatura(criatura);
 	}
 	
 	public void mover(Especie criatura) {
@@ -82,6 +114,7 @@ public class Tabuleiro {
         	if(in_board(vx, vy)) {
         		boolean ok = this.campo[vx][vy].adicionaCriatura(criatura);
 				if(ok) {
+					criatura.usaEnergia();
 					this.campo[x][y].removeCriatura(criatura);
 					break;
 				}

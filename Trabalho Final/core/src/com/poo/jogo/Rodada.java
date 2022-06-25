@@ -1,11 +1,14 @@
 package com.poo.jogo;
 
-import java.util.ArrayList;
-
 public class Rodada {
 	// Responsavel por rodar as rodadas
 	
-	public ArrayList<Especie> playRound(ArrayList<Especie> criaturas, Tabuleiro tab) {
+	public void playRound(Tabuleiro tab, int round) {
+		
+		tab.resetaCriaturas();
+		for(int i = 0; i < round; i++) {
+			tab.jogaRodada(i);
+		}
 		
 		// Rodar as x rodadas usando o procedimento descrito no docs
 		// Primeiro temos que criar funções nas classes Tabuleiro, Celula e Especie que vao movimentar

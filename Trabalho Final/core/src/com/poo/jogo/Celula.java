@@ -52,6 +52,20 @@ public class Celula {
 		return add;
 	}
 	
+	public void resetaEspecies() {
+		for(int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(i).setAndou(false);
+		}
+	}
+	
+	public void joga(Tabuleiro tab, int round) {
+		for(int i = 0; i < this.criaturas.size(); i++) {
+			if(this.criaturas.get(i).devoAndar(round)) {
+				tab.mover(this.criaturas.get(i));
+			}
+		}
+	}
+	
 	public void removeCriatura(Especie criatura) {
 		this.criaturas.remove(criatura);
 	}

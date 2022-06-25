@@ -3,13 +3,15 @@ package com.poo.jogo;
 import java.util.Random;
 
 public abstract class Especie {
-	private float velocidade, inteligencia, energia, tamanho;
+	private int velocidade, inteligencia, energia, tamanho;
+	private int energiaUsada;
 	private int x, y;
 	private Cores cor;
 	private int comida;
 	private Tabuleiro tabuleiro;
+	private boolean andou;
 	
-	Especie(int x, int y, float velocidade, float inteligencia, float tamanho, Tabuleiro tabuleiro, Cores cor) {
+	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;
 		this.y = y;
 		this.velocidade = velocidade;
@@ -17,6 +19,7 @@ public abstract class Especie {
 		this.tamanho = tamanho;
 		this.tabuleiro = tabuleiro;
 		this.cor = cor;
+		this.andou = false;
 		
 		// pensar direito em como fazer isso dps
 		this.energia = 1000 - inteligencia - velocidade - tamanho;
@@ -25,14 +28,23 @@ public abstract class Especie {
 		Random rand = new Random();
 		this.x = pai.x;
 		this.y = pai.y;
-		this.velocidade = pai.velocidade + (rand.nextBoolean() ? rand.nextFloat() : -rand.nextFloat());
-		this.inteligencia = pai.inteligencia + (rand.nextBoolean() ? rand.nextFloat() : -rand.nextFloat());
-		this.tamanho = pai.tamanho +(rand.nextBoolean() ? rand.nextFloat() : -rand.nextFloat());
+		this.velocidade = pai.velocidade + (rand.nextBoolean() ? rand.nextInt() : -rand.nextInt());
+		this.inteligencia = pai.inteligencia + (rand.nextBoolean() ? rand.nextInt() : -rand.nextInt());
+		this.tamanho = pai.tamanho +(rand.nextBoolean() ? rand.nextInt() : -rand.nextInt());
 		this.tabuleiro = pai.tabuleiro;
 		this.cor = pai.cor;
+		this.andou = false;
 		
 		// pensar direito em como fazer isso dps
 		this.energia = 1000 - this.inteligencia - this.velocidade - this.tamanho;
+	}
+	
+	public boolean getAndou() {
+		return this.andou;
+	}
+	
+	public void setAndou(boolean andou) {
+		this.andou = andou;
 	}
 	
 	public Cores getCor() {
@@ -43,7 +55,7 @@ public abstract class Especie {
 		return this.comida;
 	}
 	
-	public float getEnergia() {
+	public int getEnergia() {
 		return this.energia;
 	}
 	
@@ -85,12 +97,35 @@ public abstract class Especie {
 		setPos(arr[0], arr[1]);
 	}
 	
-	public float getInteligencia() {
+	public int getInteligencia() {
 		return this.inteligencia;
+	}
+	
+	public int getVelocidade() {
+		return this.velocidade;
+	}
+	
+	public int getTamanho() {
+		return this.tamanho;
 	}
 	
 	public void anda() {
 		tabuleiro.mover(this);
+	}
+	
+	public void resetaEnergiaUsada() {
+		this.energiaUsada = 0;
+	}
+	
+	public void usaEnergia() {
+		this.energiaUsada++;
+	}
+	
+	public boolean devoAndar(int round) {
+		if(this.andou) return false;
+		if(this.energiaUsada == this.energia) return false;
+		if(round % velocidade != 0) return false;
+		return true;
 	}
 	
 }
