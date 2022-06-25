@@ -2,29 +2,26 @@ package Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.poo.jogo.Cores;
 import com.poo.jogo.Jogo;
 
 public class GameScreen implements Screen {
 	
 	Jogo game;
-	private Cores cor;
-	private int speed, intelligence, strength;
 	Texture background, white, border, settingsInactive, settingsActive;
-	BitmapFont title, green, red, yellow, blue;
+	BitmapFont title;
+	BitmapFont[] cores;
+	private int dist = 20;
 	private static final int settingsWidth = 80, settingsHeight = 80, borderWidth = 520, borderHeight = 520;
 	private static final int settingsX = (Jogo.WIDTH - settingsWidth - 20), settingsY = 20;
 	private static final int borderX = (Jogo.WIDTH - 40 - settingsWidth - borderWidth), borderY = 55;
-	private static final int whiteWidth = 365, whiteHeight = Jogo.HEIGHT;
+	private static final int whiteWidth = 365, whiteHeight = Jogo.HEIGHT, textX = 20;
 	
-	GameScreen(Jogo game, Cores cor, int speed, int intelligence, int strength) {
+	GameScreen(Jogo game) {
 		this.game = game;
-		this.speed = speed;
-		this.intelligence = intelligence;
-		this.strength = strength;
 		background = new Texture("grassBackground.png");
 		white = new Texture("white.png");
 		border = new Texture("border.png");
@@ -32,15 +29,43 @@ public class GameScreen implements Screen {
 		settingsInactive = new Texture("settingsInativo.png");
 		
 		title = new BitmapFont();
+		title.setColor(Color.BLACK);
 		title.getData().setScale(4);
-		green = new BitmapFont();
-		green.getData().setScale(2);
-		red = new BitmapFont();
-		red.getData().setScale(2);
-		yellow = new BitmapFont();
-		yellow.getData().setScale(2);
-		blue = new BitmapFont();
-		blue.getData().setScale(2);
+		cores = new BitmapFont[4];
+		for (int i = 0; i < 4; i++) {
+			cores[i] = new BitmapFont();
+			cores[i].getData().setScale(1.8f);
+		}
+		cores[0].getData().setScale(2.7f);
+		
+		// RED
+		cores[0].setColor(Color.RED);
+		
+		// GREEN
+		cores[1].setColor(Color.GREEN);
+		
+		// BLUE
+		cores[2].setColor(Color.CYAN);
+		
+		// YELLOW
+		cores[3].setColor(Color.YELLOW);
+		
+		switch (this.game.getCor()) {
+			case VERMELHO:
+				break;
+			case VERDE:
+				cores[1].setColor(Color.RED);
+				cores[0].setColor(Color.GREEN);
+				break;
+			case AZUL:
+				cores[2].setColor(Color.RED);
+				cores[0].setColor(Color.CYAN);
+				break;
+			case AMARELO:
+				cores[3].setColor(Color.RED);
+				cores[0].setColor(Color.YELLOW);
+				break;
+		}
 	}
 	
 	@Override
@@ -58,6 +83,16 @@ public class GameScreen implements Screen {
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		game.batch.draw(white, 0, 0, whiteWidth, whiteHeight);
 		game.batch.draw(border, borderX, borderY, borderWidth, borderHeight);
+		
+		dist = 20;
+		title.draw(game.batch, "Round ", textX, Jogo.HEIGHT - dist);
+		dist += 60;
+		cores[0].draw(game.batch, "Creatures\nSpeed\nIntelligence\nStrength", textX, Jogo.HEIGHT - dist);
+		dist += 65;
+		for (int i = 1; i < 4; i++) {
+			dist += 125;
+			cores[i].draw(game.batch, "Creatures\nSpeed\nIntelligence\nStrength", textX, Jogo.HEIGHT - dist);
+		}
 		
 //		if (game.active(settingsX, settingsY, settingsWidth, settingsHeight)) {
 //			game.batch.draw(settingsActive, settingsX, settingsY, settingsWidth, settingsHeight);

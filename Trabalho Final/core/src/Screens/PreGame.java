@@ -16,9 +16,8 @@ public class PreGame implements Screen {
 	Texture nextInactive, nextActive, minusInactive, minusActive;
 	Texture plusActive, plusInactive, speed, brain, biceps, background;
 	BitmapFont font;
-	private int points = 10, speedPoints, intelligencePoints, strengthPoints;
+	private int points = 10;
 	boolean species = false;
-	Cores cor;
 	private static final int abilitySize = 80, abilityY = 200;
 	private static final int sep = (Jogo.WIDTH - 9 * abilitySize) / 10, nxt = sep + abilitySize;
 	private static final int X1 = sep, X2 = X1 + nxt, X3 = X2 + nxt, X4 = X3 + nxt, X5 = X4 + nxt;
@@ -69,75 +68,75 @@ public class PreGame implements Screen {
 		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		
-		font.draw(game.batch, "Choose your species:   " + (species ? cor.toString() : ""), redX, blobY + blobWidth + 50);
+		font.draw(game.batch, "Choose your species:   " + (species ? game.getCor().toString() : ""), redX, blobY + blobWidth + 50);
 		if (species) {
 			font.draw(game.batch, String.valueOf(points) + " points to distribute:"
 					+ "       (Each attribute has a maximum of 10)", redX, blobY - 60);
-			font.draw(game.batch, "Speed: " + String.valueOf(speedPoints), X2 - 20, abilityY - 60);
-			font.draw(game.batch, "Intelligence: " + String.valueOf(intelligencePoints), X5 - 40, abilityY - 60);
-			font.draw(game.batch, "Strength: " + String.valueOf(strengthPoints), X8 - 25, abilityY - 60);
+			font.draw(game.batch, "Speed: " + String.valueOf(game.getSpeed()), X2 - 20, abilityY - 60);
+			font.draw(game.batch, "Intelligence: " + String.valueOf(game.getIntelligence()), X5 - 40, abilityY - 60);
+			font.draw(game.batch, "Strength: " + String.valueOf(game.getStrength()), X8 - 25, abilityY - 60);
 			
 			
-			if (game.active(X1, abilityY, abilitySize, abilitySize) && speedPoints > 0) {
+			if (game.active(X1, abilityY, abilitySize, abilitySize) && game.getSpeed() > 0) {
 				game.batch.draw(minusActive, X1 + 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
-					speedPoints--;
+					game.setSpeed(-1);
 					points++;
 				}
 			}
 			else {
 				game.batch.draw(minusInactive, X1 + 10, abilityY, abilitySize, abilitySize);
 			}
-			if (game.active(X3, abilityY, abilitySize, abilitySize) && speedPoints < 10 && points > 0) {
+			if (game.active(X3, abilityY, abilitySize, abilitySize) && game.getSpeed() < 10 && points > 0) {
 				game.batch.draw(plusActive, X3 - 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
-					speedPoints++;
+					game.setSpeed(1);
 					points--;
 				}
 			}
 			else {
 				game.batch.draw(plusInactive, X3 - 10, abilityY, abilitySize, abilitySize);
 			}
-			if (game.active(X4, abilityY, abilitySize, abilitySize) && intelligencePoints > 0) {
+			if (game.active(X4, abilityY, abilitySize, abilitySize) && game.getIntelligence() > 0) {
 				game.batch.draw(minusActive, X4 + 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
-					intelligencePoints--;
+					game.setIntelligence(-1);
 					points++;
 				}
 			}
 			else {
 				game.batch.draw(minusInactive, X4 + 10, abilityY, abilitySize, abilitySize);
 			}
-			if (game.active(X6, abilityY, abilitySize, abilitySize) && intelligencePoints < 10 && points > 0) {
+			if (game.active(X6, abilityY, abilitySize, abilitySize) && game.getIntelligence() < 10 && points > 0) {
 				game.batch.draw(plusActive, X6 - 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
-					intelligencePoints++;
+					game.setIntelligence(1);
 					points--;
 				}
 			}
 			else {
 				game.batch.draw(plusInactive, X6 - 10, abilityY, abilitySize, abilitySize);
 			}
-			if (game.active(X7, abilityY, abilitySize, abilitySize) && strengthPoints > 0) {
+			if (game.active(X7, abilityY, abilitySize, abilitySize) && game.getStrength() > 0) {
 				game.batch.draw(minusActive, X7 + 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
-					strengthPoints--;
+					game.setStrength(-1);
 					points++;
 				}
 			}
 			else {
 				game.batch.draw(minusInactive, X7 + 10, abilityY, abilitySize, abilitySize);
 			}
-			if (game.active(X9, abilityY, abilitySize, abilitySize) && strengthPoints < 10 && points > 0) {
+			if (game.active(X9, abilityY, abilitySize, abilitySize) && game.getStrength() < 10 && points > 0) {
 				game.batch.draw(plusActive, X9 - 10, abilityY, abilitySize, abilitySize);
 				if (game.mouseClick()) {
 					game.playSound();
-					strengthPoints++;
+					game.setStrength(1);
 					points--;
 				}
 			}
@@ -155,7 +154,7 @@ public class PreGame implements Screen {
 			if (game.mouseClick()) {
 				game.playSound();
 				species = true;
-				cor = Cores.VERMELHO;
+				game.setCor(Cores.VERMELHO);
 			}
 		}
 		else {
@@ -166,7 +165,7 @@ public class PreGame implements Screen {
 			if (game.mouseClick()) {
 				game.playSound();
 				species = true;
-				cor = Cores.VERDE;
+				game.setCor(Cores.VERDE);
 			}
 		}
 		else {
@@ -177,7 +176,7 @@ public class PreGame implements Screen {
 			if (game.mouseClick()) {
 				game.playSound();
 				species = true;
-				cor = Cores.AZUL;
+				game.setCor(Cores.AZUL);
 			}
 		}
 		else {
@@ -188,7 +187,7 @@ public class PreGame implements Screen {
 			if (game.mouseClick()) {
 				game.playSound();
 				species = true;
-				cor = Cores.AMARELO;
+				game.setCor(Cores.AMARELO);
 			}
 		}
 		else {
@@ -201,7 +200,7 @@ public class PreGame implements Screen {
 				if (game.mouseClick()) {
 					this.dispose();
 					game.playSound();
-					game.setScreen(new GameScreen(game, cor, speedPoints, intelligencePoints, strengthPoints));
+					game.setScreen(new GameScreen(game));
 				}
 			}
 			else {

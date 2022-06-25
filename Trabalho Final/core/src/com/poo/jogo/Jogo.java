@@ -15,7 +15,8 @@ public class Jogo extends Game {
 	private Sound sound;
 	private Music music;
 	private boolean isMusic, isSound;
-	private int lastClick = 0;
+	private int lastClick = 0, speedPoints, intelligencePoints, strengthPoints;
+	private Cores cor;
 	
 	@Override
 	public void create () {
@@ -84,5 +85,37 @@ public class Jogo extends Game {
 	
 	public void increaseClick() {
 		lastClick++;
+	}
+	
+	public int getSpeed() {
+		return speedPoints;
+	}
+	
+	public void setSpeed(int dt) {
+		speedPoints += dt;
+	}
+	
+	public int getStrength() {
+		return strengthPoints;
+	}
+	
+	public void setStrength(int dt) {
+		strengthPoints += dt;
+	}
+	
+	public int getIntelligence() {
+		return intelligencePoints;
+	}
+	
+	public void setIntelligence(int dt) {
+		intelligencePoints += dt;
+	}
+	
+	public Cores getCor() {
+		return cor;
+	}
+	
+	public void setCor(Cores cor) {
+		this.cor = cor;
 	}
 }
