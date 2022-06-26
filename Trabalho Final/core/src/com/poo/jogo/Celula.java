@@ -36,7 +36,7 @@ public class Celula {
 	}
 	
 	public boolean free(Cores cor) {
-		return (criaturas.isEmpty() || criaturas.get(0).getCor() == cor);
+		return (criaturas.size() == 0 || criaturas.get(0).getCor() == cor);
 	}
 	
 	public boolean adicionaCriatura(Especie criatura) {
@@ -114,7 +114,7 @@ public class Celula {
 	
 	public void resetaEspecies() {
 		for(int i = 0; i < criaturas.size(); i++) {
-			criaturas.get(0).setAndou(false);
+			criaturas.get(i).setAndou(false);
 		}
 	}
 	

@@ -10,7 +10,7 @@ import Screens.MainMenu;
 
 public class Jogo extends Game {
 	
-	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 50;
+	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 10;
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;

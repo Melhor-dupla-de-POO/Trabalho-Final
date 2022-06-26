@@ -76,9 +76,7 @@ public class Tabuleiro {
 					if(cur.devoAndar(instant)) {
 						this.mover(cur);
 					}
-					else {
-						cur.setAndou(true);
-					}
+					cur.setAndou(true);
 					cur = campo[i][j].primeiro();
 				}
 			}
@@ -167,7 +165,6 @@ public class Tabuleiro {
 			}
 		}
 		criatura.usaEnergia();
-		criatura.setAndou(true);
 		if (directions.isEmpty()) {
 			return;
 		}
