@@ -30,8 +30,8 @@ public abstract class Especie {
 		velocidade = pai.velocidade;
 		inteligencia = pai.inteligencia;
 		tamanho = pai.tamanho;
-		cor = pai.cor;
 		comida = 0;
+		energiaUsada = 0;
 		
 		if (rand.nextFloat() < mutacao) {
 			if (rand.nextBoolean() && velocidade > 10)

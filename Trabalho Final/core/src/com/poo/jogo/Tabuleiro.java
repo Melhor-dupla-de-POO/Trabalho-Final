@@ -112,7 +112,7 @@ public class Tabuleiro {
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
 		int inteligencia = criatura.getInteligencia();
 		int cx = -1, cy = -1;
-		int mndist = 2 * tam + 5;
+		int mndist = 1123456789;
 		for (int i = max(0, x - inteligencia); i <= min(tam - 1, x + inteligencia); i++) {
 			for (int j = max(0, y - inteligencia); j <= min(tam - 1, y + inteligencia); j++) {
 				if (this.campo[i][j].getComida() && abs(x - i) + abs(y - j) < mndist) {
@@ -134,7 +134,7 @@ public class Tabuleiro {
 			if(cy > y && in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor())) 
 				directions.add(3);
 		}
-		else if (directions.isEmpty()) {
+		if (directions.isEmpty()) {
 			if(in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor())) {
 				directions.add(0);
 				if (x > tam / 2) {
@@ -166,6 +166,7 @@ public class Tabuleiro {
 		}
 		criatura.usaEnergia();
 		if (directions.isEmpty()) {
+			System.out.println(criatura.getCor() + " " + criatura.getPos()[0] + " " + criatura.getPos()[1]);
 			return;
 		}
         Collections.shuffle(directions);
