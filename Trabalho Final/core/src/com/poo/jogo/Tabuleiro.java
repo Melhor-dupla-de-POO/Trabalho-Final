@@ -68,6 +68,7 @@ public class Tabuleiro {
 	}
 	
 	public void jogaInstante(int instant) {
+		this.resetaCriaturas();
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
 				Especie cur = campo[i][j].primeiro();
