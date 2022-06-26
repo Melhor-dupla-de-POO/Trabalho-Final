@@ -9,6 +9,7 @@ public class Tabuleiro {
 	
 	Tabuleiro(int tam) {
 		this.tam = tam;
+		campo = new Celula[tam][tam];
 		for (int i = 0; i < tam; i++) {
 			this.campo[i] = new Celula[tam];
 			for (int j = 0; j < tam; j++) {

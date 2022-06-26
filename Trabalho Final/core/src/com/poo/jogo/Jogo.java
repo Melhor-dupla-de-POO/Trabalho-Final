@@ -12,16 +12,19 @@ import Screens.MainMenu;
 
 public class Jogo extends Game {
 	
-	public static final int WIDTH = 1100, HEIGHT = 650;
+	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 50;
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;
 	private boolean isMusic, isSound;
 	private int lastClick = 0, speedPoints, intelligencePoints, strengthPoints;
 	private Cores cor;
+	private float time;
+	private Tabuleiro tabuleiro;
 	
 	@Override
 	public void create () {
+		tabuleiro = new Tabuleiro(celulas);
 		isMusic = isSound = true;
 		batch = new SpriteBatch();
 		sound = Gdx.audio.newSound(Gdx.files.internal("mixkit-arcade-game-jump-coin-216.wav"));
@@ -33,6 +36,12 @@ public class Jogo extends Game {
 	}
 	public void render () {
 		super.render();
+//		time += Gdx.graphics.getDeltaTime();
+//		if (time > 15) {
+//			// finaliza a rodada atual e inicia a proxima
+//			
+//		}
+//		// Roda um instante normalmente
 	}
 	@Override
 	public void dispose () {
