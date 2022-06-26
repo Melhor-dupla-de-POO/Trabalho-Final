@@ -10,7 +10,7 @@ public abstract class Especie {
 	private int comida;
 	protected Tabuleiro tabuleiro;
 	private boolean andou;
-	private static float mutacao = 0.1f;
+	private static float mutacao = 0.3f;
 	
 	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;

@@ -43,18 +43,19 @@ public class Jogo extends Game {
 				tabuleiro.iniciaRodada();
 			}
 			time += Gdx.graphics.getDeltaTime();
-			if (time > 5) {
+			if (time > 8) {
 				// finaliza a rodada atual e inicia a proxima
-				
 				
 				tabuleiro.encerraRodada();
 				instante = 0;
 				time = 0;
 				
 			}
-			// Roda um instante normalmente
-			tabuleiro.jogaInstante(instante);
-			instante++;
+			else {
+				// Roda um instante normalmente
+				tabuleiro.jogaInstante(instante);
+				instante++;
+			}
 		}
 		
 	}
