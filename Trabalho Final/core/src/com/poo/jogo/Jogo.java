@@ -44,7 +44,7 @@ public class Jogo extends Game {
 			}
 			if (time > 15) {
 				// finaliza a rodada atual e inicia a proxima
-				// tabuleiro.encerraRodada();
+				tabuleiro.encerraRodada();
 				instante = 0;
 				time = 0;
 			}

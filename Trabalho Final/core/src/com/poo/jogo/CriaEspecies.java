@@ -18,16 +18,16 @@ public class CriaEspecies {
 			for(int j = 0; j < quantidade[i]; j++) {
 				Especie novo;
 				if(i == 0) {
-					novo = new Vermelho(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
+					novo = new Amarelo(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
 				}
 				else if(i == 1) {
-					novo = new Verde(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
+					novo = new Vermelho(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
 				}
 				else if(i == 2) {
-					novo = new Azul(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
+					novo = new Verde(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
 				}
 				else {
-					novo = new Amarelo(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
+					novo = new Azul(0, 0, velocidade[i], inteligencia[i], tamanho[i], tab);
 				}
 				novo.posicaoInicial();
 				tab.adicionaCriatura(novo);
