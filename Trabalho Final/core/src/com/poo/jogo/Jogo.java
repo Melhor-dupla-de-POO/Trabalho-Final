@@ -48,8 +48,6 @@ public class Jogo extends Game {
 				tabuleiro.encerraRodada();
 				instante = 0;
 				time = 0;
-				rodada++;
-				tabuleiro.iniciaRodada();
 			}
 			// tabuleiro.jogaInstante(instante);
 			instante++;

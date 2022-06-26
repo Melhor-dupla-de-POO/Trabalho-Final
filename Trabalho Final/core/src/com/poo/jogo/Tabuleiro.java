@@ -1,7 +1,6 @@
 package com.poo.jogo;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.lang.Integer;
 
 public class Tabuleiro {
@@ -94,7 +93,7 @@ public class Tabuleiro {
 	
 	public void mover(Especie criatura) {
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
-		int xat = x;
+		/*int xat = x;
 		float energia = criatura.getEnergia();
 		int cx = -1, cy = -1;
 		int mndist = 1123456789;
@@ -149,7 +148,11 @@ public class Tabuleiro {
 					break;
 				}
         	}
-        }
+        }*/
+		this.campo[x][y].removeCriatura(criatura);
+		criatura.setAndou(true);
+		if(x < 49) criatura.setX(x + 1);
+		this.campo[x][y].adicionaCriatura(criatura);
 	}
 	
 	public void removeCriatura(Especie criatura) {
