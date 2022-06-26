@@ -143,4 +143,13 @@ public class Tabuleiro {
 		this.campo[x][y].removeCriatura(criatura);
 	}
 	
+	public int[][] matriz() {
+		int[][] matriz = new int[tam][tam];
+		for (int i = 0; i < tam; i++) {
+			matriz[i] = new int[tam];
+			for (int j = 0; j < tam; j++) matriz[i][j] = campo[i][j].converteInt();
+		}
+		return matriz;
+	}
+	
 }

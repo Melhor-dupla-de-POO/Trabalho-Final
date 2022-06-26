@@ -24,6 +24,7 @@ public abstract class Especie {
 
 		this.energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho);
 	}
+	
 	Especie(Especie pai) {
 		Random rand = new Random();
 		velocidade = pai.velocidade;

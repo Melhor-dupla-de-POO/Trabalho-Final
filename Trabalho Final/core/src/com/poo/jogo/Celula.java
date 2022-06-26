@@ -82,4 +82,17 @@ public class Celula {
 	public void removeCriatura(Especie criatura) {
 		this.criaturas.remove(criatura);
 	}
+	
+	public int converteInt() {
+		if (criaturas.isEmpty()) {
+			if (comida) return 1;
+			return 0;
+		}
+		Cores cor = criaturas.get(0).getCor();
+		int id = cor.getId();
+		if (criaturas.size() == 1) {
+			return 2 * id + 2;
+		}
+		return 2 * id + 3;
+	}
 }
