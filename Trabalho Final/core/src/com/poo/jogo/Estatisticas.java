@@ -5,8 +5,8 @@ import java.util.*;
 public class Estatisticas {
 	private static Estatisticas estatisticas = null;
 	
-	int[] quantidade;
-	float[] velocidade, inteligencia, energia, tamanho;
+	private int[] quantidade;
+	private float[] velocidade, inteligencia, energia, tamanho;
 	Tabuleiro tab;
 	
 	private Estatisticas(Tabuleiro tab) {
@@ -51,5 +51,24 @@ public class Estatisticas {
 		return estatisticas;
 	}
 	
+	public int[] getQuantidade() {
+		return this.quantidade;
+	}
+	
+	public float[] getVelocidade() {
+		return this.velocidade;
+	}
+	
+	public float[] getInteligencia() {
+		return this.inteligencia;
+	}
+	
+	public float[] getEnergia() {
+		return this.energia;
+	}
+	
+	public float[] getTamanho() {
+		return this.tamanho;
+	}
 	
 }

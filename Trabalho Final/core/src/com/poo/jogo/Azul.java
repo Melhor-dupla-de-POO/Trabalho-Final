@@ -6,7 +6,7 @@ public class Azul extends Especie {
 		super(pai);
 	}
 
-	Azul(int x, int y, float velocidade, float inteligencia, float tamanho, Tabuleiro tabuleiro) {
+	Azul(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro) {
 		super(x, y, velocidade, inteligencia, tamanho, tabuleiro, Cores.AZUL);
 	}
 
