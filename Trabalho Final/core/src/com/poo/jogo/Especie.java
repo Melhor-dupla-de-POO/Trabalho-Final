@@ -128,4 +128,13 @@ public abstract class Especie {
 		return true;
 	}
 	
+	public void encerraRodada() {
+		if(this.getComida() == 0) {
+			tabuleiro.removeCriatura(this);
+		}
+		else if(this.getComida() == 2) {
+			Especie filho = new Especie(this);
+			tabuleiro.adicionaCriatura(filho);
+		}
+	}
 }
