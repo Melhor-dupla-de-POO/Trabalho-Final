@@ -8,6 +8,10 @@ public class Celula {
 	
 	private ArrayList<Especie> criaturas;
 	
+	Celula() {
+		this.criaturas = new ArrayList<Especie>();
+	}
+	
 	void resetaComida(boolean cm) {
 		Random rand = new Random();
 		int rnumb = rand.nextInt(10);
