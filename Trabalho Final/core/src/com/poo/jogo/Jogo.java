@@ -42,14 +42,14 @@ public class Jogo extends Game {
 				rodada++;
 				tabuleiro.iniciaRodada();
 			}
+			time += Gdx.graphics.getDeltaTime();
 			if (time > 15) {
 				// finaliza a rodada atual e inicia a proxima
 				tabuleiro.encerraRodada();
 				instante = 0;
 				time = 0;
 			}
-			time += Gdx.graphics.getDeltaTime();
-			// tabuleiro.jogaInstante(instante);
+			tabuleiro.jogaInstante(instante);
 			instante++;
 			// Roda um instante normalmente
 		}
