@@ -52,6 +52,19 @@ public class Celula {
 		return add;
 	}
 	
+	public void iniciaRodada() {
+		this.resetaComida();
+		for(Especie i : this.criaturas) {
+			i.resetaEnergiaUsada();
+		}
+	}
+	
+	public void encerraRodada() {
+		for(Especie i : this.criaturas) {
+			i.encerraRodada();
+		}
+	}
+	
 	public void resetaEspecies() {
 		for(int i = 0; i < criaturas.size(); i++) {
 			criaturas.get(i).setAndou(false);

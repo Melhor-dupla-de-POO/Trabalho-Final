@@ -43,6 +43,22 @@ public class Tabuleiro {
 		}
 	}
 	
+	public void iniciaRodada() {
+		for(int i = 0; i < tam; i++) {
+			for(int j = 0; j < tam; j++) {
+				this.campo[i][j].iniciaRodada();
+			}
+		}
+	}
+	
+	public void encerraRodada() {
+		for(int i = 0; i < tam; i++) {
+			for(int j = 0; j < tam; j++) {
+				this.campo[i][j].encerraRodada();
+			}
+		}
+	}
+	
 	public void jogaRodada(int round) {
 		this.resetaCriaturas();
 		for(int i = 0; i < tam; i++) {
@@ -120,6 +136,11 @@ public class Tabuleiro {
 				}
         	}
         }
+	}
+	
+	public void removeCriatura(Especie criatura) {
+		int x = criatura.getPos()[0], y = criatura.getPos()[1];
+		this.campo[x][y].removeCriatura(criatura);
 	}
 	
 }
