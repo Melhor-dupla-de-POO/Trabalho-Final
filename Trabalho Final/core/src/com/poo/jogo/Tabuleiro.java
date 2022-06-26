@@ -1,6 +1,7 @@
 package com.poo.jogo;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.lang.Integer;
 
 public class Tabuleiro {
@@ -68,10 +69,15 @@ public class Tabuleiro {
 	}
 	
 	public void jogaInstante(int instant) {
-		this.resetaCriaturas();
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
-				this.campo[i][j].joga(this, instant);
+				Especie cur = campo[i][j].primeiro();
+				while(cur != null) {
+					if(cur.devoAndar(instant)) {
+						this.mover(cur);
+					}
+					cur = campo[i][j].primeiro();
+				}
 			}
 		}
 	}

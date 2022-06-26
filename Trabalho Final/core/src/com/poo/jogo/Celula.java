@@ -20,6 +20,13 @@ public class Celula {
 		else this.comida = false;
 	}
 	
+	public Especie primeiro() {
+		for(Especie i : criaturas) {
+			if(i.getAndou() == false) return i;
+		}
+		return null;
+	}
+	
 	public ArrayList<Especie> getList() {
 		return criaturas;
 	}
@@ -119,6 +126,10 @@ public class Celula {
 				tab.mover(i);
 			}
 		}
+	}
+	
+	public boolean inList(Especie criatura) {
+		return (criaturas.contains(criatura));
 	}
 	
 	public void removeCriatura(Especie criatura) {
