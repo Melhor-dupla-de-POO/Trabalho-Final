@@ -44,10 +44,17 @@ public class Tabuleiro {
 	}
 	
 	public void iniciaRodada() {
+		ArrayList<Especie> temp = this.getCriaturas();
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
-				this.campo[i][j].iniciaRodada();
+				boolean cm = true;
+				if(i == 0 || i == tam - 1 || j == 0 || j == tam - 1) cm = false;
+				this.campo[i][j].iniciaRodada(cm);
 			}
+		}
+		for(Especie i : temp) {
+			i.posicaoInicial();
+			this.adicionaCriatura(i);
 		}
 	}
 	

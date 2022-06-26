@@ -1,5 +1,7 @@
 package com.poo.jogo;
 
+import java.util.Random;
+
 public class Amarelo extends Especie {
 
 	Amarelo(Especie pai) {
@@ -10,4 +12,10 @@ public class Amarelo extends Especie {
 		super(x, y, velocidade, inteligencia, tamanho, tabuleiro, Cores.AMARELO);
 	}
 
+	public void posicaoInicial() {
+		Random rand = new Random();
+		int random = rand.nextInt(this.tabuleiro.tam - 1) + 1;
+		this.x = 0; this.y = random;
+	}
+	
 }

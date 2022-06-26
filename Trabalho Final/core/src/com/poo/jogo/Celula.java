@@ -8,10 +8,10 @@ public class Celula {
 	
 	private ArrayList<Especie> criaturas;
 	
-	void resetaComida() {
+	void resetaComida(boolean cm) {
 		Random rand = new Random();
 		int rnumb = rand.nextInt(10);
-		if(rnumb == 0) this.comida = true;
+		if(rnumb == 0 && cm) this.comida = true;
 		else this.comida = false;
 	}
 	
@@ -52,11 +52,12 @@ public class Celula {
 		return add;
 	}
 	
-	public void iniciaRodada() {
-		this.resetaComida();
+	public void iniciaRodada(boolean cm) {
 		for(Especie i : this.criaturas) {
 			i.resetaEnergiaUsada();
 		}
+		this.criaturas.clear();
+		this.resetaComida(cm);
 	}
 	
 	public void encerraRodada() {

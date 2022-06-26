@@ -5,10 +5,10 @@ import java.util.Random;
 public abstract class Especie {
 	private int velocidade, inteligencia, energia, tamanho;
 	private int energiaUsada;
-	private int x, y;
+	protected int x, y;
 	private Cores cor;
 	private int comida;
-	private Tabuleiro tabuleiro;
+	protected Tabuleiro tabuleiro;
 	private boolean andou;
 	private static float mutacao = 0.1f;
 	
@@ -140,6 +140,10 @@ public abstract class Especie {
 		this.energiaUsada++;
 	}
 	
+	public void setComida(int comida) {
+		this.comida = comida;
+	}
+	
 	public boolean devoAndar(int round) {
 		if(this.andou) return false;
 		if(this.energiaUsada == this.energia) return false;
@@ -169,7 +173,10 @@ public abstract class Especie {
 			}
 			tabuleiro.adicionaCriatura(filho);
 		}
+		this.setComida(0);
 	}
+	
+	public abstract void posicaoInicial();
 	
 	// AJEITAR ISSO DAQUI
 	public int calcEnergia(int velocidade, int inteligencia, int tamanho) {
