@@ -156,4 +156,8 @@ public class Jogo extends Game {
 	public Estatisticas getStats() {
 		return stats;
 	}
+	
+	public int getRound() {
+		return rodada;
+	}
 }
