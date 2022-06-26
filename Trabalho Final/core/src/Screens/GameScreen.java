@@ -123,7 +123,7 @@ public class GameScreen implements Screen {
 		}
 		
 		dist = 20;
-		title.draw(game.batch, "Round ", textX, Jogo.HEIGHT - dist);
+		title.draw(game.batch, "Round " + String.valueOf(game.getRound()), textX, Jogo.HEIGHT - dist);
 		dist += 60;
 		int[] number;
 		float[] speed, intelligence, strength;
