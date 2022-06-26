@@ -152,7 +152,7 @@ public class Tabuleiro {
 		this.campo[x][y].removeCriatura(criatura);
 		criatura.setAndou(true);
 		if(x < 49) criatura.setX(x + 1);
-		this.campo[x][y].adicionaCriatura(criatura);
+		this.campo[criatura.getPos()[0]][criatura.getPos()[1]].adicionaCriatura(criatura);
 	}
 	
 	public void removeCriatura(Especie criatura) {
