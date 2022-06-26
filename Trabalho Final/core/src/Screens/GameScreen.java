@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.poo.jogo.Cores;
 import com.poo.jogo.Jogo;
 
 public class GameScreen implements Screen {
@@ -16,6 +17,7 @@ public class GameScreen implements Screen {
 	BitmapFont title;
 	BitmapFont[] cores;
 	int[][] matrix;
+	int[] order;
 	private int dist = 20;
 	private static final int boardSize = 10;
 	private static final int settingsWidth = 80, settingsHeight = 80, borderWidth = 540, borderHeight = 540;
@@ -64,20 +66,32 @@ public class GameScreen implements Screen {
 		// YELLOW
 		cores[3].setColor(Color.YELLOW);
 		
+		order = new int[4];
+		order[0] = Cores.VERMELHO.getId();
+		order[1] = Cores.VERDE.getId();
+		order[2] = Cores.AZUL.getId();
+		order[3] = Cores.AMARELO.getId();
+		
 		switch (this.game.getCor()) {
 			case VERMELHO:
 				break;
 			case VERDE:
 				cores[1].setColor(Color.RED);
 				cores[0].setColor(Color.GREEN);
+				order[0] = Cores.VERDE.getId();
+				order[1] = Cores.VERMELHO.getId();
 				break;
 			case AZUL:
 				cores[2].setColor(Color.RED);
 				cores[0].setColor(Color.CYAN);
+				order[0] = Cores.AZUL.getId();
+				order[2] = Cores.VERMELHO.getId();
 				break;
 			case AMARELO:
 				cores[3].setColor(Color.RED);
 				cores[0].setColor(Color.YELLOW);
+				order[0] = Cores.AMARELO.getId();
+				order[3] = Cores.VERMELHO.getId();
 				break;
 		}
 		
@@ -111,11 +125,23 @@ public class GameScreen implements Screen {
 		dist = 20;
 		title.draw(game.batch, "Round ", textX, Jogo.HEIGHT - dist);
 		dist += 60;
-		cores[0].draw(game.batch, "Creatures\nSpeed\nIntelligence\nStrength", textX, Jogo.HEIGHT - dist);
+		int[] number;
+		float[] speed, intelligence, strength;
+		number = game.getStats().getQuantidade();
+		speed = game.getStats().getVelocidade();
+		intelligence = game.getStats().getInteligencia();
+		strength = game.getStats().getTamanho();
+		cores[0].draw(game.batch, "Creatures: " + String.valueOf(number[order[0]])
+				+ "\nSpeed: " + String.valueOf(speed[order[0]])
+				+ "\nIntelligence: " + String.valueOf(intelligence[order[0]])
+				+ "\nStrength: " + String.valueOf(strength[order[0]]), textX, Jogo.HEIGHT - dist);
 		dist += 65;
 		for (int i = 1; i < 4; i++) {
 			dist += 125;
-			cores[i].draw(game.batch, "Creatures\nSpeed\nIntelligence\nStrength", textX, Jogo.HEIGHT - dist);
+			cores[i].draw(game.batch, "Creatures: " + String.valueOf(number[order[i]])
+			+ "\nSpeed: " + String.valueOf(speed[order[i]])
+			+ "\nIntelligence: " + String.valueOf(intelligence[order[i]])
+			+ "\nStrength: " + String.valueOf(strength[order[i]]), textX, Jogo.HEIGHT - dist);
 		}
 		
 //		if (game.active(settingsX, settingsY, settingsWidth, settingsHeight)) {
