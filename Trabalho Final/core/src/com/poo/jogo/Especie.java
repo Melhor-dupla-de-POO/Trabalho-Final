@@ -159,6 +159,6 @@ public abstract class Especie {
 	
 	// AJEITAR ISSO DAQUI
 	public int calcEnergia(int velocidade, int inteligencia, int tamanho) {
-		return 50;
+		return 10000;
 	}
 }
