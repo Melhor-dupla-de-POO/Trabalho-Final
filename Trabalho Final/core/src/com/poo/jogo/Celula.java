@@ -10,6 +10,7 @@ public class Celula {
 	
 	Celula() {
 		this.criaturas = new ArrayList<Especie>();
+		comida = false;
 	}
 	
 	void resetaComida(boolean cm) {
