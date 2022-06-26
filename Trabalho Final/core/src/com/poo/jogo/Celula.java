@@ -72,8 +72,8 @@ public class Celula {
 	}
 	
 	public void resetaEspecies() {
-		for(int i = 0; i < criaturas.size(); i++) {
-			criaturas.get(i).setAndou(false);
+		for(Especie i : criaturas) {
+			i.setAndou(false);
 		}
 	}
 	
