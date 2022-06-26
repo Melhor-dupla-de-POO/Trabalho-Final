@@ -10,6 +10,7 @@ public abstract class Especie {
 	private int comida;
 	private Tabuleiro tabuleiro;
 	private boolean andou;
+	private static float mutacao = 0.1f;
 	
 	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;
@@ -20,23 +21,40 @@ public abstract class Especie {
 		this.tabuleiro = tabuleiro;
 		this.cor = cor;
 		this.andou = false;
-		
-		// pensar direito em como fazer isso dps
-		this.energia = 1000 - inteligencia - velocidade - tamanho;
+
+		this.energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho);
 	}
 	Especie(Especie pai) {
 		Random rand = new Random();
-		this.x = pai.x;
-		this.y = pai.y;
-		this.velocidade = pai.velocidade + (rand.nextBoolean() ? rand.nextInt() : -rand.nextInt());
-		this.inteligencia = pai.inteligencia + (rand.nextBoolean() ? rand.nextInt() : -rand.nextInt());
-		this.tamanho = pai.tamanho +(rand.nextBoolean() ? rand.nextInt() : -rand.nextInt());
-		this.tabuleiro = pai.tabuleiro;
-		this.cor = pai.cor;
-		this.andou = false;
+		velocidade = pai.velocidade;
+		inteligencia = pai.inteligencia;
+		tamanho = pai.tamanho;
+		cor = pai.cor;
+		comida = 0;
 		
-		// pensar direito em como fazer isso dps
-		this.energia = 1000 - this.inteligencia - this.velocidade - this.tamanho;
+		if (rand.nextFloat() < mutacao) {
+			if (rand.nextBoolean() && velocidade > 10)
+				velocidade--;
+			else
+				velocidade++;
+		}
+		if (rand.nextFloat() < mutacao) {
+			if (rand.nextBoolean() && inteligencia > 0)
+				inteligencia--;
+			else
+				inteligencia++;
+		}
+		if (rand.nextFloat() < mutacao) {
+			if (rand.nextBoolean() && tamanho > 0)
+				tamanho--;
+			else
+				tamanho++;
+		}
+		tabuleiro = pai.tabuleiro;
+		cor = pai.cor;
+		andou = false;
+
+		energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho);
 	}
 	
 	public boolean getAndou() {
@@ -128,4 +146,8 @@ public abstract class Especie {
 		return true;
 	}
 	
+	// AJEITAR ISSO DAQUI
+	public int calcEnergia(int velocidade, int inteligencia, int tamanho) {
+		return 50;
+	}
 }
