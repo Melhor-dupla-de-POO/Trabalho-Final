@@ -96,15 +96,18 @@ public class Tabuleiro {
 	}
 	
 	public void mover(Especie criatura) {
+		//System.out.println("oi\n");
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
-		/*int xat = x;
-		float energia = criatura.getEnergia();
+		int xat = x;
+		int inteligencia = criatura.getInteligencia();
 		int cx = -1, cy = -1;
 		int mndist = 1123456789;
-		while(xat > 0 && (xat - 1 - x) *(xat - 1 - x) <= energia * energia) xat--;
-		while((xat - x) * (xat - x) <= energia * energia) {
+		while(xat > 0 && (xat - 1 - x) *(xat - 1 - x) <= inteligencia * inteligencia) xat--;
+		//System.out.println("oi\n");
+		while(xat < tam && (xat - x) * (xat - x) <= inteligencia * inteligencia) {
+			//System.out.println("oi\n");
 			int yat = y;
-			while(yat >= 0 && (yat - y) * (yat - y) + (xat - x) * (xat - x) <= energia * energia) {
+			while(yat >= 0 && (yat - y) * (yat - y) + (xat - x) * (xat - x) <= inteligencia * inteligencia) {
 				if(this.campo[xat][yat].getComida()) {
 					if((yat - y) * (yat - y) + (xat - x) * (xat - x) < mndist) {
 						mndist = (yat - y) * (yat - y) + (xat - x) * (xat - x);
@@ -114,7 +117,7 @@ public class Tabuleiro {
 				yat--;
 			}
 			yat = y;
-			while(yat < tam && (yat - y) * (yat - y) + (xat - x) * (xat - x) <= energia * energia) {
+			while(yat < tam && (yat - y) * (yat - y) + (xat - x) * (xat - x) <= inteligencia * inteligencia) {
 				if(this.campo[xat][yat].getComida()) {
 					if((yat - y) * (yat - y) + (xat - x) * (xat - x) < mndist) {
 						mndist = (yat - y) * (yat - y) + (xat - x) * (xat - x);
@@ -123,8 +126,9 @@ public class Tabuleiro {
 				}
 				yat++;
 			}
+			xat++;
 		}
-		ArrayList<Integer> directions = new ArrayList<>();
+		ArrayList<Integer> directions = new ArrayList<Integer>();
 		if(cx != -1) {
 			if(cx < x) directions.add(0);
 			if(cy < y) directions.add(1);
@@ -145,18 +149,15 @@ public class Tabuleiro {
         	if(random_d == 2) vx++;
         	if(random_d == 3) vy++;
         	if(in_board(vx, vy)) {
-        		boolean ok = this.campo[vx][vy].adicionaCriatura(criatura);
-				if(ok) {
-					criatura.usaEnergia();
-					this.campo[x][y].removeCriatura(criatura);
-					break;
-				}
+        		this.campo[vx][vy].adicionaCriatura(criatura);
+        		criatura.usaEnergia();
+        		this.campo[x][y].removeCriatura(criatura);
+				criatura.setX(vx); criatura.setY(vy);
+				criatura.setAndou(true);
+				break;
         	}
-        }*/
-		this.campo[x][y].removeCriatura(criatura);
-		criatura.setAndou(true);
-		if(x < 49) criatura.setX(x + 1);
-		this.campo[criatura.getPos()[0]][criatura.getPos()[1]].adicionaCriatura(criatura);
+        }
+        criatura.setAndou(true);
 	}
 	
 	public void removeCriatura(Especie criatura) {
