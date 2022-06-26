@@ -20,6 +20,7 @@ public class Jogo extends Game {
 	private float time;
 	private Tabuleiro tabuleiro;
 	private int instante;
+
 	
 	@Override
 	public void create () {
@@ -151,7 +152,7 @@ public class Jogo extends Game {
 	}
 	
 	public void iniciaGameplay() {
-		CriaEspecies.setAuto(tabuleiro, cor, speedPoints + 10, intelligencePoints, strengthPoints);
+		CriaEspecies.setAuto(tabuleiro, cor, 20 - speedPoints, intelligencePoints, strengthPoints);
 		time = 0;
 		isGame = true;
 	}

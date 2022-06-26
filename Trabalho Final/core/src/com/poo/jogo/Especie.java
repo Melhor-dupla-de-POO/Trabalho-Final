@@ -36,19 +36,19 @@ public abstract class Especie {
 		if (rand.nextFloat() < mutacao) {
 			if (rand.nextBoolean() && velocidade > 10)
 				velocidade--;
-			else
+			else if (velocidade < 20)
 				velocidade++;
 		}
 		if (rand.nextFloat() < mutacao) {
 			if (rand.nextBoolean() && inteligencia > 0)
 				inteligencia--;
-			else
+			else if (inteligencia < 10)
 				inteligencia++;
 		}
 		if (rand.nextFloat() < mutacao) {
 			if (rand.nextBoolean() && tamanho > 0)
 				tamanho--;
-			else
+			else if (tamanho < 10)
 				tamanho++;
 		}
 		tabuleiro = pai.tabuleiro;
