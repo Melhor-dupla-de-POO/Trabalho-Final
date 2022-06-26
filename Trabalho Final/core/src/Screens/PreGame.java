@@ -200,7 +200,6 @@ public class PreGame implements Screen {
 				if (game.mouseClick()) {
 					this.dispose();
 					game.playSound();
-					CriaEspecies.settar(game.getCor(), game.getSpeed() + 10, game.getIntelligence(), game.getStrength());
 					game.setScreen(new GameScreen(game));
 				}
 			}

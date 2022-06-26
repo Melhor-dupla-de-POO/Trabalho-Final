@@ -81,9 +81,6 @@ public class GameScreen implements Screen {
 				break;
 		}
 		
-		/////
-		matrix = game.matrix();
-		/////
 	}
 	
 	@Override
@@ -102,6 +99,8 @@ public class GameScreen implements Screen {
 		game.batch.draw(white, 0, 0, whiteWidth, whiteHeight);
 		game.batch.draw(border, borderX, borderY, borderWidth, borderHeight);
 		// game.batch.draw(white, borderX + 20, borderY + 20, borderWidth - 40, borderHeight - 40);
+		
+		matrix = game.getTabuleiro().getMatriz();
 		for (int i = 0; i < 50; i++) {
 			for (int j = 0; j < 50; j++) {
 				game.batch.draw(board[matrix[i][j]], borderX + 20 + 10 * j, 

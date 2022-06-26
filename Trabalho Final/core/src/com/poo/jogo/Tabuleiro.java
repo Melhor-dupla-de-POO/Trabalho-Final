@@ -151,7 +151,7 @@ public class Tabuleiro {
 		this.campo[x][y].removeCriatura(criatura);
 	}
 	
-	public int[][] matriz() {
+	public int[][] getMatriz() {
 		int[][] matriz = new int[tam][tam];
 		for (int i = 0; i < tam; i++) {
 			matriz[i] = new int[tam];
