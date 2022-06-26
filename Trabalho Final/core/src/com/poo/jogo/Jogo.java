@@ -16,7 +16,7 @@ public class Jogo extends Game {
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;
-	private boolean isMusic, isSound;
+	private boolean isMusic, isSound, isGame;
 	private int lastClick = 0, speedPoints, intelligencePoints, strengthPoints, rodada;
 	private Cores cor;
 	private float time;
@@ -39,16 +39,21 @@ public class Jogo extends Game {
 	}
 	public void render () {
 		super.render();
-		time += Gdx.graphics.getDeltaTime();
-		if (time > 15) {
-			// finaliza a rodada atual e inicia a proxima
-			tabuleiro.encerraRodada();
-			instante = 0;
-			tabuleiro.iniciaRodada();
+		
+		if (isGame) {
+			time += Gdx.graphics.getDeltaTime();
+			if (time > 15) {
+				// finaliza a rodada atual e inicia a proxima
+				tabuleiro.encerraRodada();
+				instante = 0;
+				tabuleiro.iniciaRodada();
+				rodada++;
+				time = 0;
+			}
+			tabuleiro.jogaInstante(instante);
+			instante++;
+			// Roda um instante normalmente
 		}
-		tabuleiro.jogaInstante(instante);
-		instante++;
-		// Roda um instante normalmente
 		
 	}
 	@Override
@@ -145,6 +150,7 @@ public class Jogo extends Game {
 	public void iniciaGameplay() {
 		CriaEspecies.setAuto(tabuleiro, cor, speedPoints + 10, intelligencePoints, strengthPoints);
 		time = 0;
+		isGame = true;
 	}
 	
 	public Estatisticas getStats() {
