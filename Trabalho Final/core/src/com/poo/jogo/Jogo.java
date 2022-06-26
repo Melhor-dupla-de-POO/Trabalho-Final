@@ -47,9 +47,11 @@ public class Jogo extends Game {
 				tabuleiro.encerraRodada();
 				instante = 0;
 				time = 0;
+				rodada++;
+				tabuleiro.iniciaRodada();
 			}
 			time += Gdx.graphics.getDeltaTime();
-			// tabuleiro.jogaInstante(instante);
+			tabuleiro.jogaInstante(instante);
 			instante++;
 			// Roda um instante normalmente
 		}
