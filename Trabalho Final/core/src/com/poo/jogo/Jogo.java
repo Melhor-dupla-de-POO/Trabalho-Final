@@ -20,34 +20,35 @@ public class Jogo extends Game {
 	private float time;
 	private Tabuleiro tabuleiro;
 	private int instante;
-	private Estatisticas stats;
 	
 	@Override
 	public void create () {
 		tabuleiro = new Tabuleiro(celulas);
-		isMusic = isSound = true;
+		isMusic = isSound = false;
 		batch = new SpriteBatch();
 		sound = Gdx.audio.newSound(Gdx.files.internal("mixkit-arcade-game-jump-coin-216.wav"));
 		music = Gdx.audio.newMusic(Gdx.files.internal("alex-productions-extreme-trap-racing-music-power.mp3"));
 		this.setScreen(new MainMenu(this));
-		stats = Estatisticas.getStats(tabuleiro);
 		
 		music.setLooping(true);
-		music.play();
+		if (isMusic)
+			music.play();
 	}
 	public void render () {
 		super.render();
 		
 		if (isGame) {
-			time += Gdx.graphics.getDeltaTime();
+			if (time == 0) {
+				rodada++;
+				tabuleiro.iniciaRodada();
+			}
 			if (time > 15) {
 				// finaliza a rodada atual e inicia a proxima
 				// tabuleiro.encerraRodada();
 				instante = 0;
-				// tabuleiro.iniciaRodada();
-				rodada++;
 				time = 0;
 			}
+			time += Gdx.graphics.getDeltaTime();
 			// tabuleiro.jogaInstante(instante);
 			instante++;
 			// Roda um instante normalmente
@@ -92,7 +93,7 @@ public class Jogo extends Game {
 	}
 	
 	public boolean mouseClick() {
-		if (lastClick >= 15 && Gdx.input.isTouched()) {;
+		if (lastClick >= 10 && Gdx.input.isTouched()) {;
 			lastClick = 0;
 			return true;
 		}
@@ -152,7 +153,7 @@ public class Jogo extends Game {
 	}
 	
 	public Estatisticas getStats() {
-		return stats;
+		return Estatisticas.getStats(tabuleiro);
 	}
 	
 	public int getRound() {
