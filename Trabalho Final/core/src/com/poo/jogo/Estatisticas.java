@@ -36,10 +36,12 @@ public class Estatisticas {
 			tamanho[id] += i.getTamanho();
 		}
 		for (int i = 0; i < 4; i++) {
-			velocidade[i] /= quantidade[i];
-			inteligencia[i] /= quantidade[i];
-			energia[i] /= quantidade[i];
-			tamanho[i] /= quantidade[i];
+			if (quantidade[i] > 0) {
+				velocidade[i] /= quantidade[i];
+				inteligencia[i] /= quantidade[i];
+				energia[i] /= quantidade[i];
+				tamanho[i] /= quantidade[i];
+			}
 		}
 	}
 	
