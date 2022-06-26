@@ -10,7 +10,7 @@ import Screens.MainMenu;
 
 public class Jogo extends Game {
 	
-	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 10;
+	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 50;
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;
@@ -46,7 +46,7 @@ public class Jogo extends Game {
 				tabuleiro.iniciaRodada();
 			}
 			time += Gdx.graphics.getDeltaTime();
-			if (time > 30) {
+			if (time > 5) {
 				// finaliza a rodada atual e inicia a proxima
 				
 				tabuleiro.encerraRodada();

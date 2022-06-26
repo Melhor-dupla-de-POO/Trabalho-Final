@@ -166,11 +166,10 @@ public class Tabuleiro {
 		}
 		criatura.usaEnergia();
 		if (directions.isEmpty()) {
-			System.out.println(criatura.getCor() + " " + criatura.getPos()[0] + " " + criatura.getPos()[1]);
 			return;
 		}
-        Collections.shuffle(directions);
-        int move = directions.get(0);
+        Random rand = new Random();
+        int move = directions.get(rand.nextInt(directions.size()));
         int vx = x, vy = y;
         if (move == 0) vx--;
         if (move == 1) vy--;
