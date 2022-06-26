@@ -1,7 +1,5 @@
 package com.poo.jogo;
 
-import java.util.Random;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -44,13 +42,13 @@ public class Jogo extends Game {
 			time += Gdx.graphics.getDeltaTime();
 			if (time > 15) {
 				// finaliza a rodada atual e inicia a proxima
-				tabuleiro.encerraRodada();
+				// tabuleiro.encerraRodada();
 				instante = 0;
-				tabuleiro.iniciaRodada();
+				// tabuleiro.iniciaRodada();
 				rodada++;
 				time = 0;
 			}
-			tabuleiro.jogaInstante(instante);
+			// tabuleiro.jogaInstante(instante);
 			instante++;
 			// Roda um instante normalmente
 		}
