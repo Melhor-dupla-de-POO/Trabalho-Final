@@ -76,6 +76,9 @@ public class Tabuleiro {
 					if(cur.devoAndar(instant)) {
 						this.mover(cur);
 					}
+					else {
+						cur.setAndou(true);
+					}
 					cur = campo[i][j].primeiro();
 				}
 			}

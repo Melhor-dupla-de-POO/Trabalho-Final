@@ -60,6 +60,7 @@ public class Celula {
 		}
 		if(add && this.getComida()) {
 			this.criaturas.get(0).ganhaComida(1);
+			this.comida = false;
 		}
 		return add;
 	}
@@ -108,8 +109,8 @@ public class Celula {
 	}
 	
 	public void resetaEspecies() {
-		for(Especie i : criaturas) {
-			i.setAndou(false);
+		for(int i = 0; i < criaturas.size(); i++) {
+			criaturas.get(0).setAndou(false);
 		}
 	}
 	
