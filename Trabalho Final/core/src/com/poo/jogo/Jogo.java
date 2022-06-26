@@ -17,7 +17,7 @@ public class Jogo extends Game {
 	private Sound sound;
 	private Music music;
 	private boolean isMusic, isSound;
-	private int lastClick = 0, speedPoints, intelligencePoints, strengthPoints;
+	private int lastClick = 0, speedPoints, intelligencePoints, strengthPoints, rodada;
 	private Cores cor;
 	private float time;
 	private Tabuleiro tabuleiro;
@@ -134,5 +134,9 @@ public class Jogo extends Game {
 	
 	public Tabuleiro getTabuleiro() {
 		return tabuleiro;
+	}
+	
+	public void iniciaGameplay() {
+		CriaEspecies.setAuto(tabuleiro, cor, speedPoints, intelligencePoints, strengthPoints);
 	}
 }
