@@ -1,7 +1,6 @@
 package com.poo.jogo;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.lang.Integer;
 
 public class Tabuleiro {
