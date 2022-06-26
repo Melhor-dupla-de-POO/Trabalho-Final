@@ -69,16 +69,22 @@ public class Tabuleiro {
 	
 	public void jogaInstante(int instant) {
 		this.resetaCriaturas();
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
-				Especie cur = campo[i][j].primeiro();
-				while(cur != null) {
-					if(cur.devoAndar(instant)) {
-						this.mover(cur);
-					}
-					cur.setAndou(true);
-					cur = campo[i][j].primeiro();
+				list.add(i * tam + j);
+			}
+		}
+		Collections.shuffle(list);
+		for (Integer x : list) {
+			int i = x / tam, j = x % tam;
+			Especie cur = campo[i][j].primeiro();
+			while(cur != null) {
+				if(cur.devoAndar(instant)) {
+					this.mover(cur);
 				}
+				cur.setAndou(true);
+				cur = campo[i][j].primeiro();
 			}
 		}
 	}
