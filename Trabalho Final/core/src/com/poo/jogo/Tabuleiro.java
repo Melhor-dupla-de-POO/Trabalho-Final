@@ -140,6 +140,10 @@ public class Tabuleiro {
 			directions.add(1);
 			directions.add(2);
 			directions.add(3);
+			if(x < tam / 2) directions.add(2);
+			else directions.add(0);
+			if(y < tam / 2) directions.add(3);
+			else directions.add(4);
 		}
         Collections.shuffle(directions);
         for(Integer random_d : directions) {
