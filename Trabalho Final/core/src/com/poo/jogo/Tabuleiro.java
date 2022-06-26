@@ -67,11 +67,11 @@ public class Tabuleiro {
 		}
 	}
 	
-	public void jogaRodada(int round) {
+	public void jogaInstante(int instant) {
 		this.resetaCriaturas();
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
-				this.campo[i][j].joga(this, round);
+				this.campo[i][j].joga(this, instant);
 			}
 		}
 	}

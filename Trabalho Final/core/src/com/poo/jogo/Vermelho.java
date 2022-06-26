@@ -18,5 +18,4 @@ public class Vermelho extends Especie {
 		this.x = random; this.y = this.tabuleiro.tam - 1;
 	}
 	
-	
 }

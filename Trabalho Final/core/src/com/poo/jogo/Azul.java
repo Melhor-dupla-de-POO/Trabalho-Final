@@ -18,5 +18,4 @@ public class Azul extends Especie {
 		this.x = random; this.y = 0;
 	}
 	
-	
 }
