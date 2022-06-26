@@ -44,7 +44,7 @@ public class Jogo extends Game {
 				tabuleiro.iniciaRodada();
 			}
 			time += Gdx.graphics.getDeltaTime();
-			if (time > 8) {
+			if (time > 30) {
 				// finaliza a rodada atual e inicia a proxima
 				
 				tabuleiro.encerraRodada();

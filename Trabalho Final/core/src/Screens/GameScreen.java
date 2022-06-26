@@ -137,16 +137,16 @@ public class GameScreen implements Screen {
 		intelligence = game.getStats().getInteligencia();
 		strength = game.getStats().getTamanho();
 		cores[0].draw(game.batch, "Creatures: " + String.valueOf(number[order[0]])
-				+ "\nSpeed: " + String.valueOf(speed[order[0]])
-				+ "\nIntelligence: " + String.valueOf(intelligence[order[0]])
-				+ "\nStrength: " + String.valueOf(strength[order[0]]), textX, Jogo.HEIGHT - dist);
+				+ "\nSpeed: " + String.format("%.3f", speed[order[0]])
+				+ "\nIntelligence: " + String.format("%.3f", intelligence[order[0]])
+				+ "\nStrength: " + String.format("%.3f", strength[order[0]]), textX, Jogo.HEIGHT - dist);
 		dist += 65;
 		for (int i = 1; i < 4; i++) {
 			dist += 125;
-			cores[i].draw(game.batch, "Creatures: " + String.valueOf(number[order[i]])
-			+ "\nSpeed: " + String.valueOf(speed[order[i]])
-			+ "\nIntelligence: " + String.valueOf(intelligence[order[i]])
-			+ "\nStrength: " + String.valueOf(strength[order[i]]), textX, Jogo.HEIGHT - dist);
+			cores[i].draw(game.batch, "Creatures: " + String.valueOf(number[order[0]])
+			+ "\nSpeed: " + String.format("%.3f", speed[order[i]])
+			+ "\nIntelligence: " + String.format("%.3f", intelligence[order[i]])
+			+ "\nStrength: " + String.format("%.3f", strength[order[i]]), textX, Jogo.HEIGHT - dist);
 		}
 		
 //		if (game.active(settingsX, settingsY, settingsWidth, settingsHeight)) {
