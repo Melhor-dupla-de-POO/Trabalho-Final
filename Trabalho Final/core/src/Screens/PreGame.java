@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.poo.jogo.Cores;
+import com.poo.jogo.CriaEspecies;
 import com.poo.jogo.Jogo;
 
 public class PreGame implements Screen {
@@ -199,6 +200,7 @@ public class PreGame implements Screen {
 				if (game.mouseClick()) {
 					this.dispose();
 					game.playSound();
+					CriaEspecies.settar(game.getCor(), game.getSpeed() + 10, game.getIntelligence(), game.getStrength());
 					game.setScreen(new GameScreen(game));
 				}
 			}
