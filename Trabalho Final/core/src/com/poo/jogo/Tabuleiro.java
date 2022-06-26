@@ -95,73 +95,92 @@ public class Tabuleiro {
 		this.campo[x][y].adicionaCriatura(criatura);
 	}
 	
+	public int abs(int x) {
+		if (x < 0) return -1 * x;
+		return x;
+	}
+	
+	public int max(int a, int b) { 
+		if (a >= b) return a;
+		return b;
+	}
+	
+	public int min(int a, int b) {
+		if (a <= b) return a;
+		return b;
+	}
+	
 	public void mover(Especie criatura) {
-		//System.out.println("oi\n");
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
-		int xat = x;
 		int inteligencia = criatura.getInteligencia();
 		int cx = -1, cy = -1;
-		int mndist = 1123456789;
-		while(xat > 0 && (xat - 1 - x) *(xat - 1 - x) <= inteligencia * inteligencia) xat--;
-		//System.out.println("oi\n");
-		while(xat < tam && (xat - x) * (xat - x) <= inteligencia * inteligencia) {
-			//System.out.println("oi\n");
-			int yat = y;
-			while(yat >= 0 && (yat - y) * (yat - y) + (xat - x) * (xat - x) <= inteligencia * inteligencia) {
-				if(this.campo[xat][yat].getComida()) {
-					if((yat - y) * (yat - y) + (xat - x) * (xat - x) < mndist) {
-						mndist = (yat - y) * (yat - y) + (xat - x) * (xat - x);
-						cx = xat; cy = yat;
-					}
+		int mndist = 2 * tam + 5;
+		for (int i = max(0, x - inteligencia); i <= min(tam - 1, x + inteligencia); i++) {
+			for (int j = max(0, y - inteligencia); j <= min(tam - 1, y + inteligencia); j++) {
+				if (this.campo[i][j].getComida() && abs(x - i) + abs(y - j) < mndist) {
+					mndist = abs(x - i) + abs(y - j);
+					cx = i;
+					cy = j;
 				}
-				yat--;
 			}
-			yat = y;
-			while(yat < tam && (yat - y) * (yat - y) + (xat - x) * (xat - x) <= inteligencia * inteligencia) {
-				if(this.campo[xat][yat].getComida()) {
-					if((yat - y) * (yat - y) + (xat - x) * (xat - x) < mndist) {
-						mndist = (yat - y) * (yat - y) + (xat - x) * (xat - x);
-						cx = xat; cy = yat;
-					}
-				}
-				yat++;
-			}
-			xat++;
 		}
+		
 		ArrayList<Integer> directions = new ArrayList<Integer>();
 		if(cx != -1) {
-			if(cx < x) directions.add(0);
-			if(cy < y) directions.add(1);
-			if(cx > x) directions.add(2);
-			if(cy > y) directions.add(3);
+			if(cx < x && in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor())) 
+				directions.add(0);
+			if(cy < y && in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor())) 
+				directions.add(1);
+			if(cx > x && in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor())) 
+				directions.add(2);
+			if(cy > y && in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor())) 
+				directions.add(3);
 		}
-		else {
-			directions.add(0);
-			directions.add(1);
-			directions.add(2);
-			directions.add(3);
-			if(x < tam / 2) directions.add(2);
-			else directions.add(0);
-			if(y < tam / 2) directions.add(3);
-			else directions.add(4);
+		else if (directions.isEmpty()) {
+			if(in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor())) {
+				directions.add(0);
+				if (x > tam / 2) {
+					directions.add(0);
+					directions.add(0);
+				}
+			}
+			if(in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor())) {
+				directions.add(1);
+				if (y > tam / 2) {
+					directions.add(1);
+					directions.add(1);
+				}
+			}
+			if(in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor())) {
+				directions.add(2);
+				if (x < tam / 2) {
+					directions.add(2);
+					directions.add(2);
+				}
+			}
+			if(in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor())) {
+				directions.add(3);
+				if (y < tam / 2) {
+					directions.add(3);
+					directions.add(3);
+				}
+			}
+		}
+		criatura.usaEnergia();
+		criatura.setAndou(true);
+		if (directions.isEmpty()) {
+			return;
 		}
         Collections.shuffle(directions);
-        for(Integer random_d : directions) {
-        	int vx = x, vy = y;
-        	if(random_d == 0) vx--;
-        	if(random_d == 1) vy--;
-        	if(random_d == 2) vx++;
-        	if(random_d == 3) vy++;
-        	if(in_board(vx, vy)) {
-        		this.campo[vx][vy].adicionaCriatura(criatura);
-        		criatura.usaEnergia();
-        		this.campo[x][y].removeCriatura(criatura);
-				criatura.setX(vx); criatura.setY(vy);
-				criatura.setAndou(true);
-				break;
-        	}
-        }
-        criatura.setAndou(true);
+        int move = directions.get(0);
+        int vx = x, vy = y;
+        if (move == 0) vx--;
+        if (move == 1) vy--;
+        if (move == 2) vx++;
+        if (move == 3) vy++;
+		this.campo[x][y].removeCriatura(criatura);
+		this.campo[vx][vy].adicionaCriatura(criatura);
+		criatura.setX(vx); criatura.setY(vy);
 	}
 	
 	public void removeCriatura(Especie criatura) {

@@ -146,7 +146,7 @@ public abstract class Especie {
 	
 	public boolean devoAndar(int round) {
 		if(this.andou) return false;
-		if(this.energiaUsada == this.energia) return false;
+		if(this.energiaUsada >= this.energia) return false;
 		if(round % velocidade != 0) return false;
 		return true;
 	}

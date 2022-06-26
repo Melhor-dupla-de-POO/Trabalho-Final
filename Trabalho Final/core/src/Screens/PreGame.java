@@ -17,7 +17,7 @@ public class PreGame implements Screen {
 	Texture nextInactive, nextActive, minusInactive, minusActive;
 	Texture plusActive, plusInactive, speed, brain, biceps, background;
 	BitmapFont font;
-	private int points = 0;
+	private int points = 10;
 	boolean species = false;
 	private static final int abilitySize = 80, abilityY = 200;
 	private static final int sep = (Jogo.WIDTH - 9 * abilitySize) / 10, nxt = sep + abilitySize;

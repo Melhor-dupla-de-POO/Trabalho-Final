@@ -21,6 +21,8 @@ public class Jogo extends Game {
 	private Tabuleiro tabuleiro;
 	private int instante;
 
+	//TESTE
+	int flip;
 	
 	@Override
 	public void create () {
@@ -54,6 +56,7 @@ public class Jogo extends Game {
 			}
 			else {
 				// Roda um instante normalmente
+				
 				tabuleiro.jogaInstante(instante);
 				instante++;
 			}

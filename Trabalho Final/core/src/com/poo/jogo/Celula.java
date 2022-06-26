@@ -35,6 +35,10 @@ public class Celula {
 		return this.comida;
 	}
 	
+	public boolean free(Cores cor) {
+		return (criaturas.isEmpty() || criaturas.get(0).getCor() == cor);
+	}
+	
 	public boolean adicionaCriatura(Especie criatura) {
 		boolean add;
 		if(this.criaturas.size() == 0) {

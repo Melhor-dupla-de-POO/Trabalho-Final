@@ -143,7 +143,7 @@ public class GameScreen implements Screen {
 		dist += 65;
 		for (int i = 1; i < 4; i++) {
 			dist += 125;
-			cores[i].draw(game.batch, "Creatures: " + String.valueOf(number[order[0]])
+			cores[i].draw(game.batch, "Creatures: " + String.valueOf(number[order[i]])
 			+ "\nSpeed: " + String.format("%.3f", speed[order[i]])
 			+ "\nIntelligence: " + String.format("%.3f", intelligence[order[i]])
 			+ "\nStrength: " + String.format("%.3f", strength[order[i]]), textX, Jogo.HEIGHT - dist);
