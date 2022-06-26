@@ -21,6 +21,7 @@ public class Jogo extends Game {
 	private Cores cor;
 	private float time;
 	private Tabuleiro tabuleiro;
+	private int instante;
 	
 	@Override
 	public void create () {
@@ -36,13 +37,16 @@ public class Jogo extends Game {
 	}
 	public void render () {
 		super.render();
-//		time += Gdx.graphics.getDeltaTime();
-//		if (time > 15) {
-//			// finaliza a rodada atual e inicia a proxima
-//			
-//			
-//		}
-//		// Roda um instante normalmente
+		time += Gdx.graphics.getDeltaTime();
+		if (time > 15) {
+			// finaliza a rodada atual e inicia a proxima
+			tabuleiro.encerraRodada();
+			instante = 0;
+			tabuleiro.iniciaRodada();
+		}
+		tabuleiro.jogaInstante(instante);
+		instante++;
+		// Roda um instante normalmente
 		
 	}
 	@Override
