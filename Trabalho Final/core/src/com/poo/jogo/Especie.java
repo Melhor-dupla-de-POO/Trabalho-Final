@@ -146,6 +146,30 @@ public abstract class Especie {
 		return true;
 	}
 	
+	public void encerraRodada() {
+		if(this.getComida() == 0) {
+			tabuleiro.removeCriatura(this);
+		}
+		else if(this.getComida() == 2) {
+			Especie filho = this;
+			switch (this.getCor()) {
+				case AMARELO:
+					filho = new Amarelo(this);
+					break;
+				case AZUL:
+					filho = new Azul(this);
+					break;
+				case VERMELHO:
+					filho = new Vermelho(this);
+					break;
+				case VERDE:
+					filho = new Verde(this);
+					break;
+			}
+			tabuleiro.adicionaCriatura(filho);
+		}
+	}
+	
 	// AJEITAR ISSO DAQUI
 	public int calcEnergia(int velocidade, int inteligencia, int tamanho) {
 		return 50;
