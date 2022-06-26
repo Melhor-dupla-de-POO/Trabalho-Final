@@ -96,7 +96,7 @@ public class Celula {
 				adicionar.add(filho);
 				adicionar.add(i);
 			}
-			else {
+			else if(i.getComida() == 1){
 				adicionar.add(i);
 			}
 			i.setComida(0);
