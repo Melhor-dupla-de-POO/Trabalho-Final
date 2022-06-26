@@ -109,6 +109,11 @@ public class GameScreen implements Screen {
 		
 		game.batch.begin();
 		
+		if (game.getRound() == 51) {
+			this.dispose();
+			game.setScreen(new MainMenu(game));
+		}
+		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		game.batch.draw(white, 0, 0, whiteWidth, whiteHeight);
 		game.batch.draw(border, borderX, borderY, borderWidth, borderHeight);
