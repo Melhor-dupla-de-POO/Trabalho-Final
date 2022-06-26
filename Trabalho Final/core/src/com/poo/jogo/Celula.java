@@ -66,8 +66,44 @@ public class Celula {
 	}
 	
 	public void encerraRodada() {
+		ArrayList<Especie> remover = new ArrayList<Especie>();
+		ArrayList<Especie> adicionar = new ArrayList<Especie>();
+		Tabuleiro tab = null;
 		for(Especie i : this.criaturas) {
-			i.encerraRodada();
+			tab = i.getTabuleiro();
+			if(i.getComida() == 0) {
+				remover.add(i);
+			}
+			else if(i.getComida() == 2) {
+				Especie filho = i;
+				switch (i.getCor()) {
+					case AMARELO:
+						filho = new Amarelo(i);
+						break;
+					case AZUL:
+						filho = new Azul(i);
+						break;
+					case VERMELHO:
+						filho = new Vermelho(i);
+						break;
+					case VERDE:
+						filho = new Verde(i);
+						break;
+				}
+				adicionar.add(filho);
+				adicionar.add(i);
+			}
+			else {
+				adicionar.add(i);
+			}
+			i.setComida(0);
+		}
+		this.criaturas.clear();
+		for(Especie i : remover) {
+			tab.removeCriatura(i);
+		}
+		for(Especie i : adicionar) {
+			tab.adicionaCriatura(i);
 		}
 	}
 	
@@ -78,9 +114,9 @@ public class Celula {
 	}
 	
 	public void joga(Tabuleiro tab, int round) {
-		for(int i = 0; i < this.criaturas.size(); i++) {
-			if(this.criaturas.get(i).devoAndar(round)) {
-				tab.mover(this.criaturas.get(i));
+		for(Especie i : criaturas) {
+			if(i.devoAndar(round)) {
+				tab.mover(i);
 			}
 		}
 	}
