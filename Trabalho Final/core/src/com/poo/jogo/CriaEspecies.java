@@ -1,11 +1,30 @@
 package com.poo.jogo;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class CriaEspecies {
 	
 	public static void setAuto(Tabuleiro tab, Cores cor, int speedPoints, int intelligencePoints, int strengthPoints) {
-		int[] quantidade = {50, 50, 50, 50},
-				velocidade = {Jogo.baseSpeed - 4, Jogo.baseSpeed - 4, Jogo.baseSpeed - 4, Jogo.baseSpeed - 4}, 
-				inteligencia = {3, 3, 3, 3}, tamanho = {3 , 3, 3, 3};
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for (int i = 2; i <= 6; i++) {
+			for (int j = i + 2; j <= 8; j++) {
+				int speed = i, intelligence = j - i, strength = 10 - j;
+				list.add(100 * speed + 10 * intelligence + strength);
+			}
+		}
+		Random rand = new Random();
+		int[] choose = new int[4];
+		for (int i = 0; i < 4; i++) {
+			int id = rand.nextInt(list.size());
+			choose[i] = list.get(id);
+		}
+		int[] quantidade = {Jogo.qtdInicial, Jogo.qtdInicial, Jogo.qtdInicial, Jogo.qtdInicial},
+				velocidade = {Jogo.baseSpeed - choose[0] / 100, Jogo.baseSpeed - choose[1] / 100,
+						Jogo.baseSpeed - choose[2] / 100, Jogo.baseSpeed - choose[3] / 100}, 
+				inteligencia = {(choose[0] / 10) % 10, (choose[1] / 10) % 10, 
+						(choose[2] / 10) % 10, (choose[3] / 10) % 10},
+				tamanho = {choose[0] % 10 , choose[1] % 10, choose[2] % 10, choose[3] % 10};
 		int id = cor.getId();
 		velocidade[id] = speedPoints;
 		inteligencia[id] = intelligencePoints;

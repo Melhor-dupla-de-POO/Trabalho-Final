@@ -84,6 +84,7 @@ public class Tabuleiro {
 					this.mover(cur);
 				}
 				cur.setAndou(true);
+				cur.usaEnergia();
 				cur = campo[i][j].primeiro();
 			}
 		}
@@ -99,17 +100,17 @@ public class Tabuleiro {
 		this.campo[x][y].adicionaCriatura(criatura);
 	}
 	
-	public int abs(int x) {
+	public static int abs(int x) {
 		if (x < 0) return -1 * x;
 		return x;
 	}
 	
-	public int max(int a, int b) { 
+	public static int max(int a, int b) { 
 		if (a >= b) return a;
 		return b;
 	}
 	
-	public int min(int a, int b) {
+	public static int min(int a, int b) {
 		if (a <= b) return a;
 		return b;
 	}
@@ -170,7 +171,6 @@ public class Tabuleiro {
 				}
 			}
 		}
-		criatura.usaEnergia();
 		if (directions.isEmpty()) {
 			return;
 		}

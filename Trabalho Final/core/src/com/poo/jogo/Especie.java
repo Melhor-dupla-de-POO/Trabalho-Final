@@ -2,15 +2,18 @@ package com.poo.jogo;
 
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
+
 public abstract class Especie {
-	private int velocidade, inteligencia, energia, tamanho;
+	private int velocidade, inteligencia, tamanho;
 	private int energiaUsada;
 	protected int x, y;
+	private float energia, speedWeight = 5, intelligenceWeight = 10, strengthWeight = 5;
 	private Cores cor;
 	private int comida;
 	protected Tabuleiro tabuleiro;
 	private boolean andou;
-	private static float mutacao = 0.5f;
+	private static float mutacao = 0.2f;
 	
 	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;
@@ -74,7 +77,7 @@ public abstract class Especie {
 		return this.comida;
 	}
 	
-	public int getEnergia() {
+	public float getEnergia() {
 		return this.energia;
 	}
 	
@@ -158,7 +161,16 @@ public abstract class Especie {
 	public abstract void posicaoInicial();
 	
 	// AJEITAR ISSO DAQUI
-	public int calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
-		return 10000;
+	public float calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
+		
+		// O calculo sera um valor padrao menos peso * pontos
+		// Podemos tornar a relacao quadratica e aumentar o peso inicial
+		return Jogo.duration / Gdx.graphics.getDeltaTime() 
+				+ speedWeight * Tabuleiro.min(2, velocidade) * Tabuleiro.min(2, velocidade)
+				+ intelligenceWeight * Tabuleiro.min(2,  inteligencia)
+				+ strengthWeight * Tabuleiro.min(2,  tamanho) * Tabuleiro.min(2, tamanho)
+				- speedWeight * (Jogo.baseSpeed - velocidade) * (Jogo.baseSpeed - velocidade)
+				- intelligenceWeight * inteligencia
+				- strengthWeight * tamanho * tamanho;
 	}
 }
