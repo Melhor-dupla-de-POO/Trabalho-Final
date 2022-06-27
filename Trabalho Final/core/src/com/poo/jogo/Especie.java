@@ -22,7 +22,7 @@ public abstract class Especie {
 		this.cor = cor;
 		this.andou = false;
 
-		this.energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho);
+		this.energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho, this.cor);
 	}
 	
 	Especie(Especie pai) {
@@ -55,7 +55,7 @@ public abstract class Especie {
 		cor = pai.cor;
 		andou = false;
 
-		energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho);
+		energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho, this.cor);
 	}
 	
 	public boolean getAndou() {
@@ -158,7 +158,9 @@ public abstract class Especie {
 	public abstract void posicaoInicial();
 	
 	// AJEITAR ISSO DAQUI
-	public int calcEnergia(int velocidade, int inteligencia, int tamanho) {
+	public int calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
+		if (cor == Cores.AMARELO)
+			return 15;
 		return 10000;
 	}
 }

@@ -83,7 +83,7 @@ public class Celula {
 		for(Especie i : this.criaturas) {
 			tab = i.getTabuleiro();
 			if(i.getComida() == 2) {
-				Especie filho = i;
+				Especie filho = null;
 				switch (i.getCor()) {
 					case AMARELO:
 						filho = new Amarelo(i);
