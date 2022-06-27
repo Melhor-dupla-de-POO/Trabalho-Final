@@ -4,6 +4,11 @@ import java.util.*;
 import java.lang.Integer;
 
 public class Tabuleiro {
+	
+	// Aplicacao do pattern Facade
+	// Isola as classes Celula, Especie e suas subclasses
+	// Serve como ponte entre estas classes e o resto do jogo
+	// Exemplo: metodo jogaInstante delega funcoes a classe Celula
 	int tam;
 	Celula[][] campo;
 	
