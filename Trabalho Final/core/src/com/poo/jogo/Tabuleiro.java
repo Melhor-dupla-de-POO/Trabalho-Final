@@ -120,8 +120,10 @@ public class Tabuleiro {
 		int inteligencia = criatura.getInteligencia();
 		int cx = -1, cy = -1;
 		int mndist = 1123456789;
-		for (int i = max(0, x - inteligencia); i <= min(tam - 1, x + inteligencia); i++) {
-			for (int j = max(0, y - inteligencia); j <= min(tam - 1, y + inteligencia); j++) {
+		boolean matar = false;
+		int[] mexe = criatura.getIntelligenceArray();
+		for (int i = max(0, x - mexe[0]); i <= min(tam - 1, x + mexe[1]); i++) {
+			for (int j = max(0, y - mexe[2]); j <= min(tam - 1, y + mexe[3]); j++) {
 				if (this.campo[i][j].getComida() && abs(x - i) + abs(y - j) < mndist) {
 					mndist = abs(x - i) + abs(y - j);
 					cx = i;
@@ -131,42 +133,79 @@ public class Tabuleiro {
 		}
 		
 		ArrayList<Integer> directions = new ArrayList<Integer>();
-		if(cx != -1) {
-			if(cx < x && in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor(), criatura.getTamanho())) 
+		
+		// Ir atras de comida que esta no campo de visao da criatura
+		if(cx != -1 && criatura.getComida() < 2) {
+			if(cx < x && in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(0);
-			if(cy < y && in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor(), criatura.getTamanho())) 
+			}
+			if(cy < y && in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(1);
-			if(cx > x && in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor(), criatura.getTamanho())) 
+			}
+			if(cx > x && in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(2);
-			if(cy > y && in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor(), criatura.getTamanho())) 
+			}
+			if(cy > y && in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(3);
+			}
 		}
+		
+		// Matar os inimigos
+		else {
+			if(in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor(), criatura.getTamanho()) 
+					&& this.campo[x - 1][y].mata(criatura.getCor(), criatura.getTamanho())) {
+				directions.add(0);
+			}
+			else if(in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor(), criatura.getTamanho()) 
+					&& this.campo[x][y - 1].mata(criatura.getCor(), criatura.getTamanho())) {
+				directions.add(1);
+			}
+			else if(in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor(), criatura.getTamanho()) 
+					&& this.campo[x + 1][y].mata(criatura.getCor(), criatura.getTamanho())) {
+				directions.add(2);
+			}
+			else if(in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor(), criatura.getTamanho()) 
+					&& this.campo[x][y + 1].mata(criatura.getCor(), criatura.getTamanho())) {
+				directions.add(3);
+			}
+		}
+		
+		// Andar random com peso pro meio do tabuleiro
 		if (directions.isEmpty()) {
 			if(in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(0);
-				if (x > tam / 2) {
-					directions.add(0);
+				if (criatura.getCor() == Cores.VERMELHO) {
 					directions.add(0);
 				}
+				if (x > tam / 2) {
+					directions.add(0);
+				}
+				
 			}
 			if(in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(1);
-				if (y > tam / 2) {
+				if (criatura.getCor() == Cores.VERDE) {
 					directions.add(1);
+				}
+				if (y > tam / 2) {
 					directions.add(1);
 				}
 			}
 			if(in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(2);
-				if (x < tam / 2) {
+				if (criatura.getCor() == Cores.AMARELO) {
 					directions.add(2);
+				}
+				if (x < tam / 2) {
 					directions.add(2);
 				}
 			}
 			if(in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(3);
-				if (y < tam / 2) {
+				if (criatura.getCor() == Cores.AZUL) {
 					directions.add(3);
+				}
+				if (y < tam / 2) {
 					directions.add(3);
 				}
 			}

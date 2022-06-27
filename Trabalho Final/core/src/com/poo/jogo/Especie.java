@@ -8,12 +8,12 @@ public abstract class Especie {
 	private int velocidade, inteligencia, tamanho;
 	private int energiaUsada;
 	protected int x, y;
-	private float energia, speedWeight = 5, intelligenceWeight = 10, strengthWeight = 5;
+	private float energia, speedWeight = 2.7f, intelligenceWeight = 13, strengthWeight = 10;
 	private Cores cor;
 	private int comida;
 	protected Tabuleiro tabuleiro;
 	private boolean andou;
-	private static float mutacao = 0.2f;
+	private static float mutacao = 0.3f;
 	
 	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;
@@ -24,7 +24,7 @@ public abstract class Especie {
 		this.tabuleiro = tabuleiro;
 		this.cor = cor;
 		this.andou = false;
-
+		
 		this.energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho, this.cor);
 	}
 	
@@ -160,17 +160,90 @@ public abstract class Especie {
 	
 	public abstract void posicaoInicial();
 	
+	public int[] getIntelligenceArray() {
+		int[] ans = new int[4];
+		switch (inteligencia) {
+			case 0:
+				ans[0] = 0;
+				ans[1] = 0;
+				ans[2] = 0;
+				ans[3] = 0;
+				break;
+			case 1:
+				ans[0] = 1;
+				ans[1] = 1;
+				ans[2] = 1;
+				ans[3] = 1;
+				break;
+			case 2:
+				ans[0] = 2;
+				ans[1] = 2;
+				ans[2] = 1;
+				ans[3] = 1;
+				break;
+			case 3:
+				ans[0] = 2;
+				ans[1] = 3;
+				ans[2] = 2;
+				ans[3] = 2;
+				break;
+			case 4:
+				ans[0] = 3;
+				ans[1] = 3;
+				ans[2] = 3;
+				ans[3] = 3;
+				break;
+			case 5:
+				ans[0] = 4;
+				ans[1] = 4;
+				ans[2] = 4;
+				ans[3] = 3;
+				break;
+			case 6:
+				ans[0] = 4;
+				ans[1] = 4;
+				ans[2] = 5;
+				ans[3] = 5;
+				break;
+			case 7:
+				ans[0] = 5;
+				ans[1] = 5;
+				ans[2] = 5;
+				ans[3] = 5;
+				break;
+			case 8:
+				ans[0] = 5;
+				ans[1] = 6;
+				ans[2] = 6;
+				ans[3] = 6;
+				break;
+			case 9:
+				ans[0] = 6;
+				ans[1] = 7;
+				ans[2] = 6;
+				ans[3] = 7;
+				break;
+			case 10:
+				ans[0] = 7;
+				ans[1] = 7;
+				ans[2] = 7;
+				ans[3] = 7;
+				break;
+			
+		}
+		return ans;
+	}
+	
 	// AJEITAR ISSO DAQUI
 	public float calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
 		
 		// O calculo sera um valor padrao menos peso * pontos
-		// Podemos tornar a relacao quadratica e aumentar o peso inicial
 		return Jogo.duration / Gdx.graphics.getDeltaTime() 
-				+ speedWeight * Tabuleiro.min(2, velocidade) * Tabuleiro.min(2, velocidade)
+				+ speedWeight * Tabuleiro.min(2, velocidade) * Tabuleiro.min(2,  velocidade)
 				+ intelligenceWeight * Tabuleiro.min(2,  inteligencia)
-				+ strengthWeight * Tabuleiro.min(2,  tamanho) * Tabuleiro.min(2, tamanho)
+				+ strengthWeight * Tabuleiro.min(2,  tamanho)
 				- speedWeight * (Jogo.baseSpeed - velocidade) * (Jogo.baseSpeed - velocidade)
 				- intelligenceWeight * inteligencia
-				- strengthWeight * tamanho * tamanho;
+				- strengthWeight * tamanho;
 	}
 }

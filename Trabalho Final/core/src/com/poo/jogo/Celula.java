@@ -15,7 +15,7 @@ public class Celula {
 	
 	void resetaComida(boolean cm) {
 		Random rand = new Random();
-		int rnumb = rand.nextInt(12);
+		int rnumb = rand.nextInt(15);
 		if(rnumb == 0 && cm) this.comida = true;
 		else this.comida = false;
 	}
@@ -37,6 +37,10 @@ public class Celula {
 	
 	public boolean free(Cores cor, int sz) {
 		return (criaturas.size() == 0 || criaturas.get(0).getCor() == cor || (criaturas.size() == 1 && criaturas.get(0).getTamanho() <= sz));
+	}
+	
+	public boolean mata(Cores cor, int sz) {
+		return (criaturas.size() == 1 && criaturas.get(0).getCor() != cor && criaturas.get(0).getTamanho() <= sz);
 	}
 	
 	public boolean adicionaCriatura(Especie criatura) {
