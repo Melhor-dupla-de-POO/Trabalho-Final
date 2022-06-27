@@ -109,12 +109,6 @@ public class GameScreen implements Screen {
 		
 		game.batch.begin();
 		
-		if (game.getRound() == Jogo.rounds + 1) {
-			this.dispose();
-			game.terminaGameplay();
-			game.setScreen(new EndGame(game, true));
-		}
-		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
 		game.batch.draw(white, 0, 0, whiteWidth, whiteHeight);
 		game.batch.draw(border, borderX, borderY, borderWidth, borderHeight);
@@ -137,6 +131,16 @@ public class GameScreen implements Screen {
 		speed = game.getStats().getVelocidade();
 		intelligence = game.getStats().getInteligencia();
 		strength = game.getStats().getTamanho();
+		if (game.getRound() == Jogo.rounds + 1 || number[order[0]] == 0) {
+			this.dispose();
+			game.terminaGameplay();
+			game.setScreen(new EndGame(game, false));
+		}
+		if (number[order[1]] == 1 && number[order[2]] == 1 && number[order[3]] == 1) {
+			this.dispose();
+			game.terminaGameplay();
+			game.setScreen(new EndGame(game, true));
+		}
 		cores[0].draw(game.batch, "Creatures: " + String.valueOf(number[order[0]])
 				+ "\nSpeed: " + String.format("%.3f", speed[order[0]])
 				+ "\nIntelligence: " + String.format("%.3f", intelligence[order[0]])

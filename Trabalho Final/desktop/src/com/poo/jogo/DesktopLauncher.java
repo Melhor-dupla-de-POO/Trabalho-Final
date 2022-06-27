@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(30);
 		config.setWindowedMode(Jogo.WIDTH, Jogo.HEIGHT);
-		config.setTitle("Guerra de Aldeias");
+		config.setTitle("EXTINCTION");
 		config.setResizable(false);
 		new Lwjgl3Application(new Jogo(), config);
 	}
