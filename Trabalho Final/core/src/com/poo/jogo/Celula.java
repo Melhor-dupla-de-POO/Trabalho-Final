@@ -27,14 +27,6 @@ public class Celula {
 		return null;
 	}
 	
-	public ArrayList<Especie> getList() {
-		return criaturas;
-	}
-	
-	public boolean getComida() {
-		return this.comida;
-	}
-	
 	public boolean free(Cores cor, int sz) {
 		return (criaturas.size() == 0 || criaturas.get(0).getCor() == cor || (criaturas.size() == 1 && criaturas.get(0).getTamanho() <= sz));
 	}
@@ -83,10 +75,6 @@ public class Celula {
 	
 	public void encerraRodada() {
 		ArrayList<Especie> adicionar = new ArrayList<Especie>();
-		Tabuleiro tab = null;
-		if(this.criaturas.size() > 0) {
-			tab = criaturas.get(0).getTabuleiro();
-		}
 		for(Especie i : this.criaturas) {
 			if(i.getComida() == 2) {
 				Especie filho = null;
@@ -152,4 +140,13 @@ public class Celula {
 		}
 		return 2 * id + 3;
 	}
+	
+	public ArrayList<Especie> getList() {
+		return criaturas;
+	}
+	
+	public boolean getComida() {
+		return this.comida;
+	}
+	
 }
