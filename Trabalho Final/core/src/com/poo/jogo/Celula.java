@@ -80,6 +80,9 @@ public class Celula {
 	public void encerraRodada() {
 		ArrayList<Especie> adicionar = new ArrayList<Especie>();
 		Tabuleiro tab = null;
+		if(this.criaturas.size() > 0) {
+			tab = criaturas.get(0).getTabuleiro();
+		}
 		for(Especie i : this.criaturas) {
 			tab = i.getTabuleiro();
 			if(i.getComida() == 2) {
