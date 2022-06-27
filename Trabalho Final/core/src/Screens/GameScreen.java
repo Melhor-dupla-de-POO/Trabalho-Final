@@ -109,9 +109,10 @@ public class GameScreen implements Screen {
 		
 		game.batch.begin();
 		
-		if (game.getRound() == 51) {
+		if (game.getRound() == Jogo.rounds + 1) {
 			this.dispose();
-			game.setScreen(new MainMenu(game));
+			game.terminaGameplay();
+			game.setScreen(new EndGame(game, true));
 		}
 		
 		game.batch.draw(background, 0, 0, Jogo.WIDTH, Jogo.HEIGHT);
@@ -149,17 +150,18 @@ public class GameScreen implements Screen {
 			+ "\nStrength: " + String.format("%.3f", strength[order[i]]), textX, Jogo.HEIGHT - dist);
 		}
 		
-//		if (game.active(settingsX, settingsY, settingsWidth, settingsHeight)) {
-//			game.batch.draw(settingsActive, settingsX, settingsY, settingsWidth, settingsHeight);
-//			if (game.mouseClick()) {
-//				this.dispose();
-//				game.playSound();
-//				game.setScreen(new Settings(game));
-//			}
-//		}
-//		else {
-//			game.batch.draw(settingsInactive, settingsX, settingsY, settingsWidth, settingsHeight);
-//		}
+		if (game.active(settingsX, settingsY, settingsWidth, settingsHeight)) {
+			game.batch.draw(settingsActive, settingsX, settingsY, settingsWidth, settingsHeight);
+			if (game.mouseClick()) {
+				this.dispose();
+				game.playSound();
+				game.inverteGameplay();
+				game.setScreen(new Settings(game, true));
+			}
+		}
+		else {
+			game.batch.draw(settingsInactive, settingsX, settingsY, settingsWidth, settingsHeight);
+		}
 		
 		game.increaseClick();
 		

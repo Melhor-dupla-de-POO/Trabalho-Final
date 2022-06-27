@@ -17,8 +17,8 @@ public class PreGame implements Screen {
 	Texture nextInactive, nextActive, minusInactive, minusActive;
 	Texture plusActive, plusInactive, speed, brain, biceps, background;
 	BitmapFont font;
-	private int points = 10;
-	boolean species = false;
+	private int points;
+	boolean species;
 	private static final int abilitySize = 80, abilityY = 200;
 	private static final int sep = (Jogo.WIDTH - 9 * abilitySize) / 10, nxt = sep + abilitySize;
 	private static final int X1 = sep, X2 = X1 + nxt, X3 = X2 + nxt, X4 = X3 + nxt, X5 = X4 + nxt;
@@ -53,6 +53,8 @@ public class PreGame implements Screen {
 		font = new BitmapFont();
 		font.getData().setScale(2);
 		font.setColor(0, 0, 0, 1);
+		points = 10;
+		species = false;
 	}
 	
 	@Override

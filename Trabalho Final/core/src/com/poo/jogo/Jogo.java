@@ -12,7 +12,7 @@ public class Jogo extends Game {
 	
 	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50;
 	public static final int qtdInicial = 50, baseSpeed = 13;
-	public static final float duration = 10;
+	public static final float duration = 0.3f, rounds = 50;
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;
@@ -23,9 +23,6 @@ public class Jogo extends Game {
 	private Tabuleiro tabuleiro;
 	private int instante;
 	
-
-	//TESTE
-	int flip;
 	
 	@Override
 	public void create () {
@@ -57,7 +54,7 @@ public class Jogo extends Game {
 				time = 0;
 				
 			}
-			else {
+			else if (rodada <= rounds){
 				// Roda um instante normalmente
 				
 				tabuleiro.jogaInstante(instante);
@@ -161,6 +158,21 @@ public class Jogo extends Game {
 		CriaEspecies.setAuto(tabuleiro, cor, baseSpeed - speedPoints, intelligencePoints, strengthPoints);
 		time = 0;
 		isGame = true;
+	}
+	
+	public void inverteGameplay() {
+		isGame ^= true;
+	}
+	
+	public void terminaGameplay() {
+		tabuleiro.limpaCampo();
+		isGame = false;
+		instante = 0;
+		time = 0;
+		speedPoints = 0;
+		intelligencePoints = 0;
+		strengthPoints = 0;
+		rodada = 0;
 	}
 	
 	public Estatisticas getStats() {
