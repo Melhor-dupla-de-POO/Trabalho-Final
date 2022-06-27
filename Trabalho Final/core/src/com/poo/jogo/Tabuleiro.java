@@ -131,38 +131,38 @@ public class Tabuleiro {
 		
 		ArrayList<Integer> directions = new ArrayList<Integer>();
 		if(cx != -1) {
-			if(cx < x && in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor())) 
+			if(cx < x && in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor(), criatura.getTamanho())) 
 				directions.add(0);
-			if(cy < y && in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor())) 
+			if(cy < y && in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor(), criatura.getTamanho())) 
 				directions.add(1);
-			if(cx > x && in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor())) 
+			if(cx > x && in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor(), criatura.getTamanho())) 
 				directions.add(2);
-			if(cy > y && in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor())) 
+			if(cy > y && in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor(), criatura.getTamanho())) 
 				directions.add(3);
 		}
 		if (directions.isEmpty()) {
-			if(in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor())) {
+			if(in_board(x - 1, y) && this.campo[x - 1][y].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(0);
 				if (x > tam / 2) {
 					directions.add(0);
 					directions.add(0);
 				}
 			}
-			if(in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor())) {
+			if(in_board(x, y - 1) && this.campo[x][y - 1].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(1);
 				if (y > tam / 2) {
 					directions.add(1);
 					directions.add(1);
 				}
 			}
-			if(in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor())) {
+			if(in_board(x + 1, y) && this.campo[x + 1][y].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(2);
 				if (x < tam / 2) {
 					directions.add(2);
 					directions.add(2);
 				}
 			}
-			if(in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor())) {
+			if(in_board(x, y + 1) && this.campo[x][y + 1].free(criatura.getCor(), criatura.getTamanho())) {
 				directions.add(3);
 				if (y < tam / 2) {
 					directions.add(3);
