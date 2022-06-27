@@ -34,9 +34,9 @@ public abstract class Especie {
 		energiaUsada = 0;
 		
 		if (rand.nextFloat() < mutacao) {
-			if (rand.nextBoolean() && velocidade > 10)
+			if (rand.nextBoolean() && velocidade > Jogo.baseSpeed - 10)
 				velocidade--;
-			else if (velocidade < 20)
+			else if (velocidade < Jogo.baseSpeed)
 				velocidade++;
 		}
 		if (rand.nextFloat() < mutacao) {

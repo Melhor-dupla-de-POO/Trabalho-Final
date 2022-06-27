@@ -30,7 +30,7 @@ public class Estatisticas {
 		for(Especie i : lista) {
 			int id = i.getCor().getId();
 			quantidade[id]++;
-			velocidade[id] += 20 - i.getVelocidade();
+			velocidade[id] += Jogo.baseSpeed - i.getVelocidade();
 			inteligencia[id] += i.getInteligencia();
 			energia[id] += i.getEnergia();
 			tamanho[id] += i.getTamanho();

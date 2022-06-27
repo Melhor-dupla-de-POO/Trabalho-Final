@@ -10,7 +10,7 @@ import Screens.MainMenu;
 
 public class Jogo extends Game {
 	
-	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 50;
+	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50, qtdInicial = 50, baseSpeed = 13;
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;
@@ -20,6 +20,7 @@ public class Jogo extends Game {
 	private float time;
 	private Tabuleiro tabuleiro;
 	private int instante;
+	
 
 	//TESTE
 	int flip;
@@ -155,7 +156,7 @@ public class Jogo extends Game {
 	}
 	
 	public void iniciaGameplay() {
-		CriaEspecies.setAuto(tabuleiro, cor, 20 - speedPoints, intelligencePoints, strengthPoints);
+		CriaEspecies.setAuto(tabuleiro, cor, baseSpeed - speedPoints, intelligencePoints, strengthPoints);
 		time = 0;
 		isGame = true;
 	}
