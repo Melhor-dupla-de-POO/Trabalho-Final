@@ -1,4 +1,4 @@
-# Projeto `<Extinction>`
+# Projeto `Extinction`
 
 # Descrição Resumida do Projeto/Jogo
 
@@ -15,7 +15,8 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 # Slides do Projeto
 
 ## Slides da Prévia
-> Coloque um link para os slides da prévia do projeto.
+
+[Slides](https://docs.google.com/presentation/d/1jbVQLHXSmoIzbXC1I0b6tI3u2GO_QiLP6dFZnplVF5k/edit#slide=id.g12eddf9782c_0_10)
 
 ## Slides da Apresentação Final
 > Coloque um link para os slides da apresentação final do projeto.
