@@ -10,6 +10,8 @@ import Screens.MainMenu;
 
 public class Jogo extends Game {
 	
+	// Classe central do programa
+	// Responsavel por renderizar a tela atual e conectar as Screens com as operacoes do Tabuleiro
 	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50;
 	public static final int qtdInicial = 50, baseSpeed = 12;
 	public static final float duration = 15, rounds = 100;
@@ -38,8 +40,11 @@ public class Jogo extends Game {
 			music.play();
 	}
 	public void render () {
+		
+		// Renderiza a tela atual
 		super.render();
 		
+		// Se estamos no meio do jogo, ele chama o tabuleiro para jogar as rodadas
 		if (isGame) {
 			if (time == 0) {
 				rodada++;

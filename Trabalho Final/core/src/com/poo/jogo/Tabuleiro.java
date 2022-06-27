@@ -35,6 +35,8 @@ public class Tabuleiro {
 	}
 	
 	public void iniciaRodada(int round) {
+		
+		// Inicializa as comidas e coloca as criaturas no canto do tabuleiro
 		ArrayList<Especie> temp = this.getCriaturas();
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
@@ -58,6 +60,8 @@ public class Tabuleiro {
 	}
 	
 	public void jogaInstante(int instant) {
+		
+		// Roda um frame da rodada
 		this.resetaCriaturas();
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for(int i = 0; i < tam; i++) {
@@ -106,6 +110,12 @@ public class Tabuleiro {
 	}
 	
 	public void mover(Especie criatura) {
+		
+		// Move a criatura
+		// Primeiro pega o campo de visao da criatura (baseado na inteligencia)
+		// Se existe uma comida no campo de visao, ele pega a comida mais proxima e anda na direcao dela
+		// Se nao tiver comida, ela ve se pode matar alguem
+		// Se nao tiver comida nem morte, ela anda random com um incentivo a ir ao meio do tabuleiro
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
 		int cx = -1, cy = -1;
 		int mndist = 1123456789;
@@ -219,6 +229,8 @@ public class Tabuleiro {
 	}
 	
 	public int[][] getMatriz() {
+		
+		// Funcao auxiliar pra interface grafica
 		int[][] matriz = new int[tam][tam];
 		for (int i = 0; i < tam; i++) {
 			matriz[i] = new int[tam];

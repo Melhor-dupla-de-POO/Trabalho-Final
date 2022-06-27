@@ -14,6 +14,8 @@ public class Celula {
 	}
 	
 	void resetaComida(boolean cm, int round) {
+		
+		// Conforme o tempo passa, a comida fica mais escassa
 		Random rand = new Random();
 		int rnumb = rand.nextInt(10 + round * (round / 15 + 1));
 		if(rnumb == 0 && cm) this.comida = true;
@@ -36,6 +38,8 @@ public class Celula {
 	}
 	
 	public boolean adicionaCriatura(Especie criatura) {
+		
+		// Adiciona a criatura na celula, lidando com a comida e a morte de inimigos
 		boolean add;
 		if(this.criaturas.size() == 0) {
 			this.criaturas.add(criatura);
@@ -74,6 +78,8 @@ public class Celula {
 	}
 	
 	public void encerraRodada() {
+		
+		// Encerra a rodada e reproduz/mata as criaturas
 		ArrayList<Especie> adicionar = new ArrayList<Especie>();
 		for(Especie i : this.criaturas) {
 			if(i.getComida() == 2) {
@@ -129,6 +135,8 @@ public class Celula {
 	}
 	
 	public int converteInt() {
+		
+		// Converte a celula em um inteiro pra facilitar a animacao da interface grafica
 		if (criaturas.isEmpty()) {
 			if (comida) return 1;
 			return 0;

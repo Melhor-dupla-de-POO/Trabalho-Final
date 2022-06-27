@@ -3,6 +3,10 @@ package com.poo.jogo;
 import java.util.*;
 
 public class Estatisticas {
+	
+	// Aplicacao do Singleton
+	// Responsavel por coletar os dados das criaturas do tabuleiro
+	// É utilizada pela interface grafica para passar as estatisticas para o usuario
 	private static Estatisticas estatisticas = null;
 	
 	private int[] quantidade;

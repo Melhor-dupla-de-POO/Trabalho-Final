@@ -5,6 +5,8 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 
 public abstract class Especie {
+	
+	// Classe abstrata que serve de base para as 4 especies
 	private int velocidade, inteligencia, tamanho;
 	private int energiaUsada;
 	protected int x, y;
@@ -30,6 +32,8 @@ public abstract class Especie {
 	}
 	
 	Especie(Especie pai) {
+		
+		// Cria uma nova criatura e aplica mutacao
 		Random rand = new Random();
 		velocidade = pai.velocidade;
 		inteligencia = pai.inteligencia;
@@ -178,6 +182,8 @@ public abstract class Especie {
 	}
 	
 	public int[] getIntelligenceArray() {
+		
+		// Devolve o campo de visao da criatura baseada na inteligencia
 		int[] ans = new int[4];
 		switch (inteligencia) {
 			case 0:

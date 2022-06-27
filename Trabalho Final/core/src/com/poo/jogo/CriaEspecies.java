@@ -6,6 +6,10 @@ import java.util.Random;
 public class CriaEspecies {
 	
 	public static void setAuto(Tabuleiro tab, Cores cor, int speedPoints, int intelligencePoints, int strengthPoints) {
+		
+		// Setta os atributos iniciais das 4 especies
+		// A especie escolhida vai ter os atributos escolhidos pelo usuario
+		// As nao escolhidas vao ter atributos aleatorios, de modo que cada atributo é no max 1
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (int i = 1; i <= 8; i++) {
 			for (int j = i + 1; j <= 9; j++) {
@@ -34,6 +38,8 @@ public class CriaEspecies {
 	}
 	
 	public static void settar(int[] quantidade, int[] velocidade, int[] inteligencia, int[] tamanho, Tabuleiro tab) {
+		
+		// Cria as criaturas iniciais de cada especie
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < quantidade[i]; j++) {
 				Especie novo;
