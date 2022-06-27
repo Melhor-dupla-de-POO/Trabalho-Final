@@ -8,11 +8,11 @@ import com.poo.jogo.Jogo;
 
 public class Settings implements Screen {
 	
-	Jogo game;
-	Texture soundActive, soundInactive, musicActive, musicInactive;
-	Texture soundActiveTouch, soundInactiveTouch, musicActiveTouch, musicInactiveTouch;
-	Texture backActive, backInactive, background, exitActive, exitInactive;
-	boolean gameActive;
+	private Jogo game;
+	private Texture soundActive, soundInactive, musicActive, musicInactive;
+	private Texture soundActiveTouch, soundInactiveTouch, musicActiveTouch, musicInactiveTouch;
+	private Texture backActive, backInactive, background, exitActive, exitInactive;
+	private boolean gameActive;
 	private static final int soundWidth = 80, soundHeight = 80, musicWidth = 80, musicHeight = 80;
 	private static final int soundX = (Jogo.WIDTH - 2 * soundWidth) / 2, soundY = (Jogo.HEIGHT - soundHeight) / 2;
 	private static final int musicX = (Jogo.WIDTH +  musicWidth) / 2, musicY = (Jogo.HEIGHT - musicHeight) / 2;
@@ -154,7 +154,19 @@ public class Settings implements Screen {
 
 	@Override
 	public void dispose() {
-
+		soundActive.dispose();
+		soundInactive.dispose();
+		musicActive.dispose();
+		musicInactive.dispose();
+		soundActiveTouch.dispose();
+		soundInactiveTouch.dispose();
+		musicActiveTouch.dispose();
+		musicInactiveTouch.dispose();
+		background.dispose();
+		backActive.dispose();
+		backInactive.dispose();
+		exitActive.dispose();
+		exitInactive.dispose();
 	}
 
 }

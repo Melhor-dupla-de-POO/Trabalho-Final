@@ -11,13 +11,13 @@ import com.poo.jogo.Jogo;
 
 public class GameScreen implements Screen {
 	
-	Jogo game;
-	Texture background, white, border, settingsInactive, settingsActive;
-	Texture[] board;
-	BitmapFont title;
-	BitmapFont[] cores;
-	int[][] matrix;
-	int[] order;
+	private Jogo game;
+	private Texture background, white, border, settingsInactive, settingsActive;
+	private Texture[] board;
+	private BitmapFont title;
+	private BitmapFont[] cores;
+	private int[][] matrix;
+	private int[] order;
 	private int dist = 20;
 	private static final int boardSize = 10;
 	private static final int settingsWidth = 80, settingsHeight = 80, borderWidth = 540, borderHeight = 540;
@@ -190,7 +190,15 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		background.dispose();
+		white.dispose();
+		border.dispose();
+		settingsActive.dispose();
+		settingsInactive.dispose();
+		for (int i = 0; i < 10; i++) board[i].dispose();
 		
+		title.dispose();
+		for (int i = 0; i < 4; i++) cores[i].dispose();
 	}
 
 }

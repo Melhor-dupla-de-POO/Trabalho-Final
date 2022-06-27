@@ -8,11 +8,11 @@ import com.poo.jogo.Jogo;
 
 public class MainMenu implements Screen {
 
-	Jogo game;
-	Texture playActive, playInactive;
-	Texture tutorialActive, tutorialInactive;
-	Texture title, background;
-	Texture settingsInactive, settingsActive;
+	private Jogo game;
+	private Texture playActive, playInactive;
+	private Texture tutorialActive, tutorialInactive;
+	private Texture title, background;
+	private Texture settingsInactive, settingsActive;
 	private static final int settingsWidth = 80, settingsHeight = 80, tutorialWidth = 300, tutorialHeight = 50;
 	private static final int playWidth = 180, playHeight = 50, titleWidth = 550, titleHeight = 100;
 	private static final int playX = (Jogo.WIDTH - playWidth) / 2, playY = 220;
@@ -103,7 +103,14 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void dispose() {
-		
+		playActive.dispose();
+		playInactive.dispose();
+		tutorialActive.dispose();
+		tutorialInactive.dispose();
+		settingsActive.dispose();
+		settingsInactive.dispose();
+		title.dispose();
+		background.dispose();
 	}
 
 }

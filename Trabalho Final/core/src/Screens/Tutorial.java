@@ -12,8 +12,8 @@ public class Tutorial implements Screen {
 	private int tela;
 	private static final int nextWidth = 80, nextHeight = 80;
 	private static final int nextX = Jogo.WIDTH - nextWidth - 20, nextY = 20;
-	Jogo game;
-	Texture nextActive, nextInactive;
+	private Jogo game;
+	private Texture nextActive, nextInactive;
 	
 	Tutorial(Jogo game) {
 		this.game = game;

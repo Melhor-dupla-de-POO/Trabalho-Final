@@ -10,14 +10,14 @@ import com.poo.jogo.Jogo;
 
 public class PreGame implements Screen {
 
-	Jogo game;
-	Texture redInactive, redActive, greenInactive, greenActive;
-	Texture blueInactive, blueActive, yellowInactive, yellowActive;
-	Texture nextInactive, nextActive, minusInactive, minusActive;
-	Texture plusActive, plusInactive, speed, brain, biceps, background;
-	BitmapFont font;
+	private Jogo game;
+	private Texture redInactive, redActive, greenInactive, greenActive;
+	private Texture blueInactive, blueActive, yellowInactive, yellowActive;
+	private Texture nextInactive, nextActive, minusInactive, minusActive;
+	private Texture plusActive, plusInactive, speed, brain, biceps, background;
+	private BitmapFont font;
 	private int points;
-	boolean species;
+	private boolean species;
 	private static final int abilitySize = 80, abilityY = 200;
 	private static final int sep = (Jogo.WIDTH - 9 * abilitySize) / 10, nxt = sep + abilitySize;
 	private static final int X1 = sep, X2 = X1 + nxt, X3 = X2 + nxt, X4 = X3 + nxt, X5 = X4 + nxt;
@@ -237,7 +237,25 @@ public class PreGame implements Screen {
 
 	@Override
 	public void dispose() {
-
+		redInactive.dispose();
+		redActive.dispose();
+		greenInactive.dispose();
+		greenActive.dispose();
+		blueInactive.dispose();
+		blueActive.dispose();
+		yellowInactive.dispose();
+		yellowActive.dispose();
+		nextInactive.dispose();
+		nextActive.dispose();
+		minusInactive.dispose();
+		minusActive.dispose();
+		plusInactive.dispose();
+		plusActive.dispose();
+		speed.dispose();
+		brain.dispose();
+		biceps.dispose();
+		background.dispose();
+		font.dispose();
 	}
 
 }

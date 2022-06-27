@@ -10,9 +10,9 @@ import com.poo.jogo.Jogo;
 
 public class EndGame implements Screen {
 	
-	Jogo game;
-	Texture background, exitActive, exitInactive;
-	BitmapFont font;
+	private Jogo game;
+	private Texture background, exitActive, exitInactive;
+	private BitmapFont font;
 	private static final int exitWidth = 80, exitHeight = 80, exitX = 20, exitY = 20;
 	
 	EndGame(Jogo game) {
@@ -79,7 +79,10 @@ public class EndGame implements Screen {
 
 	@Override
 	public void dispose() {
-		
+		font.dispose();
+		background.dispose();
+		exitActive.dispose();
+		exitInactive.dispose();
 	}
 	
 }
