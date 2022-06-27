@@ -13,12 +13,10 @@ public class EndGame implements Screen {
 	Jogo game;
 	Texture background, exitActive, exitInactive;
 	BitmapFont font;
-	boolean win;
 	private static final int exitWidth = 80, exitHeight = 80, exitX = 20, exitY = 20;
 	
-	EndGame(Jogo game, boolean win) {
+	EndGame(Jogo game) {
 		this.game = game;
-		this.win = win;
 		background = new Texture("grassBackground.png");
 		exitActive = new Texture("exitAtivo.png");
 		exitInactive = new Texture("exitInativo.png");
@@ -53,12 +51,8 @@ public class EndGame implements Screen {
 			game.batch.draw(exitInactive, exitX, exitY, exitWidth, exitHeight);
 		}
 		
-		if (win) {
-			font.draw(game.batch, "You Win!", 450, 370);
-		}
-		else {
-			font.draw(game.batch, "You Lose", 450, 370);
-		}
+		font.draw(game.batch, "Game Over", 420, 370);
+
 		
 		game.batch.end();
 	}

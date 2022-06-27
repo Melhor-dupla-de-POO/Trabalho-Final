@@ -13,9 +13,9 @@ public class Celula {
 		comida = false;
 	}
 	
-	void resetaComida(boolean cm) {
+	void resetaComida(boolean cm, int round) {
 		Random rand = new Random();
-		int rnumb = rand.nextInt(14);
+		int rnumb = rand.nextInt(12 + round);
 		if(rnumb == 0 && cm) this.comida = true;
 		else this.comida = false;
 	}
@@ -73,12 +73,12 @@ public class Celula {
 		return add;
 	}
 	
-	public void iniciaRodada(boolean cm) {
+	public void iniciaRodada(boolean cm, int round) {
 		for(Especie i : this.criaturas) {
 			i.resetaEnergiaUsada();
 		}
 		this.criaturas.clear();
-		this.resetaComida(cm);
+		this.resetaComida(cm, round);
 	}
 	
 	public void encerraRodada() {

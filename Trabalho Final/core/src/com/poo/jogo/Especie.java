@@ -86,10 +86,12 @@ public abstract class Especie {
 	public Especie ataca(Especie atacado) {
 		if(this.tamanho >= atacado.tamanho) {
 			this.ganhaComida(atacado.getComida());
+			this.ganhaComida(1);
 			return this;
 		}
 		else {
 			atacado.ganhaComida(this.getComida());
+			atacado.ganhaComida(1);
 			return atacado;
 		}
 	}

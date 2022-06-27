@@ -131,15 +131,11 @@ public class GameScreen implements Screen {
 		speed = game.getStats().getVelocidade();
 		intelligence = game.getStats().getInteligencia();
 		strength = game.getStats().getTamanho();
-		if (game.getRound() == Jogo.rounds + 1 || number[order[0]] == 0) {
+		if (game.getRound() == Jogo.rounds + 1 || number[order[0]] == 0
+				|| (number[order[1]] == 1 && number[order[2]] == 1 && number[order[3]] == 1)) {
 			this.dispose();
 			game.terminaGameplay();
-			game.setScreen(new EndGame(game, false));
-		}
-		if (number[order[1]] == 1 && number[order[2]] == 1 && number[order[3]] == 1) {
-			this.dispose();
-			game.terminaGameplay();
-			game.setScreen(new EndGame(game, true));
+			game.setScreen(new EndGame(game));
 		}
 		cores[0].draw(game.batch, "Creatures: " + String.valueOf(number[order[0]])
 				+ "\nSpeed: " + String.format("%.3f", speed[order[0]])
