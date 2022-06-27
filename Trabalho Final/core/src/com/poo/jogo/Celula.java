@@ -62,7 +62,7 @@ public class Celula {
 				}
 			}
 		}
-		if(add && this.getComida() && criatura.getComida() < 2) {
+		if(add && this.getComida()) {
 			criatura.ganhaComida(1);
 			this.comida = false;
 		}
@@ -84,7 +84,6 @@ public class Celula {
 			tab = criaturas.get(0).getTabuleiro();
 		}
 		for(Especie i : this.criaturas) {
-			tab = i.getTabuleiro();
 			if(i.getComida() == 2) {
 				Especie filho = null;
 				switch (i.getCor()) {
@@ -111,7 +110,7 @@ public class Celula {
 		}
 		this.criaturas.clear();
 		for(Especie i : adicionar) {
-			tab.adicionaCriatura(i);
+			adicionaCriatura(i);
 		}
 	}
 	

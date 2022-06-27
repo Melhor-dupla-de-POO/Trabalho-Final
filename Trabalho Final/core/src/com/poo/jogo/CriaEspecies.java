@@ -3,7 +3,7 @@ package com.poo.jogo;
 public class CriaEspecies {
 	
 	public static void setAuto(Tabuleiro tab, Cores cor, int speedPoints, int intelligencePoints, int strengthPoints) {
-		int[] quantidade = {1, 1, 1, 1}, velocidade = {20, 20, 20, 20}, 
+		int[] quantidade = {50, 50, 50, 50}, velocidade = {16, 16, 16, 16}, 
 				inteligencia = {3, 3, 3, 3}, tamanho = {3 , 3, 3, 3};
 		int id = cor.getId();
 		velocidade[id] = speedPoints;
