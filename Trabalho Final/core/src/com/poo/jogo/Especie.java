@@ -1,6 +1,5 @@
 package com.poo.jogo;
 
-import java.util.Map;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
@@ -63,26 +62,6 @@ public abstract class Especie {
 		energia = this.calcEnergia(this.velocidade, this.inteligencia, this.tamanho, this.cor);
 	}
 	
-	public boolean getAndou() {
-		return this.andou;
-	}
-	
-	public void setAndou(boolean andou) {
-		this.andou = andou;
-	}
-	
-	public Cores getCor() {
-		return this.cor;
-	}
-	
-	public int getComida() {
-		return this.comida;
-	}
-	
-	public float getEnergia() {
-		return this.energia;
-	}
-	
 	public Especie ataca(Especie atacado) {
 		if(this.tamanho >= atacado.tamanho) {
 			this.ganhaComida(atacado.getComida());
@@ -101,10 +80,43 @@ public abstract class Especie {
 		if(this.comida > 2) this.comida = 2;
 	}
 	
-	public int[] getPos() {
-		int[] pos = new int[2];
-		pos[0] = x; pos[1] = y;
-		return pos;
+	public void anda() {
+		tabuleiro.mover(this);
+	}
+	
+	public void resetaEnergiaUsada() {
+		this.energiaUsada = 0;
+	}
+	
+	public void usaEnergia() {
+		this.energiaUsada++;
+	}
+	
+	public boolean devoAndar(int round) {
+		if(this.andou) return false;
+		if(this.energiaUsada >= this.energia) return false;
+		if(round % velocidade != 0) return false;
+		return true;
+	}
+	
+	public abstract void posicaoInicial();
+	
+	public float calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
+		
+		// O calculo sera um valor padrao menos peso * pontos
+		return Jogo.duration / Gdx.graphics.getDeltaTime() 
+				+ speedWeight * Tabuleiro.min(2, velocidade) * Tabuleiro.min(2,  velocidade)
+				+ intelligenceWeight * Tabuleiro.min(2,  inteligencia)
+				+ strengthWeight * Tabuleiro.min(2,  tamanho)
+				- speedWeight * (Jogo.baseSpeed - velocidade) * (Jogo.baseSpeed - velocidade)
+				- intelligenceWeight * (inteligencia * (inteligencia + 1)) / 2
+				- strengthWeight * (tamanho * (tamanho + 1)) / 2;
+	}
+	
+	//Setters e Getters
+	
+	public void setComida(int comida) {
+		this.comida = comida;
 	}
 	
 	public void setX(int x) {
@@ -123,6 +135,32 @@ public abstract class Especie {
 		setPos(arr[0], arr[1]);
 	}
 	
+	public void setAndou(boolean andou) {
+		this.andou = andou;
+	}
+	
+	public boolean getAndou() {
+		return this.andou;
+	}
+	
+	public Cores getCor() {
+		return this.cor;
+	}
+	
+	public int getComida() {
+		return this.comida;
+	}
+	
+	public float getEnergia() {
+		return this.energia;
+	}
+	
+	public int[] getPos() {
+		int[] pos = new int[2];
+		pos[0] = x; pos[1] = y;
+		return pos;
+	}
+	
 	public int getInteligencia() {
 		return this.inteligencia;
 	}
@@ -135,34 +173,9 @@ public abstract class Especie {
 		return this.tamanho;
 	}
 	
-	public void anda() {
-		tabuleiro.mover(this);
-	}
-	
-	public void resetaEnergiaUsada() {
-		this.energiaUsada = 0;
-	}
-	
-	public void usaEnergia() {
-		this.energiaUsada++;
-	}
-	
-	public void setComida(int comida) {
-		this.comida = comida;
-	}
-	
-	public boolean devoAndar(int round) {
-		if(this.andou) return false;
-		if(this.energiaUsada >= this.energia) return false;
-		if(round % velocidade != 0) return false;
-		return true;
-	}
-	
 	public Tabuleiro getTabuleiro() {
 		return tabuleiro;
 	}
-	
-	public abstract void posicaoInicial();
 	
 	public int[] getIntelligenceArray() {
 		int[] ans = new int[4];
@@ -238,16 +251,4 @@ public abstract class Especie {
 		return ans;
 	}
 	
-	// AJEITAR ISSO DAQUI
-	public float calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
-		
-		// O calculo sera um valor padrao menos peso * pontos
-		return Jogo.duration / Gdx.graphics.getDeltaTime() 
-				+ speedWeight * Tabuleiro.min(2, velocidade) * Tabuleiro.min(2,  velocidade)
-				+ intelligenceWeight * Tabuleiro.min(2,  inteligencia)
-				+ strengthWeight * Tabuleiro.min(2,  tamanho)
-				- speedWeight * (Jogo.baseSpeed - velocidade) * (Jogo.baseSpeed - velocidade)
-				- intelligenceWeight * (inteligencia * (inteligencia + 1)) / 2
-				- strengthWeight * (tamanho * (tamanho + 1)) / 2;
-	}
 }
