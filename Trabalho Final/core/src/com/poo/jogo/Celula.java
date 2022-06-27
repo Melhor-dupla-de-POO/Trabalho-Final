@@ -15,7 +15,7 @@ public class Celula {
 	
 	void resetaComida(boolean cm) {
 		Random rand = new Random();
-		int rnumb = rand.nextInt(5);
+		int rnumb = rand.nextInt(12);
 		if(rnumb == 0 && cm) this.comida = true;
 		else this.comida = false;
 	}
@@ -62,7 +62,7 @@ public class Celula {
 				}
 			}
 		}
-		if(add && this.getComida()) {
+		if(add && this.getComida() && criatura.getComida() < 2) {
 			criatura.ganhaComida(1);
 			this.comida = false;
 		}
