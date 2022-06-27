@@ -10,7 +10,7 @@ public abstract class Especie {
 	private int comida;
 	protected Tabuleiro tabuleiro;
 	private boolean andou;
-	private static float mutacao = 0.3f;
+	private static float mutacao = 0.5f;
 	
 	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;
@@ -159,8 +159,6 @@ public abstract class Especie {
 	
 	// AJEITAR ISSO DAQUI
 	public int calcEnergia(int velocidade, int inteligencia, int tamanho, Cores cor) {
-		if (cor == Cores.AMARELO)
-			return 15;
 		return 10000;
 	}
 }
