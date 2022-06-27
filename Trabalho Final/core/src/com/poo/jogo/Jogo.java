@@ -11,8 +11,8 @@ import Screens.MainMenu;
 public class Jogo extends Game {
 	
 	public static final int WIDTH = 1100, HEIGHT = 650, celulas = 50;
-	public static final int qtdInicial = 50, baseSpeed = 13;
-	public static final float duration = 10, rounds = 15;
+	public static final int qtdInicial = 50, baseSpeed = 12;
+	public static final float duration = 15, rounds = 15;
 	public SpriteBatch batch;
 	private Sound sound;
 	private Music music;

@@ -15,7 +15,7 @@ public class Celula {
 	
 	void resetaComida(boolean cm) {
 		Random rand = new Random();
-		int rnumb = rand.nextInt(15);
+		int rnumb = rand.nextInt(14);
 		if(rnumb == 0 && cm) this.comida = true;
 		else this.comida = false;
 	}

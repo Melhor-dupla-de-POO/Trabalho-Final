@@ -49,7 +49,7 @@ public class Tabuleiro {
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
 				boolean cm = true;
-				if(i == 0 || i == tam - 1 || j == 0 || j == tam - 1) cm = false;
+				if(i < 4 || i > tam - 4 || j < 4 || j > tam - 4) cm = false;
 				this.campo[i][j].iniciaRodada(cm);
 			}
 		}

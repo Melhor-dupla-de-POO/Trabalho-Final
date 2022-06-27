@@ -14,8 +14,14 @@ public class Azul extends Especie {
 
 	public void posicaoInicial() {
 		Random rand = new Random();
-		int random = rand.nextInt(this.tabuleiro.tam - 2) + 1;
-		this.x = 0; this.y = random;
+		if (rand.nextBoolean()) {
+			int random = rand.nextInt(this.tabuleiro.tam / 2 - 2) + 1;
+			this.y = random; this.x = 0;
+		}
+		else {
+			int random = rand.nextInt(this.tabuleiro.tam / 2 - 2) + 1;
+			this.y = random; this.x = this.tabuleiro.tam - 1;
+		}
 	}
 	
 }

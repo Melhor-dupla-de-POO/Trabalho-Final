@@ -7,8 +7,8 @@ public class CriaEspecies {
 	
 	public static void setAuto(Tabuleiro tab, Cores cor, int speedPoints, int intelligencePoints, int strengthPoints) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		for (int i = 2; i <= 6; i++) {
-			for (int j = i + 2; j <= 8; j++) {
+		for (int i = 1; i <= 8; i++) {
+			for (int j = i + 1; j <= 9; j++) {
 				int speed = i, intelligence = j - i, strength = 10 - j;
 				list.add(100 * speed + 10 * intelligence + strength);
 			}

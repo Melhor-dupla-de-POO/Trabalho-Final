@@ -1,5 +1,6 @@
 package com.poo.jogo;
 
+import java.util.Map;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
@@ -8,12 +9,13 @@ public abstract class Especie {
 	private int velocidade, inteligencia, tamanho;
 	private int energiaUsada;
 	protected int x, y;
-	private float energia, speedWeight = 2.7f, intelligenceWeight = 13, strengthWeight = 10;
+	private float energia, speedWeight = 3f, intelligenceWeight = 5f, strengthWeight = 5f;
 	private Cores cor;
 	private int comida;
 	protected Tabuleiro tabuleiro;
 	private boolean andou;
 	private static float mutacao = 0.3f;
+	
 	
 	Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
 		this.x = x;
@@ -243,7 +245,7 @@ public abstract class Especie {
 				+ intelligenceWeight * Tabuleiro.min(2,  inteligencia)
 				+ strengthWeight * Tabuleiro.min(2,  tamanho)
 				- speedWeight * (Jogo.baseSpeed - velocidade) * (Jogo.baseSpeed - velocidade)
-				- intelligenceWeight * inteligencia
-				- strengthWeight * tamanho;
+				- intelligenceWeight * (inteligencia * (inteligencia + 1)) / 2
+				- strengthWeight * (tamanho * (tamanho + 1)) / 2;
 	}
 }

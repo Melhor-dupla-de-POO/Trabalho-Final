@@ -14,8 +14,14 @@ public class Vermelho extends Especie {
 
 	public void posicaoInicial() {
 		Random rand = new Random();
-		int random = rand.nextInt(this.tabuleiro.tam - 2) + 1;
-		this.x = random; this.y = this.tabuleiro.tam - 1;
+		if (rand.nextBoolean()) {
+			int random = rand.nextInt(this.tabuleiro.tam / 2 - 2) + 1;
+			this.x = random; this.y = this.tabuleiro.tam - 1;
+		}
+		else {
+			int random = rand.nextInt(this.tabuleiro.tam / 2 - 2) + this.tabuleiro.tam / 2 + 1;
+			this.x = random; this.y = 0;
+		}
 	}
 	
 }

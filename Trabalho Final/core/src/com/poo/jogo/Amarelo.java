@@ -14,8 +14,13 @@ public class Amarelo extends Especie {
 
 	public void posicaoInicial() {
 		Random rand = new Random();
-		int random = rand.nextInt(this.tabuleiro.tam - 2) + 1;
-		this.x = random; this.y = 0;
+		if (rand.nextBoolean()) {
+			int random = rand.nextInt(this.tabuleiro.tam / 2 - 2) + 1;
+			this.x = random; this.y = 0;
+		}
+		else {
+			int random = rand.nextInt(this.tabuleiro.tam / 2 - 2) + this.tabuleiro.tam / 2 + 1;
+			this.x = random; this.y = this.tabuleiro.tam - 1;
+		}
 	}
-	
 }
