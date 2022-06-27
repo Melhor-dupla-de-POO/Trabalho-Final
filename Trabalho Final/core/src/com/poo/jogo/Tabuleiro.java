@@ -26,16 +26,6 @@ public class Tabuleiro {
 		}
 	}
 	
-	public ArrayList<Especie> getCriaturas() {
-		ArrayList<Especie> total = new ArrayList<Especie>();
-		for(int i = 0; i < tam; i++) {
-			for(int j = 0; j < tam; j++) {
-				total.addAll(this.campo[i][j].getList());
-			}
-		}
-		return total;
-	}
-	
 	public void resetaCriaturas() {
 		for(int i = 0; i < tam; i++) {
 			for(int j = 0; j < tam; j++) {
@@ -117,10 +107,8 @@ public class Tabuleiro {
 	
 	public void mover(Especie criatura) {
 		int x = criatura.getPos()[0], y = criatura.getPos()[1];
-		int inteligencia = criatura.getInteligencia();
 		int cx = -1, cy = -1;
 		int mndist = 1123456789;
-		boolean matar = false;
 		int[] mexe = criatura.getIntelligenceArray();
 		for (int i = max(0, x - mexe[0]); i <= min(tam - 1, x + mexe[1]); i++) {
 			for (int j = max(0, y - mexe[2]); j <= min(tam - 1, y + mexe[3]); j++) {
@@ -237,6 +225,16 @@ public class Tabuleiro {
 			for (int j = 0; j < tam; j++) matriz[i][j] = campo[i][j].converteInt();
 		}
 		return matriz;
+	}
+	
+	public ArrayList<Especie> getCriaturas() {
+		ArrayList<Especie> total = new ArrayList<Especie>();
+		for(int i = 0; i < tam; i++) {
+			for(int j = 0; j < tam; j++) {
+				total.addAll(this.campo[i][j].getList());
+			}
+		}
+		return total;
 	}
 	
 }
