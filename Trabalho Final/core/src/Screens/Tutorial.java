@@ -83,7 +83,7 @@ public class Tutorial implements Screen {
 		}
 		else if (this.tela == 2){
 			game.batch.draw(speed, 50, Jogo.HEIGHT - 120, 100, 100);
-			font.draw(game.batch, "Speed: creatures with more speed move faster", 200, Jogo.HEIGHT - 55);
+			font.draw(game.batch, "Speed: Creatures with more speed move faster", 200, Jogo.HEIGHT - 55);
 			game.batch.draw(intelligence, 50, Jogo.HEIGHT - 240, 100, 100);
 			font.draw(game.batch, "Intelligence: Smarter creatures can \nsee food from farther away", 200, Jogo.HEIGHT - 150);
 			game.batch.draw(strength, 50, Jogo.HEIGHT - 360, 100, 100);
@@ -101,18 +101,18 @@ public class Tutorial implements Screen {
 					+ "Now try to find a good starting distribution\n"
 					+ "and enjoy watching as the ecossystem evolves!", 100, 600);
 		}
-		else {
-			this.dispose();
-			game.setScreen(new MainMenu(game));
-		}
 		
 		if (Gdx.input.getX() >= nextX && Gdx.input.getX() <= nextX + nextWidth 
 				&& Gdx.input.getY() >= Jogo.HEIGHT - nextY - nextHeight && 
 				Gdx.input.getY() <= Jogo.HEIGHT - nextY) {
 			game.batch.draw(nextActive, nextX, nextY, nextWidth, nextHeight);
 			if (game.mouseClick()) {
-				this.tela++;
 				game.playSound();
+				this.tela++;
+				if (this.tela == 4) {
+					this.dispose();
+					game.setScreen(new MainMenu(game));
+				}
 			}
 		}
 		else {
@@ -146,7 +146,19 @@ public class Tutorial implements Screen {
 
 	@Override
 	public void dispose() {
-
+		for (int i = 0; i < 4; i++) animation[i].dispose();
+		nextActive.dispose();
+		nextInactive.dispose();
+		background.dispose();
+		preTela.dispose();
+		speed.dispose();
+		intelligence.dispose();
+		strength.dispose();
+		yellow.dispose();
+		blue.dispose();
+		green.dispose();
+		red.dispose();
+		font.dispose();
 	}
 
 }

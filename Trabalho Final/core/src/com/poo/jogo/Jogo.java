@@ -43,30 +43,32 @@ public class Jogo extends Game {
 		
 		// Renderiza a tela atual
 		super.render();
-		
+		if (isGame)
+			jogar();
+	}
+	
+	public void jogar() {
 		// Se estamos no meio do jogo, ele chama o tabuleiro para jogar as rodadas
-		if (isGame) {
-			if (time == 0) {
-				rodada++;
-				tabuleiro.iniciaRodada(rodada);
-			}
-			time += Gdx.graphics.getDeltaTime();
-			if (time > duration) {
-				// finaliza a rodada atual e inicia a proxima
-				
-				tabuleiro.encerraRodada();
-				instante = 0;
-				time = 0;
-				
-			}
-			else if (rodada <= rounds){
-				// Roda um instante normalmente
-				
-				tabuleiro.jogaInstante(instante);
-				instante++;
-			}
-		}
 		
+		if (time == 0) {
+			rodada++;
+			tabuleiro.iniciaRodada(rodada);
+		}
+		time += Gdx.graphics.getDeltaTime();
+		if (time > duration) {
+			// finaliza a rodada atual e inicia a proxima
+			
+			tabuleiro.encerraRodada();
+			instante = 0;
+			time = 0;
+			
+		}
+		else if (rodada <= rounds){
+			// Roda um instante da rodada
+			
+			tabuleiro.jogaInstante(instante);
+			instante++;
+		}
 	}
 	@Override
 	public void dispose () {
