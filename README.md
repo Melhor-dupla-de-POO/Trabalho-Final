@@ -19,7 +19,8 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 [Slides](https://docs.google.com/presentation/d/1jbVQLHXSmoIzbXC1I0b6tI3u2GO_QiLP6dFZnplVF5k/edit#slide=id.g12eddf9782c_0_10)
 
 ## Slides da Apresentação Final
-> Coloque um link para os slides da apresentação final do projeto.
+
+[Slides](https://docs.google.com/presentation/d/1HpqCt5N_N9NJoHFYNiT1HZXO-wRYFXCIIAiSLM9TnwM/edit#slide=id.g12029d56449_0_15)
 
 # Diagramas
 
