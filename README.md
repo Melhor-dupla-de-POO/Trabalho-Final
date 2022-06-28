@@ -59,6 +59,7 @@ Class Jogo extends Game {
 		…
 		tabuleiro.encerraRodada(…);
 	}
+	…
 }
 ~~~
 ~~~java
@@ -75,5 +76,6 @@ Class TelaQualquer implements Screen {
 		game.setScreen(new OutraTelaQualquer(game));
 		…
 	}
+	…
 }
 ~~~
