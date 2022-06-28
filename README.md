@@ -32,19 +32,19 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 Class Jogo extends Game {
 …
 public void create () {
-		…
-		this.setScreen(new MainMenu(this));
-    …
+	…
+	this.setScreen(new MainMenu(this));
+	…
 }
 public void render() {
-  super.render();
-  jogar();
+  	super.render();
+  	jogar();
 }
 public void jogar() {
-  tabuleiro.iniciaRodada(…);
-  …
-  tabuleiro.jogaInstante(…);
-  …
-  tabuleiro.finalizaRodada(…);
+  	tabuleiro.iniciaRodada(…);
+  	…
+  	tabuleiro.jogaInstante(…);
+  	…
+  	tabuleiro.finalizaRodada(…);
  }
 ~~~
