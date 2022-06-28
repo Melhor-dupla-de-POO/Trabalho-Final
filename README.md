@@ -79,3 +79,42 @@ Class TelaQualquer implements Screen {
 	…
 }
 ~~~
+~~~java
+// Funcionamento da interface grafica
+Class Tabuleiro {
+	Celula[][] campo;
+	…
+	public void iniciaRodada(…) {
+		// Inicializa as comidas e coloca as criaturas no canto do tabuleiro
+		…
+		campo[i][j].resetaComida();
+		ArrayList<Especie> temp = this.getCriaturas();
+		for(Especie i : temp) {
+			i.settarPosicaoInicial();
+			this.adicionaCriatura(i);
+		}
+	}
+	public void jogaInstante(…) {
+		// Roda um frame da rodada
+		// Itera por todas as criaturas e move as que precisam mover (depende da velocidade)
+		…
+		ArrayList<Especie> temp = this.getCriaturas();
+		for(Especie i : temp) {
+			…
+			this.mover(i);
+		}
+	}
+	public void mover(…) {
+		// Move a criatura
+		// Primeiro pega o campo de visao da criatura (baseado na inteligencia)
+		// Se existe uma comida no campo de visao, ele pega a comida mais proxima e anda na direcao dela
+		// Se nao tiver comida, ela ve se pode matar alguem
+		// Se nao tiver comida nem morte, ela anda random com um incentivo a ir ao meio do tabuleiro
+		…
+		this.campo[x][y].removeCriatura(criatura);
+		this.campo[novoX][novoY].adicionaCriatura(criatura);
+	}
+	…
+}
+}
+~~~
