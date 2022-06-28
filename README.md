@@ -81,6 +81,7 @@ Class TelaQualquer implements Screen {
 ~~~
 ~~~java
 Class Tabuleiro {
+	// Facade
 	Celula[][] campo;
 	…
 	public void iniciaRodada(…) {
