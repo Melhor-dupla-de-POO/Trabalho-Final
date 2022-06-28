@@ -122,6 +122,8 @@ Class Tabuleiro {
 	}
 	…
 }
+~~~
+~~~java
 public Class Estatisticas {
 	// Singleton
 	private static Estatisticas estatisticas = null;
