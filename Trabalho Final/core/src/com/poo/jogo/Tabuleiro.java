@@ -23,6 +23,10 @@ public class Tabuleiro {
 		}
 	}
 	
+	public void setAuto(Cores cor, int speedPoints, int intelligencePoints, int strengthPoints) {
+		CriaEspecies.setAuto(this,  cor, speedPoints, intelligencePoints, strengthPoints);
+	}
+	
 	public void limpaCampo() {
 		for (int i = 0; i < tam; i++) {
 			for (int j = 0; j < tam; j++) {
