@@ -80,7 +80,6 @@ Class TelaQualquer implements Screen {
 }
 ~~~
 ~~~java
-// Funcionamento da interface grafica
 Class Tabuleiro {
 	Celula[][] campo;
 	…
