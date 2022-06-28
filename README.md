@@ -10,7 +10,7 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 
 # Arquivo Executável do Jogo
 
-<a id="raw-url" href="https://raw.githubusercontent.com/Melhor-dupla-de-POO/Trabalho-Final/main/filename">Download</a>
+<a id="raw-url" href="https://raw.githubusercontent.com/Melhor-dupla-de-POO/Trabalho-Final/main/extinction.jar">Download</a>
 
 # Slides do Projeto
 
