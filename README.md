@@ -106,9 +106,12 @@ Class Tabuleiro {
 	public void mover(…) {
 		// Move a criatura
 		// Primeiro pega o campo de visao da criatura (baseado na inteligencia)
-		// Se existe uma comida no campo de visao, ele pega a comida mais proxima e anda na direcao dela
-		// Se nao tiver comida, ela ve se pode matar alguem (se tem alguem mais fraco ao seu redor)
-		// Se nao tiver comida nem morte, ela anda random com um incentivo a ir ao meio do tabuleiro
+		// Se existe uma comida no campo de visao, 
+		// ele pega a comida mais proxima e anda na direcao dela
+		// Se nao tiver comida, ela ve se pode matar alguem 
+		// (se tem alguem mais fraco ao seu redor)
+		// Se nao tiver comida nem morte, 
+		// ela anda random com um incentivo a ir ao meio do tabuleiro
 		…
 		this.campo[x][y].removeCriatura(criatura);
 		this.campo[novoX][novoY].adicionaCriatura(criatura);
