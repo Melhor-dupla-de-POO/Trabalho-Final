@@ -162,7 +162,7 @@ public class Jogo extends Game {
 	}
 	
 	public void iniciaGameplay() {
-		CriaEspecies.setAuto(tabuleiro, cor, baseSpeed - speedPoints, intelligencePoints, strengthPoints);
+		tabuleiro.setAuto(cor, baseSpeed - speedPoints, intelligencePoints, strengthPoints);
 		time = 0;
 		isGame = true;
 	}
