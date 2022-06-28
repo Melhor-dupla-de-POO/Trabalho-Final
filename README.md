@@ -116,5 +116,4 @@ Class Tabuleiro {
 	}
 	…
 }
-}
 ~~~
