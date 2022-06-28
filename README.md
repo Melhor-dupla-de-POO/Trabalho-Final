@@ -122,4 +122,24 @@ Class Tabuleiro {
 	}
 	…
 }
+public Class Estatisticas {
+	// Singleton
+	private static Estatisticas estatisticas = null;
+	…
+	private Estatisticas(…) {
+		…
+	}
+	public static Estatisticas getStats(…) {
+		if(estatisticas == null) {
+			estatisticas = new Estatisticas(…);
+		}
+		estatisticas.atualizaStats();
+		return estatisticas;
+	}
+	private void atualizaStats() {
+		// Atualiza as estatisticas que sao mostradas 
+		// para o usuario durante o jogo
+		…
+	}
+	…
 ~~~
