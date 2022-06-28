@@ -1,4 +1,4 @@
-# Projeto Extinction
+#  Projeto Extinction
 
 # Descrição Resumida do Projeto/Jogo
 
@@ -10,7 +10,7 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 
 # Arquivo Executável do Jogo
 
-[.jar](extinction.jar)
+<a id="raw-url" href="https://raw.githubusercontent.com/Melhor-dupla-de-POO/Trabalho-Final/main/extinction.jar">Download</a>
 
 # Slides do Projeto
 
