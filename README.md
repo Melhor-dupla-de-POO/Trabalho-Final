@@ -26,3 +26,25 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 ## Diagrama Geral da Arquitetura do Jogo
 
 > Apresente um diagrama geral da arquitetura do jogo. O formato é livre. A escolha de um ou mais estilos arquiteturais será considerado um diferencial.
+
+~~~java
+// Recorte do seu código
+Class Jogo extends Game {
+…
+public void create () {
+		…
+		this.setScreen(new MainMenu(this));
+    …
+}
+public void render() {
+  super.render();
+  jogar();
+}
+public void jogar() {
+  tabuleiro.iniciaRodada(…);
+  …
+  tabuleiro.jogaInstante(…);
+  …
+  tabuleiro.finalizaRodada(…);
+ }
+~~~
