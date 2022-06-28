@@ -10,7 +10,7 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 
 # Arquivo Executável do Jogo
 
-> Coloque aqui um link para download do arquivo `jar` ou equivalente para execução do seu jogo.
+[.jar](extinction.jar)
 
 # Slides do Projeto
 
