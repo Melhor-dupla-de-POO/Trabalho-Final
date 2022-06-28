@@ -24,7 +24,5 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 
 # Diagramas
 
-[Diagrama](assets/Diagrama1.png)
-[Diagrama](assets/Diagrama2.png)
-
-> Apresente um diagrama geral da arquitetura do jogo. O formato é livre. A escolha de um ou mais estilos arquiteturais será considerado um diferencial.
+![Diagrama1](assets/Diagrama1.png)
+![Diagrama2](assets/Diagrama2.png)
