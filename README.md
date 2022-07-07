@@ -50,36 +50,48 @@ palavras-chave "AMARELO", "VERMELHO", "VERDE" e "AZUL". Isso aumenta diretamente
 
 ## Diagrama de Classes usada no destaque abaixo:
 
+Colocar a classe Especie em cima e em baixo as 4 cores
+
 ## Código mostrando polimorfismo
 
 ~~~java
-Celula() {
-	this.criaturas = new ArrayList<Especie>();
-	comida = false;
+public void joga(Tabuleiro tab, int round) {
+	for(Especie i : criaturas) {
+		if(i.devoAndar(round)) {
+			tab.mover(i);
+		}
+	}
 }
 ~~~
 
-Neste recorte, temos o construtor da classe Celula, que possuí um ArrayList de Especie. 
+Neste recorte, temos uma função da classe Celula, que possui um ArrayList de Especie.
 
-Com ele, podemos adicionar facilmente outros tipos de Especies fazendo alterações mínimas no código da classe Celula. 
+Especie é uma classe abstrata que pode ser qualquer uma das 4 espécies do Jogo (Azul, Amarelo, Verde e Vermelho). Com isso, fazemos com que a Celula lide apenas com Especie, de modo que podemos adicionar outras espécies ou modificar as existentes fazendo alterações mínimas no código de outras classes.
 
 Além disso, aproveitamos o conceito de polimofismo utilizando a classe abstrata Especie como o tipo do ArrayList, podendo assim armazenar objetos 
 das classes Amarelo, Vermelho, Azul ou Verde também.
 
 ## Diagrama de Classes usada no destaque abaixo:
 
-## Código da sobrecarga do construtor da classe Especie
+Colocar a interface Screen e em baixo todas as classes de tela usadas
+
+## Código mostrando o uso de interface para a parte gráfica
 
 ~~~java
-// Construtor sobrecarregado
-Especie(int x, int y, int velocidade, int inteligencia, int tamanho, Tabuleiro tabuleiro, Cores cor) {
+public class TelaQualquer implements Screen {
+	Jogo game;
 	…
-}
-	
-Especie(Especie pai) {		
+	@Override
+	public void render() {
+		…
+		game.setScreen(new NovaTela(game));
+	}
 	…
 }
 ~~~
+Neste recorte, temos uma classe genérica de uma das telas do jogo implementando a interface Screen do LibGDX. Essa interface tem a função render(), que é responsável por "desenhar" os elementos na tela. 
+
+Na própria função render pode ser chamado o método setScreen, que altera a tela atual. Dessa forma, a classe Jogo apenas lida com a interface Screen, e ela apenas renderiza a tela atual, que pode ser qualquer uma das telas utilizadas no projeto.
 
 # Destaques de Pattern
 
