@@ -37,6 +37,30 @@ Por último, como o jogo precisa ser realizado em um tabuleiro grande para que a
 # Destaques de Código
 
 ~~~java
+// Setta os atributos iniciais das 4 especies
+// A especie escolhida vai ter os atributos escolhidos pelo usuario
+// As nao escolhidas vao ter atributos aleatorios, de modo que cada atributo é no max 1
+ArrayList<Integer> list = new ArrayList<Integer>();
+for (int i = 1; i <= 8; i++) {
+	for (int j = i + 1; j <= 9; j++) {
+		int speed = i, intelligence = j - i, strength = 10 - j;
+		list.add(100 * speed + 10 * intelligence + strength);
+	}
+}
+Random rand = new Random();
+int[] choose = new int[4];
+for (int i = 0; i < 4; i++) {
+	int id = rand.nextInt(list.size());
+	choose[i] = list.get(id);
+}
+…
+~~~
+
+Como o usuário escolhe uma das espécies para jogar, nós precisamos settar os atributos iniciais das outras 3 espécies. Para isso, nós pegamos todas as distribuições de pontos na qual todos os atributos >= 1 e selecionamos uma dessas distribuições de forma aleatória.
+
+O código utilizado é o mais eficiente possível, o que é muito importante, visto que, se decidirmos aumentar a quantidade de atributos que uma espécie pode ter ou o número de pontos a serem distribuídos, a quantidade de distribuições se torna massiva.
+
+~~~java
 public enum Cores {
 	AMARELO, VERMELHO, VERDE, AZUL;
 	…
