@@ -83,9 +83,7 @@ Especie(Especie pai) {
 
 # Destaques de Pattern
 
-## Diagrama do Singleton
-
-## Código do Singleton
+## Singleton
 
 ~~~java
 public Class Estatisticas {
@@ -120,9 +118,7 @@ Uma das vantagens é a economia de recursos enquanto o jogo roda, já que o patt
 
 Este pattern é chamado pela classe Jogo e busca informações em um objeto da classe Tabuleiro.
 
-## Diagrama do Facade
-
-## Código do Facade
+## Facade
 
 ~~~java
 Class Tabuleiro {
