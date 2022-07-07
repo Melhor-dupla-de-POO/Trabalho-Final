@@ -2,7 +2,9 @@
 
 # Descrição Resumida do Projeto/Jogo
 
-Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabuleiro para obter comida. Cada espécie possui três atributos indo de 0 a 10, sendo eles: velocidade, inteligência e força. Conforme o jogo vai passando, as espécies vão sofrendo mutações e alterando suas habilidades. Para jogar, o jogador escolhe uma das quatro espécies e seleciona seus atributos, que juntos devem somar dez pontos. Seu objetivo é que no final do jogo apenas sua espécie sobreviva e as outras três sejam extintas.
+Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabuleiro para obter comida. Cada espécie possui três atributos indo de 0 a 10, sendo eles: velocidade, inteligência e força. Conforme o jogo vai passando, as espécies vão sofrendo mutações e alterando suas habilidades. 
+
+Para jogar, o jogador escolhe uma das quatro espécies e seleciona seus atributos, que juntos devem somar dez pontos. Seu objetivo é que no final do jogo apenas sua espécie sobreviva e as outras três sejam extintas.
 
 # Equipe
 * Bernardo Panka Archegas - 246970
@@ -25,8 +27,11 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 ## Relatório de Evolução
 
 Durante a realização do projeto, nós estávamos com dificuldade em integrar o Controller (Classe Jogo) com o Model, então acabamos decidindo fazer com que o Tabuleiro agisse como Facade, facilitando as interações. 
+
 Além disso, tivemos que realizar várias mudanças para melhorar o balanceamento do jogo. As mais notáveis foram fazer com que a função de penalidade da energia da criatura se tornasse quadrática; não permitir que comidas fossem posicionadas na borda do tabuleiro; colocar as espécies mais próximas umas das outras para aumentar as relações interespécies; modificar a função de mover as criaturas para balancear a efetividade dos atributos.
+
 No entanto, com a orientação a objetos e suas estratégias de encapsulamento e maximizar a coesão e minimizar o acoplamento, implementar essas mudanças foi relativamente tranquilo.
+
 Por último, como o jogo precisa ser realizado em um tabuleiro grande para que as mutações e a seleção natural tenham efeito, nós precisávamos que o design das criaturas fosse bem pixelado. Dessa forma, para que tudo estivesse no mesmo tema, mudamos a arte do jogo para algo mais pixelado e acabamos fazendo a maioria dos sprites utilizados. 
 
 # Destaques de Código
@@ -55,7 +60,9 @@ Celula() {
 ~~~
 
 Neste recorte, temos o construtor da classe Celula, que possuí um ArrayList de Especie. 
+
 Com ele, podemos adicionar facilmente outros tipos de Especies fazendo alterações mínimas no código da classe Celula. 
+
 Além disso, aproveitamos o conceito de polimofismo utilizando a classe abstrata Especie como o tipo do ArrayList, podendo assim armazenar objetos 
 das classes Amarelo, Vermelho, Azul ou Verde também.
 
@@ -106,8 +113,11 @@ public Class Estatisticas {
 ~~~
 
 O pattern adotado no código acima foi o singleton. 
+
 Por ser uma classe que retorna as estatísticas do tabuleiro, não é necessária mais de uma instância da classe. 
+
 Uma das vantagens é a economia de recursos enquanto o jogo roda, já que o pattern evita a criação de várias instâncias da classe. 
+
 Este pattern é chamado pela classe Jogo e busca informações em um objeto da classe Tabuleiro.
 
 ## Diagrama do Facade
@@ -164,12 +174,15 @@ Class Tabuleiro {
 ~~~
 
 No código acima, temos a classe Tabuleiro. Esta classe segue o pattern Facade, sendo uma classe que oculta várias outras. 
+
 Sendo assim, a classe Jogo não acessa as classes Celula e Especie, acessando apenas a classe Tabuleiro, que modifica estes outros objetos. 
+
 Um exemplo é o método encerraRodada. Enquanto o método acessa objetos da classe Celula, a classe Jogo não os acessa, apenas chama o método do Tabuleiro.
 
 # Conclusões e Trabalhos Futuros
 
 No geral, o projeto foi muito bom. Foi possível aprender bastante sobre a importância dos conceitos de orientação a objetos e de uma organização melhor de código. 
+
 Para o futuro, temos várias ideias de como melhorar o projeto:
 - Construir um tutorial mais intuitivo. Nosso jogo possui dinâmicas bem complexas e o ideal é que o jogador consiga entender sozinho como aproveitá-lo.
 - Melhorar o balanceamento.
