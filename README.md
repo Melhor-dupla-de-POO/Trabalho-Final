@@ -2,7 +2,7 @@
 
 # Descrição Resumida do Projeto/Jogo
 
-Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabuleiro para obter comida. Cada espécie possui três atributos indo de 0 a 10, sendo eles: velocidade, inteligência e força. Para jogar, o jogador escolhe uma das quatro espécies e seleciona seus atributos, que juntos devem somar dez pontos. Seu objetivo é que no final do jogo apenas sua espécie sobreviva e as outras três sejam extintas.
+Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabuleiro para obter comida. Cada espécie possui três atributos indo de 0 a 10, sendo eles: velocidade, inteligência e força. Conforme o jogo vai passando, as espécies vão sofrendo mutações e alterando suas habilidades. Para jogar, o jogador escolhe uma das quatro espécies e seleciona seus atributos, que juntos devem somar dez pontos. Seu objetivo é que no final do jogo apenas sua espécie sobreviva e as outras três sejam extintas.
 
 # Equipe
 * Bernardo Panka Archegas - 246970
@@ -24,9 +24,10 @@ Em nosso jogo, temos quatro espécies diferentes que lutam entre si em um tabule
 
 ## Relatório de Evolução
 
-Não ocorreram muitas mudanças na ideia do jogo ao longo do desenvolvimento. Porém, mudamos um pouco o design do código. 
-No início, desejávamos utilizar o pattern strategy para englobar diferentes interações entre espécies. 
-No entanto, optamos por deixar todas as interações iguais para facilitar o código e o balanceamento do jogo.
+Durante a realização do projeto, nós estávamos com dificuldade em integrar o Controller (Classe Jogo) com o Model, então acabamos decidindo fazer com que o Tabuleiro agisse como Facade, facilitando as interações. 
+Além disso, tivemos que realizar várias mudanças para melhorar o balanceamento do jogo. As mais notáveis foram fazer com que a função de penalidade da energia da criatura se tornasse quadrática; não permitir que comidas fossem posicionadas na borda do tabuleiro; colocar as espécies mais próximas umas das outras para aumentar as relações interespécies; modificar a função de mover as criaturas para balancear a efetividade dos atributos.
+No entanto, com a orientação a objetos e suas estratégias de encapsulamento e maximizar a coesão e minimizar o acoplamento, implementar essas mudanças foi relativamente tranquilo.
+Por último, como o jogo precisa ser realizado em um tabuleiro grande para que as mutações e a seleção natural tenham efeito, nós precisávamos que o design das criaturas fosse bem pixelado. Dessa forma, para que tudo estivesse no mesmo tema, mudamos a arte do jogo para algo mais pixelado e acabamos fazendo a maioria dos sprites utilizados. 
 
 # Destaques de Código
 
@@ -168,8 +169,12 @@ Um exemplo é o método encerraRodada. Enquanto o método acessa objetos da clas
 
 # Conclusões e Trabalhos Futuros
 
-No geral, o projeto foi bom. Foi possível aprender bastante sobre a importância de POO e de uma organização melhor de código. No entanto, não foi possível implementar tudo que foi planejado. 
-Devido à falta de tempo, não foi possível implementar o pattern strategy para as interações entre criaturas. Além disso, queriamos aumentar a complexidade e balancear melhor o jogo, o que não foi possível.
+No geral, o projeto foi muito bom. Foi possível aprender bastante sobre a importância dos conceitos de orientação a objetos e de uma organização melhor de código. 
+Para o futuro, temos várias ideias de como melhorar o projeto:
+- Construir um tutorial mais intuitivo. Nosso jogo possui dinâmicas bem complexas e o ideal é que o jogador consiga entender sozinho como aproveitá-lo.
+- Melhorar o balanceamento.
+- Permitir que o jogador escolha outros aspectos do jogo, ex: tamanho do tabuleiro, quantidade de comida, etc.
+- Acrescentar novos atributos além de velocidade, inteligência e força.
 
 # Diagramas
 
