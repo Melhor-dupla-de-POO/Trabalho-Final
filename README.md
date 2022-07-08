@@ -74,7 +74,7 @@ palavras-chave "AMARELO", "VERMELHO", "VERDE" e "AZUL". Isso aumenta diretamente
 
 ## Diagrama de Classes usada no destaque abaixo:
 
-Colocar a classe Especie em cima e em baixo as 4 cores
+![DiagramaEspecie](assets/UMLespecie.png)
 
 ## Código mostrando polimorfismo
 
@@ -97,7 +97,7 @@ das classes Amarelo, Vermelho, Azul ou Verde também.
 
 ## Diagrama de Classes usada no destaque abaixo:
 
-Colocar a interface Screen e em baixo todas as classes de tela usadas
+![Diagrama1](assets/UMLscreen.png)
 
 ## Código mostrando o uso de interface para a parte gráfica
 
